@@ -3,8 +3,7 @@ import logging
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
-from models import Update
-import models
+from models import Update, LastUpdate
 from datetime import datetime
 
 
@@ -18,46 +17,47 @@ def __get_from_memcache(key_name):
         logging.debug("Cache Miss for " + key_name)
         value = __update_key(key_name).get()
         if value is None:
-            value = models.LastUpdate()
+            logging.debug("Creating LastUpdate for: " + key_name)
+            value = LastUpdate()
+            value.last_touch = datetime.utcfromtimestamp(0)
             value.put()
         client.add(key_name, value)
     return value
 
 def __get_last_post_time():
-    return __get_from_memcache('last_post')
+    return __get_from_memcache('last_post').last_touch
 
 def __get_last_sermon_time():
-    return __get_from_memcache('last_sermon')
+    return __get_from_memcache('last_sermon').last_touch
 
 def __get_last_event_time():
-    return __get_from_memcache('last_event')
+    return __get_from_memcache('last_event').last_touch
 
 def __get_last_category_time():
-    return __get_from_memcache('last_category')
+    return __get_from_memcache('last_category').last_touch
 
-def __update(key_name):
+def __update(key_name, dt):
     value = __get_from_memcache(key_name)
-    # TODO: check compatable data types
-    value.last_touch = datetime.utcnow()
+    value.last_touch = dt
     value.put()
     memcache.Client().set(key_name, value)
 
-def set_last_post_time():
-    return __update('last_post')
+def set_last_post_time(dt):
+    return __update('last_post', dt)
 
-def set_last_sermon_time():
-    return __update('last_sermon')
+def set_last_sermon_time(dt):
+    return __update('last_sermon', dt)
 
-def set_last_event_time():
-    return __update('last_event')
+def set_last_event_time(dt):
+    return __update('last_event', dt)
 
-def set_last_category_time():
-    return __update('last_category')
+def set_last_category_time(dt):
+    return __update('last_category', dt)
 
 def get_needs_update(last_sync_time):
     update = Update()
-    update.update_posts = True
-    update.update_events = True
-    update.update_posts = True
-    update.update_sermons = True
+    update.update_categories = __get_last_category_time() > last_sync_time
+    update.update_events = __get_last_event_time() > last_sync_time
+    update.update_posts = __get_last_post_time() > last_sync_time
+    update.update_sermons = __get_last_sermon_time() > last_sync_time
     return update

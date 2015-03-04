@@ -13,7 +13,7 @@ handlers:
   static_dir: static
 
 - url: /_ah/spi/.*
-  script: weatherpics_api.api
+  script: shilohranch_api.api
   secure: always
 
 - url: .*

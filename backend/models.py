@@ -22,9 +22,9 @@ class Category(EndpointsModel):
     Generated from: http://shilohranch.com/api/get_category_index/?parent=8
     """
     _message_fields_schema = ("entity_key", "id", "title")
-    id = ndb.IntegerProperty('i')
+    id = ndb.IntegerProperty('i', indexed=False)
     title = ndb.StringProperty('t', indexed=False)
-    time_added = ndb.DateTimeProperty('z', auto_now_add=True)
+    time_added = ndb.DateTimeProperty('z')
 
 class Post(EndpointsModel):
     """
@@ -33,35 +33,35 @@ class Post(EndpointsModel):
     http://shilohranch.com/api/get_category_posts/?id=21 (where id is the id from Category)
     """
     _message_fields_schema = ("entity_key", "title", "date", "content", "category")
-    title = ndb.StringProperty('n')
-    date_published = ndb.DateTimeProperty('d')
-    content = ndb.TextProperty('c')
-    category = ndb.KeyProperty('g', kind=Category)
-    time_added = ndb.DateTimeProperty('z', auto_now_add=True)
+    title = ndb.StringProperty('n', indexed=False)
+    date = ndb.DateTimeProperty('d', indexed=False)
+    content = ndb.TextProperty('c', indexed=False)
+    categories = ndb.KeyProperty('g', kind=Category, repeated=True)
+    time_added = ndb.DateTimeProperty('z')
 
 class Sermon(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=sermons
     """
     _message_fields_schema = ("entity_key", "title", "date", "audio_link")
-    title = ndb.StringProperty('t')
-    date = ndb.DateProperty('d')
-    audio_link = ndb.StringProperty('a')
-    time_added = ndb.DateTimeProperty('z', auto_now_add=True)
+    title = ndb.StringProperty('t', indexed=False)
+    date = ndb.DateProperty('d', indexed=False)
+    audio_link = ndb.StringProperty('a', indexed=False)
+    time_added = ndb.DateTimeProperty('z')
 
 class Event(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=events
     """
     _message_fields_schema = ("entity_key", "title", "date_published", "content", "excerpt", "location", "time")
-    title = ndb.StringProperty('n')
-    date_published = ndb.DateTimeProperty('d')
-    content = ndb.TextProperty('c')
-    excerpt = ndb.TextProperty('e')
-    attachment = ndb.StringProperty('a')
-    location = ndb.StringProperty('l')
-    time = ndb.StringProperty('t')
-    time_added = ndb.DateTimeProperty('z', auto_now_add=True)
+    title = ndb.StringProperty('n', indexed=False)
+    date_published = ndb.DateTimeProperty('d', indexed=False)
+    content = ndb.TextProperty('c', indexed=False)
+    excerpt = ndb.TextProperty('e', indexed=False)
+    attachment = ndb.StringProperty('a', indexed=False)
+    location = ndb.StringProperty('l', indexed=False)
+    time = ndb.StringProperty('t', indexed=False)
+    time_added = ndb.DateTimeProperty('z')
 
 class LastUpdate(ndb.Model):
     """
@@ -71,8 +71,7 @@ class LastUpdate(ndb.Model):
     NOTE:
     These values should be memcached so that they do not kill our datastore limits.
     """
-    # TODO: check auto_now vs auto_now_add
-    last_touch = ndb.DateTimeProperty('l', auto_now_add=True)
+    last_touch = ndb.DateTimeProperty('l', indexed=False)
 
 class Update(EndpointsModel):
     """

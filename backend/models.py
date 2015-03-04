@@ -21,10 +21,10 @@ class Category(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_category_index/?parent=8
     """
-    _message_fields_schema = ("entity_key", "id", "title")
-    id = ndb.IntegerProperty('i', indexed=False)
-    title = ndb.StringProperty('t', indexed=False)
-    time_added = ndb.DateTimeProperty('z')
+    _message_fields_schema = ("entityKey", "id", "title")
+    id = ndb.IntegerProperty(indexed=False)
+    title = ndb.StringProperty(indexed=False)
+    time_added = ndb.DateTimeProperty()
 
 class Post(EndpointsModel):
     """
@@ -32,36 +32,36 @@ class Post(EndpointsModel):
     OR
     http://shilohranch.com/api/get_category_posts/?id=21 (where id is the id from Category)
     """
-    _message_fields_schema = ("entity_key", "title", "date", "content", "category")
-    title = ndb.StringProperty('n', indexed=False)
-    date = ndb.DateTimeProperty('d', indexed=False)
-    content = ndb.TextProperty('c', indexed=False)
-    categories = ndb.KeyProperty('g', kind=Category, repeated=True)
-    time_added = ndb.DateTimeProperty('z')
+    _message_fields_schema = ("entityKey", "title", "date", "content", "category")
+    title = ndb.StringProperty(indexed=False)
+    date = ndb.DateTimeProperty(indexed=False)
+    content = ndb.TextProperty(indexed=False)
+    category = ndb.KeyProperty(kind=Category)
+    time_added = ndb.DateTimeProperty()
 
 class Sermon(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=sermons
     """
-    _message_fields_schema = ("entity_key", "title", "date", "audio_link")
-    title = ndb.StringProperty('t', indexed=False)
-    date = ndb.DateProperty('d', indexed=False)
-    audio_link = ndb.StringProperty('a', indexed=False)
-    time_added = ndb.DateTimeProperty('z')
+    _message_fields_schema = ("entityKey", "title", "date", "audio_link")
+    title = ndb.StringProperty(indexed=False)
+    date = ndb.DateProperty(indexed=False)
+    audio_link = ndb.StringProperty(indexed=False)
+    time_added = ndb.DateTimeProperty()
 
 class Event(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=events
     """
-    _message_fields_schema = ("entity_key", "title", "date_published", "content", "excerpt", "location", "time")
-    title = ndb.StringProperty('n', indexed=False)
-    date_published = ndb.DateTimeProperty('d', indexed=False)
-    content = ndb.TextProperty('c', indexed=False)
-    excerpt = ndb.TextProperty('e', indexed=False)
-    attachment = ndb.StringProperty('a', indexed=False)
-    location = ndb.StringProperty('l', indexed=False)
-    time = ndb.StringProperty('t', indexed=False)
-    time_added = ndb.DateTimeProperty('z')
+    _message_fields_schema = ("entityKey", "title", "date_published", "content", "excerpt", "location", "time")
+    title = ndb.StringProperty(indexed=False)
+    date_published = ndb.DateTimeProperty(indexed=False)
+    content = ndb.TextProperty(indexed=False)
+    excerpt = ndb.TextProperty(indexed=False)
+    attachment = ndb.StringProperty(indexed=False)
+    location = ndb.StringProperty(indexed=False)
+    time = ndb.StringProperty(indexed=False)
+    time_added = ndb.DateTimeProperty()
 
 class LastUpdate(ndb.Model):
     """
@@ -71,14 +71,14 @@ class LastUpdate(ndb.Model):
     NOTE:
     These values should be memcached so that they do not kill our datastore limits.
     """
-    last_touch = ndb.DateTimeProperty('l', indexed=False)
+    last_touch = ndb.DateTimeProperty(indexed=False)
 
 class Update(EndpointsModel):
     """
     This is what the LastUpdate will parcel to the apps to tell them if they need to update anything.
     """
     _message_fields_schema = ("update_posts", "update_sermons", "update_events", "update_categories")
-    update_posts = ndb.BooleanProperty('p')
-    update_sermons = ndb.BooleanProperty('s')
-    update_events = ndb.BooleanProperty('e')
-    update_categories = ndb.BooleanProperty('c')
+    update_posts = ndb.BooleanProperty()
+    update_sermons = ndb.BooleanProperty()
+    update_events = ndb.BooleanProperty()
+    update_categories = ndb.BooleanProperty()

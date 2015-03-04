@@ -18,22 +18,22 @@ def __get_from_memcache(key_name):
         value = __update_key(key_name).get()
         if value is None:
             logging.debug("Creating LastUpdate for: " + key_name)
-            value = LastUpdate()
+            value = LastUpdate(key=__update_key(key_name))
             value.last_touch = datetime.utcfromtimestamp(0)
             value.put()
         client.add(key_name, value)
     return value
 
-def __get_last_post_time():
+def get_last_post_time():
     return __get_from_memcache('last_post').last_touch
 
-def __get_last_sermon_time():
+def get_last_sermon_time():
     return __get_from_memcache('last_sermon').last_touch
 
-def __get_last_event_time():
+def get_last_event_time():
     return __get_from_memcache('last_event').last_touch
 
-def __get_last_category_time():
+def get_last_category_time():
     return __get_from_memcache('last_category').last_touch
 
 def __update(key_name, dt):
@@ -56,8 +56,8 @@ def set_last_category_time(dt):
 
 def get_needs_update(last_sync_time):
     update = Update()
-    update.update_categories = __get_last_category_time() > last_sync_time
-    update.update_events = __get_last_event_time() > last_sync_time
-    update.update_posts = __get_last_post_time() > last_sync_time
-    update.update_sermons = __get_last_sermon_time() > last_sync_time
+    update.update_categories = get_last_category_time() > last_sync_time
+    update.update_events = get_last_event_time() > last_sync_time
+    update.update_posts = get_last_post_time() > last_sync_time
+    update.update_sermons = get_last_sermon_time() > last_sync_time
     return update

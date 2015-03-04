@@ -12,6 +12,7 @@ def get_data():
     Should throw out old or preexsiting categories
     Returns entities of new categories
     """
+
     return []
 
 

@@ -38,7 +38,7 @@ def __get_last_category_time():
 def __update(key_name):
     value = __get_from_memcache(key_name)
     # TODO: check compatable data types
-    value.last_touch = datetime.now()
+    value.last_touch = datetime.utcnow()
     value.put()
     memcache.Client().set(key_name, value)
 

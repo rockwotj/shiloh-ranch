@@ -72,7 +72,7 @@ class LastUpdate(ndb.Model):
     These values should be memcached so that they do not kill our datastore limits.
     """
     # TODO: check auto_now vs auto_now_add
-    last_touch = ndb.DateTimeProperty('l', auto_now=True)
+    last_touch = ndb.DateTimeProperty('l', auto_now_add=True)
 
 class Update(EndpointsModel):
     """

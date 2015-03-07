@@ -1,4 +1,4 @@
-package com.shilohranch.apps.fragments.news.dummy;
+package com.appspot.shilohranch.fragments.news.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

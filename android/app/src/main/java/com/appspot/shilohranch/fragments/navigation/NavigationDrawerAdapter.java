@@ -1,4 +1,4 @@
-package com.shilohranch.apps.fragments.navigation;
+package com.appspot.shilohranch.fragments.navigation;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.shilohranch.apps.R;
+import com.appspot.shilohranch.R;
 
 import java.util.List;
 

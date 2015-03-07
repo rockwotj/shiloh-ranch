@@ -1,4 +1,4 @@
-package com.shilohranch.apps.fragments.navigation;
+package com.appspot.shilohranch.fragments.navigation;
 
 /**
  * Created by poliveira on 27/10/2014.

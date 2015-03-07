@@ -1,4 +1,4 @@
-package com.shilohranch.apps.activities;
+package com.appspot.shilohranch.activities;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -7,9 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.shilohranch.apps.R;
-import com.shilohranch.apps.fragments.navigation.NavigationDrawerCallbacks;
-import com.shilohranch.apps.fragments.navigation.NavigationDrawerFragment;
+import com.appspot.shilohranch.R;
+import com.appspot.shilohranch.fragments.navigation.NavigationDrawerCallbacks;
+import com.appspot.shilohranch.fragments.navigation.NavigationDrawerFragment;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks {

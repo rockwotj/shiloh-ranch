@@ -1,4 +1,4 @@
-package com.shilohranch.apps.fragments.news;
+package com.appspot.shilohranch.fragments.news;
 
 import android.app.Activity;
 import android.os.Bundle;

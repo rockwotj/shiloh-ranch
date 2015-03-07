@@ -51,15 +51,15 @@
 						class="fa fa-wordpress fa-fw"></i></a></li>
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
-                    data-toggle="dropdown" href="#"> <i class="fa fa-database fa-fw"></i>
-                        <i class="fa fa-caret-down"></i>
-                </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li onclick="pullData('Post');"><a>Posts</a></li>
-                        <li onclick="pullData('Sermon');"><a>Sermons</a></li>
-                        <li onclick="pullData('Event');"><a>Events</a></li>
-                        <li onclick="pullData('Category');"><a>Categories</a></li>
-                    </ul> <!-- /.dropdown-user --></li>
+					data-toggle="dropdown" href="#"> <i
+						class="fa fa-database fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li onclick="pullData('Post');"><a>Posts</a></li>
+						<li onclick="pullData('Sermon');"><a>Sermons</a></li>
+						<li onclick="pullData('Event');"><a>Events</a></li>
+						<li onclick="pullData('Category');"><a>Categories</a></li>
+					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <i class="fa fa-trash fa-fw"></i>
@@ -71,7 +71,7 @@
 						<li><a href="/delete?kind=Event">Events</a></li>
 						<li><a href="/delete?kind=Category">Categories</a></li>
 					</ul> <!-- /.dropdown-user --></li>
-				
+
 			</ul>
 			<!-- /.navbar-top-links -->
 
@@ -135,12 +135,12 @@
 			var r = confirm("Are you sure you want to query for changes to WordPress?");
 			if (r == true) {
 				$.ajax({
-	                type : "POST",
-	                url : "/pull?kind=" + kind,
-	                success : function() {
-	                    alert("Data has been queried!");
-	                }
-	            });
+					type : "POST",
+					url : "/pull?kind=" + kind,
+					success : function() {
+						alert("Data has been queried!");
+					}
+				});
 			}
 		};
 	</script>

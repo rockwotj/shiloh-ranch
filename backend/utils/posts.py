@@ -5,6 +5,7 @@ from google.appengine.api import urlfetch
 from datetime import datetime
 from utils import categories, updates
 import json
+import logging
 
 
 def get_key(slug):
@@ -18,6 +19,7 @@ def get_data():
     """
     result = urlfetch.fetch(POST_URL)
     if result.status_code != 200:
+        logging.error("Could not pull data from wordpress")
         return []
     posts = json.loads(result.content)['posts']
     entities = []
@@ -33,8 +35,6 @@ def get_data():
     ndb.put_multi(entities)
     return entities
 
-def sync(last_sync_time):
-    pass
 
 def convert_to_entity(json):
     if json['status'] != "publish" or json['slug'] == 'placeholder':

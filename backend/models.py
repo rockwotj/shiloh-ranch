@@ -21,10 +21,13 @@ class Category(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_category_index/?parent=8
     """
-    _message_fields_schema = ("entityKey", "id", "title")
+    _message_fields_schema = ("entityKey", "id", "title", "time_added")
     id = ndb.IntegerProperty(indexed=False)
     title = ndb.StringProperty(indexed=False)
     time_added = ndb.DateTimeProperty()
+
+    def to_html(self):
+        return "<td>" + self.title + "</td>"
 
 class Post(EndpointsModel):
     """
@@ -32,28 +35,34 @@ class Post(EndpointsModel):
     OR
     http://shilohranch.com/api/get_category_posts/?id=21 (where id is the id from Category)
     """
-    _message_fields_schema = ("entityKey", "title", "date", "content", "category")
+    _message_fields_schema = ("entityKey", "title", "date", "content", "category", "time_added")
     title = ndb.StringProperty(indexed=False)
     date = ndb.DateTimeProperty(indexed=False)
     content = ndb.TextProperty(indexed=False)
     category = ndb.KeyProperty(kind=Category)
     time_added = ndb.DateTimeProperty()
 
+    def to_html(self):
+        return "<td>" + self.title + "</td><td>" + str(self.date) + "</td>"
+
 class Sermon(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=sermons
     """
-    _message_fields_schema = ("entityKey", "title", "date", "audio_link")
+    _message_fields_schema = ("entityKey", "title", "date", "audio_link", "time_added")
     title = ndb.StringProperty(indexed=False)
     date = ndb.DateProperty(indexed=False)
     audio_link = ndb.StringProperty(indexed=False)
     time_added = ndb.DateTimeProperty()
 
+    def to_html(self):
+        return "<td>" + self.title + "</td><td>" + str(self.date) + "</td>"
+
 class Event(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=events
     """
-    _message_fields_schema = ("entityKey", "title", "date_published", "content", "excerpt", "location", "time")
+    _message_fields_schema = ("entityKey", "title", "date_published", "content", "excerpt", "location", "time", "time_added")
     title = ndb.StringProperty(indexed=False)
     date_published = ndb.DateTimeProperty(indexed=False)
     content = ndb.TextProperty(indexed=False)
@@ -61,6 +70,18 @@ class Event(EndpointsModel):
     attachment = ndb.StringProperty(indexed=False)
     location = ndb.StringProperty(indexed=False)
     time = ndb.StringProperty(indexed=False)
+    time_added = ndb.DateTimeProperty()
+
+    def to_html(self):
+        return "<td>" + self.title + "</td><td>" + self.location + "</td><td>" + self.time + "</td>"
+
+class Deletion(EndpointsModel):
+    """
+    This entity should be created from the front end of this app.
+    """
+    _message_fields_schema = ("entityKey", "deletion_key", "kind", "time_added")
+    deletion_key = ndb.KeyProperty(indexed=False)
+    kind = ndb.StringProperty(indexed=False, choices=['Event', 'Category', 'Post', 'Sermon'])
     time_added = ndb.DateTimeProperty()
 
 class LastUpdate(ndb.Model):
@@ -77,8 +98,9 @@ class Update(EndpointsModel):
     """
     This is what the LastUpdate will parcel to the apps to tell them if they need to update anything.
     """
-    _message_fields_schema = ("update_posts", "update_sermons", "update_events", "update_categories")
+    _message_fields_schema = ("update_posts", "update_sermons", "update_events", "update_categories", "update_deletions")
     update_posts = ndb.BooleanProperty()
     update_sermons = ndb.BooleanProperty()
     update_events = ndb.BooleanProperty()
     update_categories = ndb.BooleanProperty()
+    update_deletions = ndb.BooleanProperty()

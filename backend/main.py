@@ -1,25 +1,66 @@
 #!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+
+import os
+
+import jinja2
 import webapp2
+from utils import sermons, posts, categories, events, deletions
+from google.appengine.ext import ndb
+import models
+
+jinja_env = jinja2.Environment(
+  loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello Shiloh Ranch!')
+        template = jinja_env.get_template("templates/index.html")
+        self.response.out.write(template.render())
+
+class DeletionHandler(webapp2.RequestHandler):
+    def get(self):
+        entity_kind = self.request.get('kind')
+        kind = None
+        if entity_kind == 'Event':
+            kind = models.Event
+        elif entity_kind == 'Sermon':
+            kind = models.Sermon
+        elif entity_kind == 'Category':
+            kind = models.Category
+        elif entity_kind == 'Post':
+            kind = models.Post
+        else:
+            self.response.set_status(404)
+            self.response.write('<h1>ERROR 404</h1> We could not find that resource. Contact the developer if this is a problem!')
+            return
+        q = kind.query().order(-kind.time_added)
+        template = jinja_env.get_template("templates/delete.html")
+        values = {"kind":entity_kind, "entities":q}
+        self.response.out.write(template.render(values))
+
+    def post(self):
+        urlsafe = self.request.get('urlsafe')
+        key = ndb.Key(urlsafe=urlsafe)
+        deletions.delete_entity(key)
+        self.redirect(self.request.referer)
+
+class PullHandler(webapp2.RequestHandler):
+
+    def post(self):
+        entity_kind = self.request.get('kind')
+        if entity_kind == 'Event':
+            events.get_data()
+        elif entity_kind == 'Sermon':
+            sermons.get_data()
+        elif entity_kind == 'Category':
+            categories.get_data()
+        elif entity_kind == 'Post':
+            posts.get_data()
+        else:
+            self.response.set_status(404)
+            self.response.write('<h1>ERROR 404</h1> We could not find that resource. Contact the developer if this is a problem!')
+            return
+        self.redirect(self.request.referer)
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler), ('/delete', DeletionHandler), ('/pull', PullHandler)
 ], debug=True)

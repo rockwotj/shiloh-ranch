@@ -36,6 +36,9 @@ def get_last_event_time():
 def get_last_category_time():
     return __get_from_memcache('last_category').last_touch
 
+def get_last_delete_time():
+    return __get_from_memcache('last_delete').last_touch
+
 def __update(key_name, dt):
     value = __get_from_memcache(key_name)
     value.last_touch = dt
@@ -54,10 +57,14 @@ def set_last_event_time(dt):
 def set_last_category_time(dt):
     return __update('last_category', dt)
 
+def set_last_delete_time(dt):
+    return __update('last_delete', dt)
+
 def get_needs_update(last_sync_time):
     update = Update()
     update.update_categories = get_last_category_time() > last_sync_time
     update.update_events = get_last_event_time() > last_sync_time
     update.update_posts = get_last_post_time() > last_sync_time
     update.update_sermons = get_last_sermon_time() > last_sync_time
+    update.update_deletions = get_last_delete_time() > last_sync_time
     return update

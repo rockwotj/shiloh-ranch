@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Shiloh Ranch App Console</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- MetisMenu CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css"
+	rel="stylesheet">
+<!-- DataTables CSS -->
+<link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css"
+	rel="stylesheet">
+<!-- DataTables Responsive CSS -->
+<link
+	href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"
+	rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/static/css/sb-admin-2.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Shiloh Ranch App Console</a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a href="http://shilohranch.com/wp-admin/"><i
+						class="fa fa-wordpress fa-fw"></i></a></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+                    data-toggle="dropdown" href="#"> <i class="fa fa-database fa-fw"></i>
+                        <i class="fa fa-caret-down"></i>
+                </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li onclick="pullData('Post');"><a>Posts</a></li>
+                        <li onclick="pullData('Sermon');"><a>Sermons</a></li>
+                        <li onclick="pullData('Event');"><a>Events</a></li>
+                        <li onclick="pullData('Category');"><a>Categories</a></li>
+                    </ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-trash fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="/delete?kind=Post">Posts</a></li>
+						<li><a href="/delete?kind=Sermon">Sermons</a></li>
+						<li><a href="/delete?kind=Event">Events</a></li>
+						<li><a href="/delete?kind=Category">Categories</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li><a href="/"><i class="fa fa-dashboard fa-fw"></i>
+								Dashboard</a></li>
+						<li><a href="http://shilohranch.com/wp-admin/"><i
+								class="fa fa-wordpress fa-fw"></i> Wordpress</a></li>
+						<li><a href="#"><i class="fa fa-trash fa-fw"></i> Delete
+								Data<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="/delete?kind=Post">Posts</a></li>
+								<li><a href="/delete?kind=Sermon">Sermons</a></li>
+								<li><a href="/delete?kind=Event">Events</a></li>
+								<li><a href="/delete?kind=Category">Categories</a></li>
+
+							</ul> <!-- /.nav-second-level --></li>
+
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+
+		<div id="page-wrapper">{% block content %} {% endblock %}</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+
+	<!-- DataTables JavaScript -->
+	<script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+	<script
+		src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="/static/js/sb-admin-2.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#dataTables').DataTable({
+				responsive : true,
+				aaSorting : []
+			});
+		});
+		var pullData = function(kind) {
+			var r = confirm("Are you sure you want to query for changes to WordPress?");
+			if (r == true) {
+				$.ajax({
+	                type : "POST",
+	                url : "/pull?kind=" + kind,
+	                success : function() {
+	                    alert("Data has been queried!");
+	                }
+	            });
+			}
+		};
+	</script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ from datetime import datetime
 from google.appengine.api import urlfetch
 import json
 from utils import updates
+import logging
 
 
 def get_key(slug):
@@ -18,6 +19,7 @@ def get_data():
     """
     result = urlfetch.fetch(EVENT_URL)
     if result.status_code != 200:
+        logging.error("Could not pull data from wordpress")
         return []
     posts = json.loads(result.content)['posts']
     entities = []
@@ -33,9 +35,6 @@ def get_data():
     ndb.put_multi(entities)
     return entities
 
-
-def sync(last_sync_time):
-    pass
 
 def convert_to_entity(json):
     if json['status'] != "publish":

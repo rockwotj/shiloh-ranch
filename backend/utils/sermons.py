@@ -6,6 +6,7 @@ from google.appengine.api import urlfetch
 import json
 from utils import updates
 import models
+import logging
 
 def get_key(slug):
     return ndb.Key("Sermon", slug)
@@ -18,6 +19,7 @@ def get_data():
     """
     result = urlfetch.fetch(models.SERMON_URL)
     if result.status_code != 200:
+        logging.error("Could not pull data from wordpress")
         return []
     posts = json.loads(result.content)['posts']
     entities = []
@@ -32,9 +34,6 @@ def get_data():
         updates.set_last_sermon_time(entities[0].time_added)
     ndb.put_multi(entities)
     return entities
-
-def sync(last_sync_time):
-    pass
 
 def convert_to_entity(json):
     if json['status'] != "publish":

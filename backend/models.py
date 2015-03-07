@@ -3,7 +3,11 @@ This module contains all of the information and entities for the data in this se
 """
 
 from google.appengine.ext import ndb
-from endpoints_proto_datastore.ndb.model import EndpointsModel
+from endpoints_proto_datastore.ndb.model import EndpointsModel, \
+    EndpointsAliasProperty
+from google.appengine.ext import endpoints
+from datetime import datetime
+from endpoints_proto_datastore import utils
 
 # add 'count' to change the limit
 """ URL to get the category updates under app notifications """
@@ -17,6 +21,8 @@ SERMON_URL = "http://shilohranch.com/api/get_posts/?post_type=sermons"
 """ URL to get the events """
 EVENT_URL = "http://shilohranch.com/api/get_posts/?post_type=events"
 
+
+
 class Category(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_category_index/?parent=8
@@ -25,6 +31,19 @@ class Category(EndpointsModel):
     id = ndb.IntegerProperty(indexed=False)
     title = ndb.StringProperty(indexed=False)
     time_added = ndb.DateTimeProperty()
+
+    def last_sync_set(self, value):
+        try:
+            last_sync = utils.DatetimeValueFromString(value)
+            if not isinstance(last_sync, datetime):
+                raise TypeError('Not a datetime stamp.')
+        except TypeError:
+            raise endpoints.BadRequestException('Invalid timestamp for lastSync.')
+        self._endpoints_query_info._filters.add(Category.time_added > last_sync)
+
+    @EndpointsAliasProperty(name='lastSync', setter=last_sync_set)
+    def last_sync(self):
+        raise endpoints.BadRequestException('lastSync value should never be accessed.')
 
     def to_html(self):
         return "<td>" + self.title + "</td>"
@@ -45,6 +64,19 @@ class Post(EndpointsModel):
     def to_html(self):
         return "<td>" + self.title + "</td><td>" + str(self.date) + "</td>"
 
+    def last_sync_set(self, value):
+        try:
+            last_sync = utils.DatetimeValueFromString(value)
+            if not isinstance(last_sync, datetime):
+                raise TypeError('Not a datetime stamp.')
+        except TypeError:
+            raise endpoints.BadRequestException('Invalid timestamp for lastSync.')
+        self._endpoints_query_info._filters.add(Post.time_added > last_sync)
+
+    @EndpointsAliasProperty(name='lastSync', setter=last_sync_set)
+    def last_sync(self):
+        raise endpoints.BadRequestException('lastSync value should never be accessed.')
+
 class Sermon(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=sermons
@@ -57,6 +89,19 @@ class Sermon(EndpointsModel):
 
     def to_html(self):
         return "<td>" + self.title + "</td><td>" + str(self.date) + "</td>"
+
+    def last_sync_set(self, value):
+        try:
+            last_sync = utils.DatetimeValueFromString(value)
+            if not isinstance(last_sync, datetime):
+                raise TypeError('Not a datetime stamp.')
+        except TypeError:
+            raise endpoints.BadRequestException('Invalid timestamp for lastSync.')
+        self._endpoints_query_info._filters.add(Sermon.time_added > last_sync)
+
+    @EndpointsAliasProperty(name='lastSync', setter=last_sync_set)
+    def last_sync(self):
+        raise endpoints.BadRequestException('lastSync value should never be accessed.')
 
 class Event(EndpointsModel):
     """
@@ -75,6 +120,19 @@ class Event(EndpointsModel):
     def to_html(self):
         return "<td>" + self.title + "</td><td>" + self.location + "</td><td>" + self.time + "</td>"
 
+    def last_sync_set(self, value):
+        try:
+            last_sync = utils.DatetimeValueFromString(value)
+            if not isinstance(last_sync, datetime):
+                raise TypeError('Not a datetime stamp.')
+        except TypeError:
+            raise endpoints.BadRequestException('Invalid timestamp for lastSync.')
+        self._endpoints_query_info._filters.add(Event.time_added > last_sync)
+
+    @EndpointsAliasProperty(name='lastSync', setter=last_sync_set)
+    def last_sync(self):
+        raise endpoints.BadRequestException('lastSync value should never be accessed.')
+
 class Deletion(EndpointsModel):
     """
     This entity should be created from the front end of this app.
@@ -83,6 +141,19 @@ class Deletion(EndpointsModel):
     deletion_key = ndb.KeyProperty(indexed=False)
     kind = ndb.StringProperty(indexed=False, choices=['Event', 'Category', 'Post', 'Sermon'])
     time_added = ndb.DateTimeProperty()
+
+    def last_sync_set(self, value):
+        try:
+            last_sync = utils.DatetimeValueFromString(value)
+            if not isinstance(last_sync, datetime):
+                raise TypeError('Not a datetime stamp.')
+        except TypeError:
+            raise endpoints.BadRequestException('Invalid timestamp for lastSync.')
+        self._endpoints_query_info._filters.add(Deletion.time_added > last_sync)
+
+    @EndpointsAliasProperty(name='lastSync', setter=last_sync_set)
+    def last_sync(self):
+        raise endpoints.BadRequestException('lastSync value should never be accessed.')
 
 class LastUpdate(ndb.Model):
     """

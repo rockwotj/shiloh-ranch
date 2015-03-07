@@ -55,6 +55,11 @@ class PullHandler(webapp2.RequestHandler):
             categories.get_data()
         elif entity_kind == 'Post':
             posts.get_data()
+        elif entity_kind == 'All':
+            categories.get_data()
+            posts.get_data()
+            sermons.get_data()
+            events.get_data()
         else:
             self.response.set_status(404)
             self.response.write('<h1>ERROR 404</h1> We could not find that resource. Contact the developer if this is a problem!')

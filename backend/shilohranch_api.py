@@ -17,10 +17,44 @@ from protorpc.message_types import DateTimeField, DateTimeMessage
 class ShilohRanchApi(remote.Service):
 
     # Update
-    @Update.method(path="update", http_method="GET", name="update", request_message=DateTimeMessage)
-    def needs_update(self, request):
+    @Update.method(path="update/deletions", http_method="GET", name="update.deletions", request_message=DateTimeMessage)
+    def delete_needs_update(self, request):
         # The 1 is the number it is within the request message. Not sure why it is one indexed?
-        return updates.get_needs_update(DateTimeField(1).value_from_message(request))
+        update = Update()
+        update.needs_update = updates.get_last_delete_time() > DateTimeField(1).value_from_message(request)
+        return update
+
+    # Update
+    @Update.method(path="update/events", http_method="GET", name="update.events", request_message=DateTimeMessage)
+    def event_needs_update(self, request):
+        # The 1 is the number it is within the request message. Not sure why it is one indexed?
+        update = Update()
+        update.needs_update = updates.get_last_event_time() > DateTimeField(1).value_from_message(request)
+        return update
+
+    # Update
+    @Update.method(path="update/categories", http_method="GET", name="update.categories", request_message=DateTimeMessage)
+    def category_needs_update(self, request):
+        # The 1 is the number it is within the request message. Not sure why it is one indexed?
+        update = Update()
+        update.needs_update = updates.get_last_category_time() > DateTimeField(1).value_from_message(request)
+        return update
+
+    # Update
+    @Update.method(path="update/posts", http_method="GET", name="update.posts", request_message=DateTimeMessage)
+    def post_needs_update(self, request):
+        # The 1 is the number it is within the request message. Not sure why it is one indexed?
+        update = Update()
+        update.needs_update = updates.get_last_post_time() > DateTimeField(1).value_from_message(request)
+        return update
+
+    # Update
+    @Update.method(path="update/sermons", http_method="GET", name="update.sermons", request_message=DateTimeMessage)
+    def sermon_needs_update(self, request):
+        # The 1 is the number it is within the request message. Not sure why it is one indexed?
+        update = Update()
+        update.needs_update = updates.get_last_sermon_time() > DateTimeField(1).value_from_message(request)
+        return update
 
     # Queries
     @Deletion.query_method(path="deletions", http_method="GET", name="deletions", query_fields=("limit", "pageToken", "lastSync"))

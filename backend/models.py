@@ -5,7 +5,7 @@ This module contains all of the information and entities for the data in this se
 from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb.model import EndpointsModel, \
     EndpointsAliasProperty
-from google.appengine.ext import endpoints
+import endpoints
 from datetime import datetime
 from endpoints_proto_datastore import utils
 
@@ -157,7 +157,7 @@ class Deletion(EndpointsModel):
 
 class LastUpdate(ndb.Model):
     """
-    There will be 4 entities of this model (Post, Sermon, Event, Category). And will update the last_touch time whenever one is updated,
+    There will be 5 entities of this model (Post, Sermon, Event, Category, Deletion). And will update the last_touch time whenever one is updated,
     So all an app has todo, is check to see if it's local copy of the last time something was updated matches this
     value. If it's value is less than this one, it needs to query the other API methods to get updates on it's information.
     NOTE:
@@ -169,9 +169,5 @@ class Update(EndpointsModel):
     """
     This is what the LastUpdate will parcel to the apps to tell them if they need to update anything.
     """
-    _message_fields_schema = ("update_posts", "update_sermons", "update_events", "update_categories", "update_deletions")
-    update_posts = ndb.BooleanProperty()
-    update_sermons = ndb.BooleanProperty()
-    update_events = ndb.BooleanProperty()
-    update_categories = ndb.BooleanProperty()
-    update_deletions = ndb.BooleanProperty()
+    _message_fields_schema = ("needs_update",)
+    needs_update = ndb.BooleanProperty()

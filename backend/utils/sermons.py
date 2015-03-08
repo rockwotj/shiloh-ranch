@@ -35,6 +35,29 @@ def get_data():
     ndb.put_multi(entities)
     return entities
 
+def get_all_data():
+    """
+    Gets _all_ sermons from the website's REST service. 
+    Should OVERWRITE throw out old or pre-exsiting sermons
+    Returns entities of new sermons
+    """
+    result = urlfetch.fetch(models.SERMON_URL + '&count=1000')
+    if result.status_code != 200:
+        logging.error("Could not pull data from wordpress")
+        return []
+    posts = json.loads(result.content)['posts']
+    entities = []
+    for post in posts:
+        entity = convert_to_entity(post)
+        if entity:
+            entities.append(entity)
+    new_entity_filter = lambda s: s != None
+    entities = filter(new_entity_filter, entities)
+    if len(entities) > 0:
+        updates.set_last_sermon_time(entities[0].time_added)
+    ndb.put_multi(entities)
+    return entities
+
 def convert_to_entity(json):
     if json['status'] != "publish":
         return None

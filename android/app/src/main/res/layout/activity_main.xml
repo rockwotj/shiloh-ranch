@@ -25,7 +25,7 @@
         <!-- android:layout_marginTop="?android:attr/actionBarSize"-->
         <fragment
             android:id="@+id/fragment_drawer"
-            android:name="com.shilohranch.apps.fragments.navigation.NavigationDrawerFragment"
+            android:name="com.appspot.shiloh_ranch.fragments.navigation.INavigationDrawerFragment"
             android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"

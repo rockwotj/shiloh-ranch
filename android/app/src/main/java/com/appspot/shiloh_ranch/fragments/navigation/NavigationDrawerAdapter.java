@@ -1,4 +1,4 @@
-package com.appspot.shilohranch.fragments.navigation;
+package com.appspot.shiloh_ranch.fragments.navigation;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.appspot.shilohranch.R;
+import com.appspot.shiloh_ranch.R;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.ViewHolder> {
 
     private List<NavigationItem> mData;
-    private NavigationDrawerCallbacks mNavigationDrawerCallbacks;
+    private INavigationDrawerCallbacks mNavigationDrawerCallbacks;
     private int mSelectedPosition;
     private int mTouchedPosition = -1;
 
@@ -27,11 +27,11 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         mData = data;
     }
 
-    public NavigationDrawerCallbacks getNavigationDrawerCallbacks() {
+    public INavigationDrawerCallbacks getNavigationDrawerCallbacks() {
         return mNavigationDrawerCallbacks;
     }
 
-    public void setNavigationDrawerCallbacks(NavigationDrawerCallbacks navigationDrawerCallbacks) {
+    public void setNavigationDrawerCallbacks(INavigationDrawerCallbacks navigationDrawerCallbacks) {
         mNavigationDrawerCallbacks = navigationDrawerCallbacks;
     }
 

@@ -1,4 +1,4 @@
-package com.appspot.shilohranch.fragments.navigation;
+package com.appspot.shiloh_ranch.fragments.navigation;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,7 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.appspot.shilohranch.R;
+import com.appspot.shiloh_ranch.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,11 @@ import java.util.List;
 /**
  * Created by poliveira on 24/10/2014.
  */
-public class NavigationDrawerFragment extends Fragment implements NavigationDrawerCallbacks {
+public class INavigationDrawerFragment extends Fragment implements INavigationDrawerCallbacks {
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
     private static final String PREFERENCES_FILE = "shiloh_ranch_settings";
-    private NavigationDrawerCallbacks mCallbacks;
+    private INavigationDrawerCallbacks mCallbacks;
     private RecyclerView mDrawerList;
     private View mFragmentContainerView;
     private DrawerLayout mDrawerLayout;
@@ -70,7 +70,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mCallbacks = (NavigationDrawerCallbacks) activity;
+            mCallbacks = (INavigationDrawerCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
         }

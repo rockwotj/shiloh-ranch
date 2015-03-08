@@ -1,4 +1,4 @@
-package com.appspot.shilohranch.fragments.navigation;
+package com.appspot.shiloh_ranch.fragments.navigation;
 
 import android.graphics.drawable.Drawable;
 

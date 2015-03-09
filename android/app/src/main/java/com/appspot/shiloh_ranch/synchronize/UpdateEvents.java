@@ -31,7 +31,7 @@ public final class UpdateEvents extends Sync<Event> {
     @Override
     public List<Event> update() throws IOException {
         long lastSync = getLastSyncTime();
-        boolean needsUpdate = mService.update().sermons(lastSync).execute().getNeedsUpdate();
+        boolean needsUpdate = mService.update().events(lastSync).execute().getNeedsUpdate();
         if (needsUpdate) {
             ShilohRanch.Events query = mService.events();
             query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));

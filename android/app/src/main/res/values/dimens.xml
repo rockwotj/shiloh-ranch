@@ -7,4 +7,19 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="card_base_empty_height">0dp</dimen>
+    <dimen name="card_default_native_margin_bottom">0dp</dimen>
+    <dimen name="card_header_default_padding">0dp</dimen>
+    <dimen name="card_main_content_native_default_paddingLeft">0dp</dimen>
+    <dimen name="card_main_content_native_default_paddingRight">0dp</dimen>
+    <dimen name="card_main_content_native_default_paddingTop">0dp</dimen>
+    <dimen name="card_main_content_native_default_paddingBottom">0dp</dimen>
+
+    <dimen name="card_main_content_native_cardwithlist_paddingLeft">0dp</dimen>
+    <dimen name="card_main_content_native_cardwithlist_paddingRight">0dp</dimen>
+    <dimen name="card_main_content_native_cardwithlist_paddingTop">0dp</dimen>
+    <dimen name="card_main_content_native_cardwithlist_paddingBottom">0dp</dimen>
+
+    <dimen name="native_list_card_margin_bottom">0dp</dimen>
+    <dimen name="list_card_padding_bottom">0dp</dimen>
 </resources>

@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/myPrimaryColor</item>
         <item name="colorPrimaryDark">@color/myPrimaryDarkColor</item>
         <item name="colorAccent">@color/myAccentColor</item>
-        <item name="android:textColorPrimary">@color/myTextPrimaryColor</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
         <item name="android:windowBackground">@color/myWindowBackground</item>
@@ -20,5 +21,9 @@
     <style name="ToolBarStyle" parent="">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <style name="PagerSlidingTabStripStyle" parent="">
+        <item name="android:textColorPrimary">@color/inverse_text</item>
     </style>
 </resources>

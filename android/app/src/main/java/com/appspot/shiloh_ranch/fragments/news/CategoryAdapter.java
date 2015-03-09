@@ -28,12 +28,10 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // This is okay if we parcel it... But we need to think about maybe doing callbacks instead to share data?
         // Or maybe we just parcel the category?
-        List<Post> posts = null;
-        if (position == 0)
-            posts = mDatabase.getAllPosts();
-        else
-            posts = mDatabase.getAllPosts(mCategories.get(position - 1).getEntityKey());
-        return new CategoryFragment();
+        String categoryKey = null;
+        if (position != 0)
+            categoryKey = mCategories.get(position - 1).getEntityKey();
+        return CategoryFragment.createFragment(categoryKey);
     }
 
     @Override

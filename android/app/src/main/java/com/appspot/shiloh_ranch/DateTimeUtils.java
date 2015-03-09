@@ -2,6 +2,9 @@ package com.appspot.shiloh_ranch;
 
 import android.util.Log;
 
+import com.appspot.shiloh_ranch.api.model.Event;
+import com.appspot.shiloh_ranch.api.model.Post;
+import com.appspot.shiloh_ranch.api.model.Sermon;
 import com.google.api.client.json.GenericJson;
 
 import java.text.DateFormat;
@@ -18,6 +21,19 @@ import java.util.Locale;
  * Created by rockwotj on 3/8/2015.
  */
 public class DateTimeUtils {
+
+    public static String getHumanReadableDateString(String timestamp) {
+        timestamp = timestamp.replace('T', ' ');
+        try {
+            DateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S", Locale.US);
+            Date date = dateParser.parse(timestamp);
+            DateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy", Locale.US);
+            return dateFormatter.format(date);
+        } catch (ParseException e) {
+            Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
+            return timestamp;
+        }
+    }
 
     /**
      * Converts unix time into an Endpoints timestamp
@@ -48,14 +64,50 @@ public class DateTimeUtils {
         }
     }
 
-    public static Comparator<GenericJson> getModelDateComparator() {
+    public static Comparator<Sermon> getSermonDateComparator() {
         final DateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S", Locale.US);
-        return new Comparator<GenericJson>() {
+        return new Comparator<Sermon>() {
             @Override
-            public int compare(GenericJson genericJson, GenericJson genericJson2) {
+            public int compare(Sermon genericJson, Sermon genericJson2) {
                 try {
-                    Date date1 = dateParser.parse(genericJson.get("timeAdded").toString().replace('T', ' '));
-                    Date date2 = dateParser.parse(genericJson2.get("timeAdded").toString().replace('T', ' '));
+                    Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
+                    Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
+                    return date1.compareTo(date2);
+                } catch (ParseException e) {
+                    Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
+                    return 0;
+                }
+
+            }
+        };
+    }
+
+    public static Comparator<Event> getEventDateComparator() {
+        final DateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S", Locale.US);
+        return new Comparator<Event>() {
+            @Override
+            public int compare(Event genericJson, Event genericJson2) {
+                try {
+                    Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
+                    Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
+                    return date1.compareTo(date2);
+                } catch (ParseException e) {
+                    Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
+                    return 0;
+                }
+
+            }
+        };
+    }
+
+    public static Comparator<Post> getPostDateComparator() {
+        final DateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S", Locale.US);
+        return new Comparator<Post>() {
+            @Override
+            public int compare(Post genericJson, Post genericJson2) {
+                try {
+                    Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
+                    Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
                     return date1.compareTo(date2);
                 } catch (ParseException e) {
                     Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);

@@ -214,7 +214,7 @@ public class Database {
         do {
             posts.add(getPostFromCursor(cursor));
         } while (cursor.moveToNext());
-        Collections.sort(posts, DateTimeUtils.getModelDateComparator());
+        Collections.sort(posts, DateTimeUtils.getPostDateComparator());
         return posts;
     }
 
@@ -234,7 +234,7 @@ public class Database {
         do {
             posts.add(getPostFromCursor(cursor));
         } while (cursor.moveToNext());
-        Collections.sort(posts, DateTimeUtils.getModelDateComparator());
+        Collections.sort(posts, DateTimeUtils.getPostDateComparator());
         return posts;
     }
 
@@ -306,7 +306,7 @@ public class Database {
         do {
             events.add(getEventFromCursor(cursor));
         } while (cursor.moveToNext());
-        Collections.sort(events, DateTimeUtils.getModelDateComparator());
+        Collections.sort(events, DateTimeUtils.getEventDateComparator());
         return events;
     }
 
@@ -339,7 +339,7 @@ public class Database {
         do {
             sermons.add(getSermonFromCursor(cursor));
         } while (cursor.moveToNext());
-        Collections.sort(sermons, DateTimeUtils.getModelDateComparator());
+        Collections.sort(sermons, DateTimeUtils.getSermonDateComparator());
         return sermons;
     }
 
@@ -454,7 +454,7 @@ public class Database {
             sb.append(KEY_TITLE + " text, ");
             sb.append(KEY_CATEGORY + " text, ");
             sb.append(KEY_CONTENT + " text, ");
-            sb.append(KEY_DATE + " text");
+            sb.append(KEY_DATE + " text, ");
             sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_POST = sb.toString();
@@ -464,7 +464,7 @@ public class Database {
             sb.append(KEY_ENTITY + " text primary key, ");
             sb.append(KEY_TITLE + " text, ");
             sb.append(KEY_AUDIO + " text, ");
-            sb.append(KEY_DATE + " text");
+            sb.append(KEY_DATE + " text, ");
             sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_SERMON = sb.toString();
@@ -478,7 +478,7 @@ public class Database {
             sb.append(KEY_ATTACHMENT + " text, ");
             sb.append(KEY_DATE + " text, ");
             sb.append(KEY_LOCATION + " text, ");
-            sb.append(KEY_TIME + " text");
+            sb.append(KEY_TIME + " text, ");
             sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_EVENT = sb.toString();

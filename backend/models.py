@@ -107,7 +107,7 @@ class Event(EndpointsModel):
     """
     Generated from: http://shilohranch.com/api/get_posts/?post_type=events
     """
-    _message_fields_schema = ("entityKey", "title", "date_published", "content", "excerpt", "location", "time", "time_added")
+    _message_fields_schema = ("entityKey", "title", "date_published", "content", "excerpt", "attachment", "location", "time", "time_added")
     title = ndb.StringProperty(indexed=False)
     date_published = ndb.DateTimeProperty(indexed=False)
     content = ndb.TextProperty(indexed=False)

@@ -5,13 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.model.Category;
 import com.appspot.shiloh_ranch.api.model.Event;
 import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.api.model.Sermon;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -36,6 +40,7 @@ public class Database {
     private static final String KEY_TITLE = "title";
     private static final String KEY_DATE = "date";
     private static final String KEY_CONTENT = "content";
+    private static final String KEY_TIME_ADDED = "time_added";
 
     // Category Table - column names
     private static final String KEY_ID = "id";
@@ -68,44 +73,234 @@ public class Database {
         mDatabase.close();
     }
 
-    public void insertPost(Post post) {
-
+    public void insert(Post post) {
+        ContentValues row = getContentValues(post);
+        long id = mDatabase.insert(TABLE_POST, null, row);
+        if (id == -1) {
+            Log.e("SRCC", "INSERT FAILED FOR POST!");
+        }
     }
 
-    public void insertSermon(Sermon sermon) {
-
+    public void insert(Sermon sermon) {
+        ContentValues row = getContentValues(sermon);
+        long id = mDatabase.insert(TABLE_SERMON, null, row);
+        if (id == -1) {
+            Log.e("SRCC", "INSERT FAILED FOR SERMON!");
+        }
     }
 
-    public void insertEvent(Event event) {
-
+    public void insert(Event event) {
+        ContentValues row = getContentValues(event);
+        long id = mDatabase.insert(TABLE_EVENT, null, row);
+        if (id == -1) {
+            Log.e("SRCC", "INSERT FAILED FOR EVENT!");
+        }
     }
 
-    public void insetCategory(Category category) {
-
+    public void insert(Category category) {
+        ContentValues row = getContentValues(category);
+        long id = mDatabase.insert(TABLE_CATEGORY, null, row);
+        if (id == -1) {
+            Log.e("SRCC", "INSERT FAILED FOR CATEGORYs!");
+        }
     }
 
+    public void delete(Post post) {
+        mDatabase.delete(TABLE_POST, KEY_ENTITY + " = ?", new String[]{post.getEntityKey()});
+    }
+
+    public void delete(Sermon sermon) {
+        mDatabase.delete(TABLE_SERMON, KEY_ENTITY + " = ?", new String[]{sermon.getEntityKey()});
+    }
+
+    public void delete(Event event) {
+        mDatabase.delete(TABLE_EVENT, KEY_ENTITY + " = ?", new String[]{event.getEntityKey()});
+    }
+
+    public void delete(Category category) {
+        mDatabase.delete(TABLE_CATEGORY, KEY_ENTITY + " = ?", new String[]{category.getEntityKey()});
+    }
+
+    public void update(Post post) {
+        ContentValues row = getContentValues(post);
+        mDatabase.update(TABLE_POST, row, KEY_ENTITY + " = ?", new String[] { post.getEntityKey() });
+    }
+
+    public void update(Sermon sermon) {
+        ContentValues row = getContentValues(sermon);
+        mDatabase.update(TABLE_SERMON, row, KEY_ENTITY + " = ?", new String[] { sermon.getEntityKey() });
+    }
+
+    public void update(Event event) {
+        ContentValues row = getContentValues(event);
+        mDatabase.update(TABLE_EVENT, row, KEY_ENTITY + " = ?", new String[] { event.getEntityKey() });
+    }
+
+    public void update(Category category) {
+        ContentValues row = getContentValues(category);
+        mDatabase.update(TABLE_CATEGORY, row, KEY_ENTITY + " = ?", new String[] { category.getEntityKey() });
+    }
+
+    /**
+     * Gets a single Post from the database
+     *
+     * @param entityKey the Post's Key
+     * @return the Post matching the Key
+     */
     public Post getPost(String entityKey) {
-
+        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        Cursor cursor = mDatabase.query(TABLE_POST, null, whereClause, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return null;
+        }
+        return getPostFromCursor(cursor);
     }
 
+    /**
+     * Gets all of the posts in the database, sorted by timeAdded
+     *
+     * @return All Posts, sorted by timeAdded
+     */
     public List<Post> getAllPosts() {
         List<Post> posts = new ArrayList<>();
         Cursor cursor = mDatabase.query(TABLE_POST, null, null, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
-            return null;
+            return new ArrayList<>();
         }
-        posts.clear();
         do {
             posts.add(getPostFromCursor(cursor));
         } while (cursor.moveToNext());
-        // TODO: Sort results by Date
+        Collections.sort(posts, DateTimeUtils.getModelDateComparator());
         return posts;
     }
 
+    /**
+     * Gets all of the posts under a category in the database, sorted by timeAdded
+     *
+     * @param categoryKey the entityKey of the category
+     * @return All Posts, sorted by timeAdded
+     */
     public List<Post> getAllPosts(String categoryKey) {
-
+        List<Post> posts = new ArrayList<>();
+        String whereClause = (categoryKey == null) ? null : KEY_CATEGORY + "=" + "'" + categoryKey + "'";
+        Cursor cursor = mDatabase.query(TABLE_POST, null, whereClause, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return new ArrayList<>();
+        }
+        do {
+            posts.add(getPostFromCursor(cursor));
+        } while (cursor.moveToNext());
+        Collections.sort(posts, DateTimeUtils.getModelDateComparator());
+        return posts;
     }
 
+
+    /**
+     * Gets a single Category from the database
+     *
+     * @param entityKey the Category's Key
+     * @return the Category matching the Key
+     */
+    public Category getCategory(String entityKey) {
+        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        Cursor cursor = mDatabase.query(TABLE_CATEGORY, null, whereClause, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return null;
+        }
+        return getCategoryFromCursor(cursor);
+    }
+
+    /**
+     * Gets all of the categories in the database, sorted alphabetically
+     *
+     * @return All categories, sorted alphabetically
+     */
+    public List<Category> getAllCategories() {
+        final List<Category> categories = new ArrayList<>();
+        Cursor cursor = mDatabase.query(TABLE_CATEGORY, null, null, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return new ArrayList<>();
+        }
+        do {
+            categories.add(getCategoryFromCursor(cursor));
+        } while (cursor.moveToNext());
+        Collections.sort(categories, new Comparator<Category>() {
+            @Override
+            public int compare(Category category, Category category2) {
+                return category.getTitle().compareTo(category2.getTitle());
+            }
+        });
+        return categories;
+    }
+
+    /**
+     * Gets a single event from the database
+     *
+     * @param entityKey the event's Key
+     * @return the event matching the Key
+     */
+    public Event getEvent(String entityKey) {
+        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        Cursor cursor = mDatabase.query(TABLE_EVENT, null, whereClause, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return null;
+        }
+        return getEventFromCursor(cursor);
+    }
+
+    /**
+     * Gets all of the events in the database, sorted by timeAdded
+     *
+     * @return All events, sorted by timeAdded
+     */
+    public List<Event> getAllEvents() {
+        List<Event> events = new ArrayList<>();
+        Cursor cursor = mDatabase.query(TABLE_EVENT, null, null, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return new ArrayList<>();
+        }
+        do {
+            events.add(getEventFromCursor(cursor));
+        } while (cursor.moveToNext());
+        Collections.sort(events, DateTimeUtils.getModelDateComparator());
+        return events;
+    }
+
+    /**
+     * Gets a single sermon from the database
+     *
+     * @param entityKey the sermon's Key
+     * @return the sermon matching the Key
+     */
+    public Sermon getSermon(String entityKey) {
+        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        Cursor cursor = mDatabase.query(TABLE_SERMON, null, whereClause, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return null;
+        }
+        return getSermonFromCursor(cursor);
+    }
+
+    /**
+     * Gets all of the Sermons in the database, sorted by timeAdded
+     *
+     * @return All Sermons, sorted by timeAdded
+     */
+    public List<Sermon> getAllSermons() {
+        List<Sermon> sermons = new ArrayList<>();
+        Cursor cursor = mDatabase.query(TABLE_SERMON, null, null, null, null, null, null);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return new ArrayList<>();
+        }
+        do {
+            sermons.add(getSermonFromCursor(cursor));
+        } while (cursor.moveToNext());
+        Collections.sort(sermons, DateTimeUtils.getModelDateComparator());
+        return sermons;
+    }
+
+
+    // Private Helper Methods
     private ContentValues getContentValues(Post post) {
         ContentValues row = new ContentValues();
         row.put(KEY_ENTITY, post.getEntityKey());
@@ -113,6 +308,7 @@ public class Database {
         row.put(KEY_CATEGORY, post.getCategory());
         row.put(KEY_CONTENT, post.getContent());
         row.put(KEY_DATE, post.getDate());
+        row.put(KEY_TIME_ADDED, post.getTimeAdded());
         return row;
     }
 
@@ -122,6 +318,7 @@ public class Database {
         row.put(KEY_TITLE, sermon.getTitle());
         row.put(KEY_AUDIO, sermon.getAudioLink());
         row.put(KEY_DATE, sermon.getDate());
+        row.put(KEY_TIME_ADDED, sermon.getTimeAdded());
         return row;
     }
 
@@ -135,6 +332,7 @@ public class Database {
         row.put(KEY_DATE, event.getDatePublished());
         row.put(KEY_LOCATION, event.getLocation());
         row.put(KEY_TIME, event.getTime());
+        row.put(KEY_TIME_ADDED, event.getTimeAdded());
         return row;
     }
 
@@ -153,6 +351,7 @@ public class Database {
         post.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(KEY_CATEGORY)));
         post.setContent(cursor.getString(cursor.getColumnIndexOrThrow(KEY_CONTENT)));
         post.setDate(cursor.getString(cursor.getColumnIndexOrThrow(KEY_DATE)));
+        post.setTimeAdded(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TIME_ADDED)));
         return post;
     }
 
@@ -162,6 +361,7 @@ public class Database {
         sermon.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TITLE)));
         sermon.setAudioLink(cursor.getString(cursor.getColumnIndexOrThrow(KEY_AUDIO)));
         sermon.setDate(cursor.getString(cursor.getColumnIndexOrThrow(KEY_DATE)));
+        sermon.setTimeAdded(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TIME_ADDED)));
         return sermon;
     }
 
@@ -175,6 +375,7 @@ public class Database {
         event.setDatePublished(cursor.getString(cursor.getColumnIndexOrThrow(KEY_DATE)));
         event.setLocation(cursor.getString(cursor.getColumnIndexOrThrow(KEY_LOCATION)));
         event.setTime(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TIME)));
+        event.setTimeAdded(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TIME_ADDED)));
         return event;
     }
 
@@ -210,6 +411,7 @@ public class Database {
             sb.append(KEY_CATEGORY + " text, ");
             sb.append(KEY_CONTENT + " text, ");
             sb.append(KEY_DATE + " text");
+            sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_POST = sb.toString();
             // SERMON
@@ -219,6 +421,7 @@ public class Database {
             sb.append(KEY_TITLE + " text, ");
             sb.append(KEY_AUDIO + " text, ");
             sb.append(KEY_DATE + " text");
+            sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_SERMON = sb.toString();
             // EVENT
@@ -232,6 +435,7 @@ public class Database {
             sb.append(KEY_DATE + " text, ");
             sb.append(KEY_LOCATION + " text, ");
             sb.append(KEY_TIME + " text");
+            sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_EVENT = sb.toString();
 
@@ -252,6 +456,7 @@ public class Database {
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
             // on upgrade drop older tables
+            // Probably should make a more elegant transfer of data later
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_POST);
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SERMON);
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENT);

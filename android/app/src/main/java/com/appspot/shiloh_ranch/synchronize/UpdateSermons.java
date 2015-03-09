@@ -2,6 +2,7 @@ package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
 
+import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Sermon;
 import com.appspot.shiloh_ranch.api.model.SermonCollection;
@@ -31,14 +32,14 @@ public final class UpdateSermons extends Sync<Sermon> {
         boolean needsUpdate = mService.update().sermons(lastSync).execute().getNeedsUpdate();
         if (needsUpdate) {
             ShilohRanch.Sermons query = mService.sermons();
-            query.setLastSync(convertUnixTimeToDate(lastSync));
+            query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             SermonCollection sermons = query.execute();
             List<Sermon> items = new ArrayList<>(sermons.getItems());
             if (sermons.getNextPageToken() != null) {
                 items.addAll(update(sermons.getNextPageToken()));
             }
             if (!items.isEmpty()) {
-                lastSync = convertDateToUnixTime(items.get(0).getTimeAdded());
+                lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
                 if (lastSync > 0) {
                     setLastSyncTime(lastSync);
                 }

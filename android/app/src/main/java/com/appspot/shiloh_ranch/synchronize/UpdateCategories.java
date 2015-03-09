@@ -2,11 +2,10 @@ package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
 
+import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Category;
 import com.appspot.shiloh_ranch.api.model.CategoryCollection;
-import com.appspot.shiloh_ranch.api.model.Post;
-import com.appspot.shiloh_ranch.api.model.PostCollection;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,14 +32,14 @@ public final class UpdateCategories extends Sync<Category> {
         boolean needsUpdate = mService.update().categories(lastSync).execute().getNeedsUpdate();
         if (needsUpdate) {
             ShilohRanch.Categories query = mService.categories();
-            query.setLastSync(convertUnixTimeToDate(lastSync));
+            query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             CategoryCollection categories = query.execute();
             List<Category> items = new ArrayList<>(categories.getItems());
             if (categories.getNextPageToken() != null) {
                 items.addAll(update(categories.getNextPageToken()));
             }
             if (!items.isEmpty()) {
-                lastSync = convertDateToUnixTime(items.get(0).getTimeAdded());
+                lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
                 if (lastSync > 0) {
                     setLastSyncTime(lastSync);
                 }

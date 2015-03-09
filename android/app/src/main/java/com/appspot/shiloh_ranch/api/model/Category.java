@@ -16,7 +16,7 @@
  * Modify at your own risk.
  */
 
-package com.appspot.shiloh_ranch.shilohranch.model;
+package com.appspot.shiloh_ranch.api.model;
 
 /**
  * Model definition for Category.

@@ -2,6 +2,7 @@ package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
 
+import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Deletion;
 import com.appspot.shiloh_ranch.api.model.DeletionCollection;
@@ -31,14 +32,14 @@ public final class UpdateDeletions extends Sync<Deletion> {
         boolean needsUpdate = mService.update().deletions(lastSync).execute().getNeedsUpdate();
         if (needsUpdate) {
             ShilohRanch.Deletions query = mService.deletions();
-            query.setLastSync(convertUnixTimeToDate(lastSync));
+            query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             DeletionCollection deletions = query.execute();
             List<Deletion> items = new ArrayList<>(deletions.getItems());
             if (deletions.getNextPageToken() != null) {
                 items.addAll(update(deletions.getNextPageToken()));
             }
             if (!items.isEmpty()) {
-                lastSync = convertDateToUnixTime(items.get(0).getTimeAdded());
+                lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
                 if (lastSync > 0) {
                     setLastSyncTime(lastSync);
                 }

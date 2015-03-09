@@ -2,6 +2,7 @@ package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
 
+import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.api.model.PostCollection;
@@ -31,14 +32,14 @@ public final class UpdateNews extends Sync<Post> {
         boolean needsUpdate = mService.update().posts(lastSync).execute().getNeedsUpdate();
         if (needsUpdate) {
             ShilohRanch.Posts query = mService.posts();
-            query.setLastSync(convertUnixTimeToDate(lastSync));
+            query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             PostCollection posts = query.execute();
             List<Post> items = new ArrayList<>(posts.getItems());
             if (posts.getNextPageToken() != null) {
                 items.addAll(update(posts.getNextPageToken()));
             }
             if (!items.isEmpty()) {
-                lastSync = convertDateToUnixTime(items.get(0).getTimeAdded());
+                lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
                 if (lastSync > 0) {
                     setLastSyncTime(lastSync);
                 }

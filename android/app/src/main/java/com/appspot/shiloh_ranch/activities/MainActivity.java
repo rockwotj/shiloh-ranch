@@ -1,5 +1,7 @@
 package com.appspot.shiloh_ranch.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -14,7 +16,7 @@ import com.appspot.shiloh_ranch.fragments.IFragmentCallbacks;
 import com.appspot.shiloh_ranch.fragments.events.EventsFragment;
 import com.appspot.shiloh_ranch.fragments.home.HomeFragment;
 import com.appspot.shiloh_ranch.fragments.navigation.INavigationDrawerCallbacks;
-import com.appspot.shiloh_ranch.fragments.navigation.INavigationDrawerFragment;
+import com.appspot.shiloh_ranch.fragments.navigation.NavigationDrawerFragment;
 import com.appspot.shiloh_ranch.fragments.news.NewsFragment;
 import com.appspot.shiloh_ranch.fragments.sermons.SermonsFragment;
 import com.appspot.shiloh_ranch.fragments.settings.SettingsFragment;
@@ -28,7 +30,7 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity implements INavigationDrawerCallbacks, IFragmentCallbacks {
 
     private Toolbar mToolbar;
-    private INavigationDrawerFragment mNavigationDrawerFragment;
+    private NavigationDrawerFragment mNavigationDrawerFragment;
     private List<Class<? extends IContentFragment>> mFragmentClasses;
     private int mCurrentPosition;
     private IContentFragment[] mFragments;
@@ -44,9 +46,10 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
         mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        mNavigationDrawerFragment = (INavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
         mService = new ShilohRanch.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null)
+                .setApplicationName("com.appspot.shiloh_ranch.android")
                 .build();
     }
 
@@ -58,7 +61,12 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        if (mCurrentPosition != -1) {
+        if (position >= mFragmentClasses.size()) {
+            String url = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XURAEFVZV2CAJ";
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+            return;
+        } else if (mCurrentPosition != -1) {
             getSupportFragmentManager().beginTransaction()
                     .remove(mFragments[mCurrentPosition])
                     .commit();
@@ -92,7 +100,7 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
             super.onBackPressed();
     }
 
-    public ShilohRanch getService(){
+    public ShilohRanch getService() {
         return mService;
     }
 }

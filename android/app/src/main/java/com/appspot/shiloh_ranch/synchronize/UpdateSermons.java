@@ -1,11 +1,13 @@
 package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Sermon;
 import com.appspot.shiloh_ranch.api.model.SermonCollection;
+import com.appspot.shiloh_ranch.database.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +36,17 @@ public final class UpdateSermons extends Sync<Sermon> {
             ShilohRanch.Sermons query = mService.sermons();
             query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             SermonCollection sermons = query.execute();
-            List<Sermon> items = new ArrayList<>(sermons.getItems());
+            List<Sermon> items = new ArrayList<>();
+            Database db = Database.getDatabase(mContext);
+            for (Sermon s : sermons.getItems()) {
+                items.add(s);
+                db.insert(s);
+            }
             if (sermons.getNextPageToken() != null) {
-                items.addAll(update(sermons.getNextPageToken()));
+                for (Sermon s : update(sermons.getNextPageToken())) {
+                    items.add(s);
+                    db.insert(s);
+                }
             }
             if (!items.isEmpty()) {
                 lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
@@ -44,6 +54,7 @@ public final class UpdateSermons extends Sync<Sermon> {
                     setLastSyncTime(lastSync);
                 }
             }
+            Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
             return new ArrayList<>();

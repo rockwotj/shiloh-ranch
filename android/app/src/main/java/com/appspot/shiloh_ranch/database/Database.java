@@ -12,11 +12,15 @@ import com.appspot.shiloh_ranch.api.model.Category;
 import com.appspot.shiloh_ranch.api.model.Event;
 import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.api.model.Sermon;
+import com.google.api.client.json.GenericJson;
 
+import java.io.CharArrayReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by rockwotj on 3/8/2015.
@@ -57,33 +61,65 @@ public class Database {
     private static final String KEY_TIME = "time";
     private static final String KEY_ATTACHMENT = "attachment";
 
-    // Instance Field
+    // Instance Fields
     private SQLiteDatabase mDatabase;
     private DatabaseHelper mOpenHelper;
+    private static Map<Class<? extends GenericJson>, String> mTableMap;
 
-    public Database(Context context) {
+    static {
+        mTableMap = new HashMap<>(4);
+        mTableMap.put(Event.class, TABLE_EVENT);
+        mTableMap.put(Post.class, TABLE_POST);
+        mTableMap.put(Sermon.class, TABLE_SERMON);
+        mTableMap.put(Category.class, TABLE_CATEGORY);
+    }
+
+    // Singleton Instance
+    private static Database instance;
+
+    public synchronized static Database getDatabase(Context context) {
+        if (instance == null) {
+            instance = new Database(context);
+            instance.open();
+        }
+        return instance;
+    }
+
+    private Database(Context context) {
         mOpenHelper = new DatabaseHelper(context);
     }
 
-    public void open() {
+    private void open() {
         mDatabase = mOpenHelper.getWritableDatabase();
     }
 
-    public void close() {
+    /**
+     * You probably don't wanna close it.
+     */
+    private void close() {
         mDatabase.close();
+    }
+
+    /**
+     * We will synchronize the DB so that we don't get any problems there.
+     * @return the database
+     */
+    private synchronized SQLiteDatabase getDatabase() {
+        return mDatabase;
     }
 
     public void insert(Post post) {
         ContentValues row = getContentValues(post);
-        long id = mDatabase.insert(TABLE_POST, null, row);
+        long id = getDatabase().insert(TABLE_POST, null, row);
         if (id == -1) {
             Log.e("SRCC", "INSERT FAILED FOR POST!");
         }
     }
 
+
     public void insert(Sermon sermon) {
         ContentValues row = getContentValues(sermon);
-        long id = mDatabase.insert(TABLE_SERMON, null, row);
+        long id = getDatabase().insert(TABLE_SERMON, null, row);
         if (id == -1) {
             Log.e("SRCC", "INSERT FAILED FOR SERMON!");
         }
@@ -91,7 +127,7 @@ public class Database {
 
     public void insert(Event event) {
         ContentValues row = getContentValues(event);
-        long id = mDatabase.insert(TABLE_EVENT, null, row);
+        long id = getDatabase().insert(TABLE_EVENT, null, row);
         if (id == -1) {
             Log.e("SRCC", "INSERT FAILED FOR EVENT!");
         }
@@ -99,46 +135,54 @@ public class Database {
 
     public void insert(Category category) {
         ContentValues row = getContentValues(category);
-        long id = mDatabase.insert(TABLE_CATEGORY, null, row);
+        long id = getDatabase().insert(TABLE_CATEGORY, null, row);
         if (id == -1) {
-            Log.e("SRCC", "INSERT FAILED FOR CATEGORYs!");
+            Log.e("SRCC", "INSERT FAILED FOR CATEGORY!");
         }
     }
 
+    public void delete(Class<? extends GenericJson> kind, String entityKey) {
+        delete(mTableMap.get(kind), entityKey);
+    }
+
     public void delete(Post post) {
-        mDatabase.delete(TABLE_POST, KEY_ENTITY + " = ?", new String[]{post.getEntityKey()});
+        delete(TABLE_POST, post.getEntityKey());
     }
 
     public void delete(Sermon sermon) {
-        mDatabase.delete(TABLE_SERMON, KEY_ENTITY + " = ?", new String[]{sermon.getEntityKey()});
+        delete(TABLE_SERMON, sermon.getEntityKey());
     }
 
     public void delete(Event event) {
-        mDatabase.delete(TABLE_EVENT, KEY_ENTITY + " = ?", new String[]{event.getEntityKey()});
+        delete(TABLE_EVENT, event.getEntityKey());
     }
 
     public void delete(Category category) {
-        mDatabase.delete(TABLE_CATEGORY, KEY_ENTITY + " = ?", new String[]{category.getEntityKey()});
+        delete(TABLE_CATEGORY, category.getEntityKey());
+    }
+
+    private void delete(String tableName, String key) {
+        getDatabase().delete(tableName, KEY_ENTITY + " = ?", new String[]{key});
     }
 
     public void update(Post post) {
         ContentValues row = getContentValues(post);
-        mDatabase.update(TABLE_POST, row, KEY_ENTITY + " = ?", new String[] { post.getEntityKey() });
+        getDatabase().update(TABLE_POST, row, KEY_ENTITY + " = ?", new String[]{post.getEntityKey()});
     }
 
     public void update(Sermon sermon) {
         ContentValues row = getContentValues(sermon);
-        mDatabase.update(TABLE_SERMON, row, KEY_ENTITY + " = ?", new String[] { sermon.getEntityKey() });
+        getDatabase().update(TABLE_SERMON, row, KEY_ENTITY + " = ?", new String[]{sermon.getEntityKey()});
     }
 
     public void update(Event event) {
         ContentValues row = getContentValues(event);
-        mDatabase.update(TABLE_EVENT, row, KEY_ENTITY + " = ?", new String[] { event.getEntityKey() });
+        getDatabase().update(TABLE_EVENT, row, KEY_ENTITY + " = ?", new String[]{event.getEntityKey()});
     }
 
     public void update(Category category) {
         ContentValues row = getContentValues(category);
-        mDatabase.update(TABLE_CATEGORY, row, KEY_ENTITY + " = ?", new String[] { category.getEntityKey() });
+        getDatabase().update(TABLE_CATEGORY, row, KEY_ENTITY + " = ?", new String[]{category.getEntityKey()});
     }
 
     /**
@@ -149,7 +193,7 @@ public class Database {
      */
     public Post getPost(String entityKey) {
         String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
-        Cursor cursor = mDatabase.query(TABLE_POST, null, whereClause, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_POST, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
         }
@@ -163,7 +207,7 @@ public class Database {
      */
     public List<Post> getAllPosts() {
         List<Post> posts = new ArrayList<>();
-        Cursor cursor = mDatabase.query(TABLE_POST, null, null, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_POST, null, null, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return new ArrayList<>();
         }
@@ -183,7 +227,7 @@ public class Database {
     public List<Post> getAllPosts(String categoryKey) {
         List<Post> posts = new ArrayList<>();
         String whereClause = (categoryKey == null) ? null : KEY_CATEGORY + "=" + "'" + categoryKey + "'";
-        Cursor cursor = mDatabase.query(TABLE_POST, null, whereClause, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_POST, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return new ArrayList<>();
         }
@@ -203,7 +247,7 @@ public class Database {
      */
     public Category getCategory(String entityKey) {
         String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
-        Cursor cursor = mDatabase.query(TABLE_CATEGORY, null, whereClause, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_CATEGORY, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
         }
@@ -217,7 +261,7 @@ public class Database {
      */
     public List<Category> getAllCategories() {
         final List<Category> categories = new ArrayList<>();
-        Cursor cursor = mDatabase.query(TABLE_CATEGORY, null, null, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_CATEGORY, null, null, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return new ArrayList<>();
         }
@@ -241,7 +285,7 @@ public class Database {
      */
     public Event getEvent(String entityKey) {
         String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
-        Cursor cursor = mDatabase.query(TABLE_EVENT, null, whereClause, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_EVENT, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
         }
@@ -255,7 +299,7 @@ public class Database {
      */
     public List<Event> getAllEvents() {
         List<Event> events = new ArrayList<>();
-        Cursor cursor = mDatabase.query(TABLE_EVENT, null, null, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_EVENT, null, null, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return new ArrayList<>();
         }
@@ -274,7 +318,7 @@ public class Database {
      */
     public Sermon getSermon(String entityKey) {
         String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
-        Cursor cursor = mDatabase.query(TABLE_SERMON, null, whereClause, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_SERMON, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
         }
@@ -288,7 +332,7 @@ public class Database {
      */
     public List<Sermon> getAllSermons() {
         List<Sermon> sermons = new ArrayList<>();
-        Cursor cursor = mDatabase.query(TABLE_SERMON, null, null, null, null, null, null);
+        Cursor cursor = getDatabase().query(TABLE_SERMON, null, null, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return new ArrayList<>();
         }

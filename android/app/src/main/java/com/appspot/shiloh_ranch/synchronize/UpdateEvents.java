@@ -1,11 +1,13 @@
 package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Event;
 import com.appspot.shiloh_ranch.api.model.EventCollection;
+import com.appspot.shiloh_ranch.database.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +36,17 @@ public final class UpdateEvents extends Sync<Event> {
             ShilohRanch.Events query = mService.events();
             query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             EventCollection events = query.execute();
-            List<Event> items = new ArrayList<>(events.getItems());
+            List<Event> items = new ArrayList<>();
+            Database db = Database.getDatabase(mContext);
+            for (Event e : events.getItems()) {
+                items.add(e);
+                db.insert(e);
+            }
             if (events.getNextPageToken() != null) {
-                items.addAll(update(events.getNextPageToken()));
+                for(Event e : update(events.getNextPageToken())) {
+                    items.add(e);
+                    db.insert(e);
+                }
             }
             if (!items.isEmpty()) {
                 lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
@@ -44,6 +54,7 @@ public final class UpdateEvents extends Sync<Event> {
                     setLastSyncTime(lastSync);
                 }
             }
+            Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
             return new ArrayList<>();

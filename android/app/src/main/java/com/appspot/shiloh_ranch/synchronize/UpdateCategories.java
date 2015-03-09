@@ -1,11 +1,13 @@
 package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Category;
 import com.appspot.shiloh_ranch.api.model.CategoryCollection;
+import com.appspot.shiloh_ranch.database.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +36,17 @@ public final class UpdateCategories extends Sync<Category> {
             ShilohRanch.Categories query = mService.categories();
             query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             CategoryCollection categories = query.execute();
-            List<Category> items = new ArrayList<>(categories.getItems());
+            List<Category> items = new ArrayList<>();
+            Database db = Database.getDatabase(mContext);
+            for (Category c : categories.getItems()) {
+                items.add(c);
+                db.insert(c);
+            }
             if (categories.getNextPageToken() != null) {
-                items.addAll(update(categories.getNextPageToken()));
+                for (Category c : update(categories.getNextPageToken())) {
+                    items.add(c);
+                    db.insert(c);
+                }
             }
             if (!items.isEmpty()) {
                 lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
@@ -44,6 +54,7 @@ public final class UpdateCategories extends Sync<Category> {
                     setLastSyncTime(lastSync);
                 }
             }
+            Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
             return new ArrayList<>();

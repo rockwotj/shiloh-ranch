@@ -1,11 +1,13 @@
 package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.api.model.PostCollection;
+import com.appspot.shiloh_ranch.database.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +36,17 @@ public final class UpdateNews extends Sync<Post> {
             ShilohRanch.Posts query = mService.posts();
             query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             PostCollection posts = query.execute();
-            List<Post> items = new ArrayList<>(posts.getItems());
+            List<Post> items = new ArrayList<>();
+            Database db = Database.getDatabase(mContext);
+            for (Post p : posts.getItems()) {
+                items.add(p);
+                db.insert(p);
+            }
             if (posts.getNextPageToken() != null) {
-                items.addAll(update(posts.getNextPageToken()));
+                for (Post p : update(posts.getNextPageToken())) {
+                    items.add(p);
+                    db.insert(p);
+                }
             }
             if (!items.isEmpty()) {
                 lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
@@ -44,6 +54,7 @@ public final class UpdateNews extends Sync<Post> {
                     setLastSyncTime(lastSync);
                 }
             }
+            Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
             return new ArrayList<>();

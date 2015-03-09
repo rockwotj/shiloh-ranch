@@ -2,6 +2,7 @@ package com.appspot.shiloh_ranch.activities;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +21,13 @@ import com.appspot.shiloh_ranch.fragments.navigation.NavigationDrawerFragment;
 import com.appspot.shiloh_ranch.fragments.news.NewsFragment;
 import com.appspot.shiloh_ranch.fragments.sermons.SermonsFragment;
 import com.appspot.shiloh_ranch.fragments.settings.SettingsFragment;
+import com.appspot.shiloh_ranch.synchronize.CategorySyncTask;
+import com.appspot.shiloh_ranch.synchronize.DeletionSyncTask;
+import com.appspot.shiloh_ranch.synchronize.EventSyncTask;
+import com.appspot.shiloh_ranch.synchronize.ISyncTaskCallback;
+import com.appspot.shiloh_ranch.synchronize.NewsSyncTask;
+import com.appspot.shiloh_ranch.synchronize.SermonSyncTask;
+import com.appspot.shiloh_ranch.synchronize.SyncTask;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.gson.GsonFactory;
 
@@ -27,7 +35,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity implements INavigationDrawerCallbacks, IFragmentCallbacks {
+public class MainActivity extends ActionBarActivity implements INavigationDrawerCallbacks, IFragmentCallbacks, ISyncTaskCallback {
 
     private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -35,6 +43,7 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
     private int mCurrentPosition;
     private IContentFragment[] mFragments;
     private ShilohRanch mService;
+    private AsyncTask[] mSyncTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,8 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
         mService = new ShilohRanch.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null)
                 .setApplicationName("com.appspot.shiloh_ranch.android")
                 .build();
+        mSyncTasks = new SyncTask[5];
+        updateData();
     }
 
     @Override
@@ -61,14 +72,16 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        if (position >= mFragmentClasses.size()) {
+        if (position == mCurrentPosition) {
+            return;
+        } else if (position >= mFragmentClasses.size()) {
             String url = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XURAEFVZV2CAJ";
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(browserIntent);
             return;
         } else if (mCurrentPosition != -1) {
             getSupportFragmentManager().beginTransaction()
-                    .remove(mFragments[mCurrentPosition])
+                    .remove(getCurrentFragment())
                     .commit();
         }
         mCurrentPosition = position;
@@ -78,7 +91,7 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
                 fragment = mFragmentClasses.get(position).newInstance();
                 mFragments[position] = fragment;
             } catch (Exception e) {
-                Log.e("SR", "Error switching content fragment", e);
+                Log.e("SRCC", "Error switching content fragment", e);
                 return;
             }
         } else {
@@ -89,7 +102,6 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
                 .commit();
         if (mToolbar != null)
             mToolbar.setTitle(fragment.getTitle());
-
     }
 
     @Override
@@ -100,7 +112,50 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
             super.onBackPressed();
     }
 
+    private IContentFragment getCurrentFragment() {
+        return mCurrentPosition >= 0 ? mFragments[mCurrentPosition] : null;
+    }
+
     public ShilohRanch getService() {
         return mService;
+    }
+
+    @Override
+    public void updateData() {
+        updateCategories();
+        updateEvents();
+        updateNews();
+        updateSermons();
+        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED)
+            mSyncTasks[4] = new DeletionSyncTask(this, mService, null).execute();
+    }
+
+    @Override
+    public void updateCategories() {
+        if (mSyncTasks[0] == null || mSyncTasks[0].getStatus() == AsyncTask.Status.FINISHED)
+            mSyncTasks[0] = new CategorySyncTask(this, mService, this).execute();
+    }
+
+    @Override
+    public void updateEvents() {
+        if (mSyncTasks[1] == null || mSyncTasks[1].getStatus() == AsyncTask.Status.FINISHED)
+            mSyncTasks[1] = new EventSyncTask(this, mService, this).execute();
+    }
+
+    @Override
+    public void updateNews() {
+        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED)
+        mSyncTasks[4] = new NewsSyncTask(this, mService, this).execute();
+    }
+
+    @Override
+    public void updateSermons() {
+        if (mSyncTasks[3] == null || mSyncTasks[3].getStatus() == AsyncTask.Status.FINISHED)
+            mSyncTasks[3] = new SermonSyncTask(this, mService, this).execute();
+    }
+
+    @Override
+    public void onCompletion() {
+        getCurrentFragment().refresh();
     }
 }

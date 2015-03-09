@@ -9,4 +9,14 @@ public interface IFragmentCallbacks {
 
     public ShilohRanch getService();
 
+    public void updateData();
+
+    public void updateCategories();
+
+    public void updateEvents();
+
+    public void updateNews();
+
+    public void updateSermons();
+
 }

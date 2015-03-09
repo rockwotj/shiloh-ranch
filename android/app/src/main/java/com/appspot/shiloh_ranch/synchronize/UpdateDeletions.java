@@ -1,11 +1,17 @@
 package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appspot.shiloh_ranch.DateTimeUtils;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
+import com.appspot.shiloh_ranch.api.model.Category;
 import com.appspot.shiloh_ranch.api.model.Deletion;
 import com.appspot.shiloh_ranch.api.model.DeletionCollection;
+import com.appspot.shiloh_ranch.api.model.Event;
+import com.appspot.shiloh_ranch.api.model.Post;
+import com.appspot.shiloh_ranch.api.model.Sermon;
+import com.appspot.shiloh_ranch.database.Database;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +40,39 @@ public final class UpdateDeletions extends Sync<Deletion> {
             ShilohRanch.Deletions query = mService.deletions();
             query.setLastSync(DateTimeUtils.convertUnixTimeToDate(lastSync));
             DeletionCollection deletions = query.execute();
-            List<Deletion> items = new ArrayList<>(deletions.getItems());
+            List<Deletion> items = new ArrayList<>();
+            Database db = Database.getDatabase(mContext);
+            for(Deletion d : deletions.getItems()) {
+                items.add(d);
+                String kind = d.getKind();
+                if (kind.equals("Sermon")) {
+                    db.delete(Sermon.class, d.getEntityKey());
+                } else if (kind.equals("Post")) {
+                    db.delete(Post.class, d.getEntityKey());
+                } else if (kind.equals("Event")) {
+                    db.delete(Event.class, d.getEntityKey());
+                } else if (kind.equals("Category")) {
+                    db.delete(Category.class, d.getEntityKey());
+                } else {
+                    Log.e("SRCC", "Error trying to delete type: " + kind);
+                }
+            }
             if (deletions.getNextPageToken() != null) {
-                items.addAll(update(deletions.getNextPageToken()));
+                for(Deletion d : update(deletions.getNextPageToken())) {
+                    items.add(d);
+                    String kind = d.getKind();
+                    if (kind.equals("Sermon")) {
+                        db.delete(Sermon.class, d.getEntityKey());
+                    } else if (kind.equals("Post")) {
+                        db.delete(Post.class, d.getEntityKey());
+                    } else if (kind.equals("Event")) {
+                        db.delete(Event.class, d.getEntityKey());
+                    } else if (kind.equals("Category")) {
+                        db.delete(Category.class, d.getEntityKey());
+                    } else {
+                        Log.e("SRCC", "Error trying to delete type: " + kind);
+                    }
+                }
             }
             if (!items.isEmpty()) {
                 lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
@@ -44,6 +80,7 @@ public final class UpdateDeletions extends Sync<Deletion> {
                     setLastSyncTime(lastSync);
                 }
             }
+            Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
             return new ArrayList<>();

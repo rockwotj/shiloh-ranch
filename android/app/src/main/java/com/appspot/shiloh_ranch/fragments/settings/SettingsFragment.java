@@ -39,4 +39,9 @@ public class SettingsFragment extends IContentFragment {
     public String getTitle() {
         return "Settings";
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

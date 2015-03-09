@@ -39,4 +39,9 @@ public class SermonsFragment extends IContentFragment {
     public String getTitle() {
         return "Sermons";
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

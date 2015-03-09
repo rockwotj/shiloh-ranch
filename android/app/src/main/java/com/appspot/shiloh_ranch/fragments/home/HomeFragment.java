@@ -38,4 +38,9 @@ public class HomeFragment extends IContentFragment {
     public String getTitle() {
         return "Shiloh Ranch";
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

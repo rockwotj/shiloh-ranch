@@ -38,4 +38,9 @@ public class EventsFragment extends IContentFragment {
     public String getTitle() {
         return "Events";
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

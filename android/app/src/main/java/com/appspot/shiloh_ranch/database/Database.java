@@ -14,7 +14,6 @@ import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.api.model.Sermon;
 import com.google.api.client.json.GenericJson;
 
-import java.io.CharArrayReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -60,12 +59,7 @@ public class Database {
     private static final String KEY_LOCATION = "location";
     private static final String KEY_TIME = "time";
     private static final String KEY_ATTACHMENT = "attachment";
-
-    // Instance Fields
-    private SQLiteDatabase mDatabase;
-    private DatabaseHelper mOpenHelper;
     private static Map<Class<? extends GenericJson>, String> mTableMap;
-
     static {
         mTableMap = new HashMap<>(4);
         mTableMap.put(Event.class, TABLE_EVENT);
@@ -73,9 +67,15 @@ public class Database {
         mTableMap.put(Sermon.class, TABLE_SERMON);
         mTableMap.put(Category.class, TABLE_CATEGORY);
     }
-
     // Singleton Instance
     private static Database instance;
+    // Instance Fields
+    private SQLiteDatabase mDatabase;
+    private DatabaseHelper mOpenHelper;
+
+    private Database(Context context) {
+        mOpenHelper = new DatabaseHelper(context);
+    }
 
     public synchronized static Database getDatabase(Context context) {
         if (instance == null) {
@@ -83,10 +83,6 @@ public class Database {
             instance.open();
         }
         return instance;
-    }
-
-    private Database(Context context) {
-        mOpenHelper = new DatabaseHelper(context);
     }
 
     private void open() {

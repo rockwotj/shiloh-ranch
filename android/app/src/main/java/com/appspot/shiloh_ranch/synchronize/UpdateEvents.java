@@ -40,12 +40,18 @@ public final class UpdateEvents extends Sync<Event> {
             Database db = Database.getDatabase(mContext);
             for (Event e : events.getItems()) {
                 items.add(e);
-                db.insert(e);
+                if (db.getPost(e.getEntityKey()) == null)
+                    db.insert(e);
+                else
+                    db.update(e);
             }
             if (events.getNextPageToken() != null) {
                 for(Event e : update(events.getNextPageToken())) {
                     items.add(e);
-                    db.insert(e);
+                    if (db.getPost(e.getEntityKey()) == null)
+                        db.insert(e);
+                    else
+                        db.update(e);
                 }
             }
             if (!items.isEmpty()) {

@@ -16,7 +16,6 @@ import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
-import it.gmariotti.cardslib.library.internal.ViewToClickToExpand;
 import it.gmariotti.cardslib.library.view.CardListView;
 
 /**
@@ -67,7 +66,7 @@ public class CategoryFragment extends Fragment {
         if (!mPosts.isEmpty()) {
             mEmptyView.setVisibility(View.GONE);
             ArrayList<Card> cards = getPostsAsCards();
-            mPostList.setAdapter(new CardArrayAdapter(getActivity(),cards));
+            mPostList.setAdapter(new CardArrayAdapter(getActivity(), cards));
         }
         return rootView;
     }

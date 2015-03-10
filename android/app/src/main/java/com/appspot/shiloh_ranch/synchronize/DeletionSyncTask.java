@@ -3,7 +3,6 @@ package com.appspot.shiloh_ranch.synchronize;
 import android.content.Context;
 
 import com.appspot.shiloh_ranch.api.ShilohRanch;
-import com.appspot.shiloh_ranch.fragments.IContentFragment;
 
 import java.io.IOException;
 

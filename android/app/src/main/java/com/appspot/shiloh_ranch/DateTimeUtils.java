@@ -5,7 +5,6 @@ import android.util.Log;
 import com.appspot.shiloh_ranch.api.model.Event;
 import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.api.model.Sermon;
-import com.google.api.client.json.GenericJson;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -72,7 +71,7 @@ public class DateTimeUtils {
                 try {
                     Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
                     Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
-                    return date1.compareTo(date2);
+                    return -date1.compareTo(date2);
                 } catch (ParseException e) {
                     Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
                     return 0;
@@ -90,7 +89,7 @@ public class DateTimeUtils {
                 try {
                     Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
                     Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
-                    return date1.compareTo(date2);
+                    return -date1.compareTo(date2);
                 } catch (ParseException e) {
                     Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
                     return 0;
@@ -108,7 +107,7 @@ public class DateTimeUtils {
                 try {
                     Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
                     Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
-                    return date1.compareTo(date2);
+                    return -date1.compareTo(date2);
                 } catch (ParseException e) {
                     Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
                     return 0;

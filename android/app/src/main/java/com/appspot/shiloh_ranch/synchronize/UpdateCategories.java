@@ -40,12 +40,18 @@ public final class UpdateCategories extends Sync<Category> {
             Database db = Database.getDatabase(mContext);
             for (Category c : categories.getItems()) {
                 items.add(c);
-                db.insert(c);
+                if (db.getPost(c.getEntityKey()) == null)
+                    db.insert(c);
+                else
+                    db.update(c);
             }
             if (categories.getNextPageToken() != null) {
                 for (Category c : update(categories.getNextPageToken())) {
                     items.add(c);
-                    db.insert(c);
+                    if (db.getPost(c.getEntityKey()) == null)
+                        db.insert(c);
+                    else
+                        db.update(c);
                 }
             }
             if (!items.isEmpty()) {

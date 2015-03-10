@@ -40,12 +40,18 @@ public final class UpdateSermons extends Sync<Sermon> {
             Database db = Database.getDatabase(mContext);
             for (Sermon s : sermons.getItems()) {
                 items.add(s);
-                db.insert(s);
+                if (db.getPost(s.getEntityKey()) == null)
+                    db.insert(s);
+                else
+                    db.update(s);
             }
             if (sermons.getNextPageToken() != null) {
                 for (Sermon s : update(sermons.getNextPageToken())) {
                     items.add(s);
-                    db.insert(s);
+                    if (db.getPost(s.getEntityKey()) == null)
+                        db.insert(s);
+                    else
+                        db.update(s);
                 }
             }
             if (!items.isEmpty()) {

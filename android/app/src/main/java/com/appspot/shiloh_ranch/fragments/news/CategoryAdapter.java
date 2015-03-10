@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.appspot.shiloh_ranch.api.model.Category;
-import com.appspot.shiloh_ranch.api.model.Post;
 import com.appspot.shiloh_ranch.database.Database;
 
 import java.util.List;

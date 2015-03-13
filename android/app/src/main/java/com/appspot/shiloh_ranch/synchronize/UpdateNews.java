@@ -55,7 +55,9 @@ public final class UpdateNews extends Sync<Post> {
                 }
             }
             if (!items.isEmpty()) {
+                Log.d("SRCC", "LastSync for News is now: " + items.get(0).getTimeAdded());//2015-03-10T17:54:16.000000
                 lastSync = DateTimeUtils.convertDateToUnixTime(items.get(0).getTimeAdded());
+                Log.d("SRCC", "Which in ms is: " + lastSync);
                 if (lastSync > 0) {
                     setLastSyncTime(lastSync);
                 }
@@ -63,6 +65,7 @@ public final class UpdateNews extends Sync<Post> {
             Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
+            Log.d("SRCC", "No new " + getModelName());
             return new ArrayList<>();
         }
     }

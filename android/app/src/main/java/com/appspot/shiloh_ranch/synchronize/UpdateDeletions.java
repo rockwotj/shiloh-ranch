@@ -42,7 +42,7 @@ public final class UpdateDeletions extends Sync<Deletion> {
             DeletionCollection deletions = query.execute();
             List<Deletion> items = new ArrayList<>();
             Database db = Database.getDatabase(mContext);
-            for(Deletion d : deletions.getItems()) {
+            for (Deletion d : deletions.getItems()) {
                 items.add(d);
                 String kind = d.getKind();
                 if (kind.equals("Sermon")) {
@@ -58,7 +58,7 @@ public final class UpdateDeletions extends Sync<Deletion> {
                 }
             }
             if (deletions.getNextPageToken() != null) {
-                for(Deletion d : update(deletions.getNextPageToken())) {
+                for (Deletion d : update(deletions.getNextPageToken())) {
                     items.add(d);
                     String kind = d.getKind();
                     if (kind.equals("Sermon")) {
@@ -83,6 +83,7 @@ public final class UpdateDeletions extends Sync<Deletion> {
             Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
+            Log.d("SRCC", "No new " + getModelName());
             return new ArrayList<>();
         }
     }

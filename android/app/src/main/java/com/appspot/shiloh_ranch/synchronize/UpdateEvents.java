@@ -46,7 +46,7 @@ public final class UpdateEvents extends Sync<Event> {
                     db.update(e);
             }
             if (events.getNextPageToken() != null) {
-                for(Event e : update(events.getNextPageToken())) {
+                for (Event e : update(events.getNextPageToken())) {
                     items.add(e);
                     if (db.getPost(e.getEntityKey()) == null)
                         db.insert(e);
@@ -63,6 +63,7 @@ public final class UpdateEvents extends Sync<Event> {
             Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
+            Log.d("SRCC", "No new " + getModelName());
             return new ArrayList<>();
         }
     }

@@ -10,8 +10,9 @@
     <string name="sermons">Sermons</string>
     <string name="settings">Settings</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donate">Donate</string>
     <string name="no_news">There is no news to display</string>
+    <string name="Refresh">Refresh</string>
 </resources>

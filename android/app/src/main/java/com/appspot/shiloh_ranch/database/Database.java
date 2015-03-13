@@ -60,6 +60,7 @@ public class Database {
     private static final String KEY_TIME = "time";
     private static final String KEY_ATTACHMENT = "attachment";
     private static Map<Class<? extends GenericJson>, String> mTableMap;
+
     static {
         mTableMap = new HashMap<>(4);
         mTableMap.put(Event.class, TABLE_EVENT);
@@ -67,6 +68,7 @@ public class Database {
         mTableMap.put(Sermon.class, TABLE_SERMON);
         mTableMap.put(Category.class, TABLE_CATEGORY);
     }
+
     // Singleton Instance
     private static Database instance;
     // Instance Fields
@@ -98,6 +100,7 @@ public class Database {
 
     /**
      * We will synchronize the DB so that we don't get any problems there.
+     *
      * @return the database
      */
     private synchronized SQLiteDatabase getDatabase() {
@@ -188,7 +191,7 @@ public class Database {
      * @return the Post matching the Key
      */
     public Post getPost(String entityKey) {
-        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        String whereClause = KEY_ENTITY + "=" + "'" + entityKey + "'";
         Cursor cursor = getDatabase().query(TABLE_POST, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
@@ -242,7 +245,7 @@ public class Database {
      * @return the Category matching the Key
      */
     public Category getCategory(String entityKey) {
-        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        String whereClause = KEY_ENTITY + "=" + "'" + entityKey + "'";
         Cursor cursor = getDatabase().query(TABLE_CATEGORY, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
@@ -280,7 +283,7 @@ public class Database {
      * @return the event matching the Key
      */
     public Event getEvent(String entityKey) {
-        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        String whereClause = KEY_ENTITY + "=" + "'" + entityKey + "'";
         Cursor cursor = getDatabase().query(TABLE_EVENT, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;
@@ -313,7 +316,7 @@ public class Database {
      * @return the sermon matching the Key
      */
     public Sermon getSermon(String entityKey) {
-        String whereClause = KEY_CATEGORY + "=" + "'" + entityKey + "'";
+        String whereClause = KEY_ENTITY + "=" + "'" + entityKey + "'";
         Cursor cursor = getDatabase().query(TABLE_SERMON, null, whereClause, null, null, null, null);
         if (cursor == null || !cursor.moveToFirst()) {
             return null;

@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.appspot.shiloh_ranch.R;
 import com.appspot.shiloh_ranch.api.ShilohRanch;
@@ -43,7 +44,7 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
     private int mCurrentPosition;
     private IContentFragment[] mFragments;
     private ShilohRanch mService;
-    private AsyncTask[] mSyncTasks;
+    private AsyncTask<Void, Void, Void>[] mSyncTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,17 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_refresh:
+                updateData();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -126,36 +138,50 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
         updateEvents();
         updateNews();
         updateSermons();
-        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED)
-            mSyncTasks[4] = new DeletionSyncTask(this, mService, null).execute();
+        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED) {
+            mSyncTasks[4] = new DeletionSyncTask(this, mService, null);
+            mSyncTasks[4].execute();
+        }
+
     }
 
     @Override
     public void updateCategories() {
-        if (mSyncTasks[0] == null || mSyncTasks[0].getStatus() == AsyncTask.Status.FINISHED)
-            mSyncTasks[0] = new CategorySyncTask(this, mService, this).execute();
+        if (mSyncTasks[0] == null || mSyncTasks[0].getStatus() == AsyncTask.Status.FINISHED) {
+            mSyncTasks[0] = new CategorySyncTask(this, mService, this);
+            mSyncTasks[0].execute();
+        }
     }
 
     @Override
     public void updateEvents() {
-        if (mSyncTasks[1] == null || mSyncTasks[1].getStatus() == AsyncTask.Status.FINISHED)
-            mSyncTasks[1] = new EventSyncTask(this, mService, this).execute();
+        if (mSyncTasks[1] == null || mSyncTasks[1].getStatus() == AsyncTask.Status.FINISHED) {
+            mSyncTasks[1] = new EventSyncTask(this, mService, this);
+            mSyncTasks[1].execute();
+        }
     }
 
     @Override
     public void updateNews() {
-        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED)
-        mSyncTasks[4] = new NewsSyncTask(this, mService, this).execute();
+        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED) {
+            mSyncTasks[4] = new NewsSyncTask(this, mService, this);
+            mSyncTasks[4].execute();
+
+        }
     }
 
     @Override
     public void updateSermons() {
-        if (mSyncTasks[3] == null || mSyncTasks[3].getStatus() == AsyncTask.Status.FINISHED)
-            mSyncTasks[3] = new SermonSyncTask(this, mService, this).execute();
+        if (mSyncTasks[3] == null || mSyncTasks[3].getStatus() == AsyncTask.Status.FINISHED) {
+            mSyncTasks[3] = new SermonSyncTask(this, mService, this);
+            mSyncTasks[3].execute();
+        }
+
     }
 
     @Override
     public void onCompletion() {
-        getCurrentFragment().refresh();
+        if (getCurrentFragment() != null)
+            getCurrentFragment().refresh();
     }
 }

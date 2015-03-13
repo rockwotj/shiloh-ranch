@@ -25,11 +25,7 @@ public class CategoryFragment extends Fragment {
 
 
     private static final String CATEGORY_KEY = "CATEGORY_KEY";
-    private Database mDatabase;
     private List<Post> mPosts;
-    private String mCategoryKey;
-    private CardListView mPostList;
-    private View mEmptyView;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -47,12 +43,12 @@ public class CategoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        mCategoryKey = args.getString(CATEGORY_KEY);
-        mDatabase = Database.getDatabase(getActivity());
-        if (mCategoryKey == null) {
-            mPosts = mDatabase.getAllPosts();
+        String categoryKey = args.getString(CATEGORY_KEY);
+        Database database = Database.getDatabase(getActivity());
+        if (categoryKey == null) {
+            mPosts = database.getAllPosts();
         } else {
-            mPosts = mDatabase.getAllPosts(mCategoryKey);
+            mPosts = database.getAllPosts(categoryKey);
         }
     }
 
@@ -60,13 +56,13 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
-        mPostList = (CardListView) rootView.findViewById(R.id.list_posts);
-        mEmptyView = rootView.findViewById(R.id.empty);
-        mPostList.setVisibility(mPosts.isEmpty() ? View.GONE : View.VISIBLE);
+        CardListView postList = (CardListView) rootView.findViewById(R.id.list_posts);
+        View emptyView = rootView.findViewById(R.id.empty);
+        postList.setVisibility(mPosts.isEmpty() ? View.GONE : View.VISIBLE);
         if (!mPosts.isEmpty()) {
-            mEmptyView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.GONE);
             ArrayList<Card> cards = getPostsAsCards();
-            mPostList.setAdapter(new CardArrayAdapter(getActivity(), cards));
+            postList.setAdapter(new CardArrayAdapter(getActivity(), cards));
         }
         return rootView;
     }

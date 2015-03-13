@@ -63,6 +63,7 @@ public final class UpdateSermons extends Sync<Sermon> {
             Log.d("SRCC", "Got " + items.size() + " of " + getModelName());
             return items;
         } else {
+            Log.d("SRCC", "No new " + getModelName());
             return new ArrayList<>();
         }
     }

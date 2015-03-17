@@ -1,9 +1,10 @@
 package com.appspot.shiloh_ranch.fragments.news;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.appspot.shiloh_ranch.api.model.Category;
 import com.appspot.shiloh_ranch.database.Database;
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by rockwotj on 3/8/2015.
  */
-public class CategoryAdapter extends FragmentPagerAdapter {
+public class CategoryAdapter extends FragmentStatePagerAdapter {
     private final Database mDatabase;
     private List<Category> mCategories;
 
@@ -25,8 +26,6 @@ public class CategoryAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // This is okay if we parcel it... But we need to think about maybe doing callbacks instead to share data?
-        // Or maybe we just parcel the category?
         String categoryKey = null;
         if (position != 0)
             categoryKey = mCategories.get(position - 1).getEntityKey();
@@ -51,5 +50,11 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     public void refresh() {
         mCategories = mDatabase.getAllCategories();
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Parcelable saveState() {
+        // Do nothing
+        return null;
     }
 }

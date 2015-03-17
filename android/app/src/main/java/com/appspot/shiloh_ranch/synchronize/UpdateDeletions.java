@@ -45,32 +45,44 @@ public final class UpdateDeletions extends Sync<Deletion> {
             for (Deletion d : deletions.getItems()) {
                 items.add(d);
                 String kind = d.getKind();
-                if (kind.equals("Sermon")) {
-                    db.delete(Sermon.class, d.getEntityKey());
-                } else if (kind.equals("Post")) {
-                    db.delete(Post.class, d.getEntityKey());
-                } else if (kind.equals("Event")) {
-                    db.delete(Event.class, d.getEntityKey());
-                } else if (kind.equals("Category")) {
-                    db.delete(Category.class, d.getEntityKey());
-                } else {
-                    Log.e("SRCC", "Error trying to delete type: " + kind);
+                switch (kind) {
+                    case "Sermon":
+                        db.delete(Sermon.class, d.getEntityKey());
+                        break;
+                    case "Post":
+                        db.delete(Post.class, d.getEntityKey());
+                        break;
+                    case "Event":
+                        db.delete(Event.class, d.getEntityKey());
+                        break;
+                    case "Category":
+                        db.delete(Category.class, d.getEntityKey());
+                        break;
+                    default:
+                        Log.e("SRCC", "Error trying to delete type: " + kind);
+                        break;
                 }
             }
             if (deletions.getNextPageToken() != null) {
                 for (Deletion d : update(deletions.getNextPageToken())) {
                     items.add(d);
                     String kind = d.getKind();
-                    if (kind.equals("Sermon")) {
-                        db.delete(Sermon.class, d.getEntityKey());
-                    } else if (kind.equals("Post")) {
-                        db.delete(Post.class, d.getEntityKey());
-                    } else if (kind.equals("Event")) {
-                        db.delete(Event.class, d.getEntityKey());
-                    } else if (kind.equals("Category")) {
-                        db.delete(Category.class, d.getEntityKey());
-                    } else {
-                        Log.e("SRCC", "Error trying to delete type: " + kind);
+                    switch (kind) {
+                        case "Sermon":
+                            db.delete(Sermon.class, d.getEntityKey());
+                            break;
+                        case "Post":
+                            db.delete(Post.class, d.getEntityKey());
+                            break;
+                        case "Event":
+                            db.delete(Event.class, d.getEntityKey());
+                            break;
+                        case "Category":
+                            db.delete(Category.class, d.getEntityKey());
+                            break;
+                        default:
+                            Log.e("SRCC", "Error trying to delete type: " + kind);
+                            break;
                     }
                 }
             }

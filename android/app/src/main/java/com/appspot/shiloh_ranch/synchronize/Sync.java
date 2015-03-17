@@ -27,6 +27,12 @@ public abstract class Sync<Model extends GenericJson> {
 
     public abstract String getModelName();
 
+    /**
+     * Should consider refactoring this process in case more data is ever needed
+     *
+     * @return
+     * @throws IOException
+     */
     public abstract List<Model> update() throws IOException;
 
     protected abstract List<Model> update(String pageToken) throws IOException;

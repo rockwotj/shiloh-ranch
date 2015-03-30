@@ -47,11 +47,11 @@ def convert_to_entity(json):
     event.content = json['content'].replace("\n", "")
     event.excerpt = json['excerpt'].replace("\n", "")
     custom_fields = json['custom_fields']
-    if len(custom_fields['thumbimg']) > 0:
+    if 'thumbimg' in custom_fields and len(custom_fields['thumbimg']) > 0:
         event.attachment = custom_fields['thumbimg'][0]
-    if len(custom_fields['location']) > 0:
+    if 'location' in custom_fields and len(custom_fields['location']) > 0:
         event.location = custom_fields['location'][0]
-    if len(custom_fields['time']) > 0:
+    if 'time' in custom_fields and len(custom_fields['time']) > 0:
         event.time = custom_fields['time'][0]
     date = json['modified']
     event.time_added = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')

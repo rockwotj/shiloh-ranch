@@ -113,12 +113,12 @@ class Event(EndpointsModel):
     content = ndb.TextProperty(indexed=False)
     excerpt = ndb.TextProperty(indexed=False)
     attachment = ndb.StringProperty(indexed=False)
-    location = ndb.StringProperty(indexed=False)
-    time = ndb.StringProperty(indexed=False)
+    location = ndb.StringProperty(indexed=False, default="")
+    time = ndb.StringProperty(indexed=False, default="")
     time_added = ndb.DateTimeProperty()
 
     def to_html(self):
-        return "<td>" + self.title + "</td><td>" + self.location + "</td><td>" + self.time + "</td>"
+        return "<td>" + self.title + "</td><td>" + str(self.location) + "</td><td>" + str(self.time) + "</td>"
 
     def last_sync_set(self, value):
         try:

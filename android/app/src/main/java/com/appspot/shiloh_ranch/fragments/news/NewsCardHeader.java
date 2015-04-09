@@ -1,6 +1,7 @@
 package com.appspot.shiloh_ranch.fragments.news;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class NewsCardHeader extends CardHeader {
         if (view != null) {
             TextView t1 = (TextView) view.findViewById(R.id.title);
             if (t1 != null)
-                t1.setText(mPost.getTitle());
+                t1.setText(Html.fromHtml(mPost.getTitle()));
 
             TextView t2 = (TextView) view.findViewById(R.id.subtitle);
             if (t2 != null)

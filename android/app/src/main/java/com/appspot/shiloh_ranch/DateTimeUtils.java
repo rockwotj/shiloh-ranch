@@ -21,6 +21,25 @@ import java.util.TimeZone;
  */
 public class DateTimeUtils {
 
+    /**
+     * Takes a numerical representation of a datetime and moves the year to the end.
+     *
+     * @param timestamp formatted like: 2015-03-29
+     * @return a timestamp like: 03-29-2015
+     */
+    public static String reformatDateString(String timestamp) {
+        String[] timeUnits = timestamp.split("-");
+        if (timeUnits.length != 3) {
+            return timestamp;
+        }
+        String year = timeUnits[0];
+        timeUnits[0] = timeUnits[1];
+        timeUnits[1] = timeUnits[2];
+        timeUnits[2] = year;
+        timestamp = String.format("%s/%s/%s", timeUnits);
+        return timestamp;
+    }
+
     public static String getHumanReadableDateString(String timestamp) {
         timestamp = timestamp.replace('T', ' ');
         try {

@@ -15,4 +15,5 @@
     <string name="donate">Donate</string>
     <string name="no_news">There is no news to display</string>
     <string name="Refresh">Refresh</string>
+    <string name="no_sermons">There are no sermons to display</string>
 </resources>

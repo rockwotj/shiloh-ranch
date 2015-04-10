@@ -16,4 +16,5 @@
     <string name="no_news">There is no news to display</string>
     <string name="Refresh">Refresh</string>
     <string name="no_sermons">There are no sermons to display</string>
+    <string name="play_pause_sermon_help_text">Button to play or pause a sermon</string>
 </resources>

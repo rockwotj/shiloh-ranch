@@ -1,6 +1,5 @@
 package com.appspot.shiloh_ranch.fragments.news;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.appspot.shiloh_ranch.R;
 import com.appspot.shiloh_ranch.fragments.IContentFragment;
-import com.appspot.shiloh_ranch.fragments.IFragmentCallbacks;
 import com.astuetz.PagerSlidingTabStrip;
 
 /**
@@ -21,7 +19,6 @@ import com.astuetz.PagerSlidingTabStrip;
 public class NewsFragment extends IContentFragment {
 
     private CategoryAdapter mAdapter;
-    private IFragmentCallbacks mCallbacks;
 
     public NewsFragment() {
     }
@@ -41,23 +38,6 @@ public class NewsFragment extends IContentFragment {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) rootView.findViewById(R.id.tabs);
         tabs.setViewPager(pager);
         return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mCallbacks = (IFragmentCallbacks) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement IFragmentCallbacks");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
     }
 
     @Override

@@ -39,6 +39,7 @@ public class SermonsFragment extends IContentFragment implements AdapterView.OnI
     private BroadcastReceiver mReceiver;
     private View mPlaybackView;
     private ImageButton mPlayPauseButton;
+    private View mBufferingSpinner;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,6 +66,7 @@ public class SermonsFragment extends IContentFragment implements AdapterView.OnI
         filter.addAction(SermonService.ACTION_PLAY);
         filter.addAction(SermonService.ACTION_PAUSE);
         filter.addAction(SermonService.ACTION_STOP);
+        filter.addAction(SermonService.ACTION_PREPARED);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -84,6 +86,9 @@ public class SermonsFragment extends IContentFragment implements AdapterView.OnI
                         togglePlayPauseButton();
                     }
                     mPlaybackView.setVisibility(View.GONE);
+                } else if (action.equalsIgnoreCase(SermonService.ACTION_PREPARED)) {
+                    mBufferingSpinner.setVisibility(View.GONE);
+                    mPlayPauseButton.setVisibility(View.VISIBLE);
                 }
             }
         };
@@ -98,6 +103,7 @@ public class SermonsFragment extends IContentFragment implements AdapterView.OnI
         mEmptyView = rootView.findViewById(R.id.empty);
         mPlaybackView = rootView.findViewById(R.id.sermon_playback_view);
         mPlayPauseButton = (ImageButton) mPlaybackView.findViewById(R.id.play_pause_button);
+        mBufferingSpinner = mPlaybackView.findViewById(R.id.buffering);
         mPlayPauseButton.setTag(PAUSE_STATE);
         mPlayPauseButton.setOnClickListener(this);
         mPlaybackView.setVisibility(View.GONE);
@@ -127,7 +133,15 @@ public class SermonsFragment extends IContentFragment implements AdapterView.OnI
         Sermon sermon = mAdapter.getItem(position);
         mAdapter.bindSermonToView(position, mPlaybackView);
         if (mPlaybackView.getVisibility() == View.GONE) {
+            mBufferingSpinner.setVisibility(View.VISIBLE);
+            mPlayPauseButton.setVisibility(View.GONE);
             mPlaybackView.setVisibility(View.VISIBLE);
+        } else {
+            mBufferingSpinner.setVisibility(View.VISIBLE);
+            mPlayPauseButton.setVisibility(View.GONE);
+            if (mPlayPauseButton.getTag().equals(PLAY_STATE)) {
+                togglePlayPauseButton();
+            }
         }
         String key = sermon.getEntityKey();
         String audioLink = sermon.getAudioLink();

@@ -25,6 +25,7 @@ public class SermonService extends Service implements MediaPlayer.OnPreparedList
     public static final String ACTION_STOP = "com.appspot.shiloh_ranch.sermons.action.STOP";
     public static final String ACTION_CHANGE = "com.appspot.shiloh_ranch.sermons.action.CHANGE";
     public static final String ACTION_PAUSE = "com.appspot.shiloh_ranch.sermons.action.PAUSE";
+    public static final String ACTION_PREPARED = "com.appspot.shiloh_ranch.sermons.action.PREPARED";
 
     private Sermon mCurrentSermon;
     private BroadcastReceiver mReceiver;
@@ -56,15 +57,14 @@ public class SermonService extends Service implements MediaPlayer.OnPreparedList
         String action = intent.getAction();
         if (action.equalsIgnoreCase(ACTION_PLAY)) {
             if (!mPlaybackReady) {
+                Toast.makeText(this, getString(R.string.sermon_buffering), Toast.LENGTH_SHORT).show();
                 return;
             }
             mMediaPlayer.start();
-            Intent pauseIntent = createPauseIntent();
-            setNotification(pauseIntent, R.drawable.ic_stat_pause, getString(R.string.pause));
+            updateNotification();
         } else if (action.equalsIgnoreCase(ACTION_PAUSE)) {
             mMediaPlayer.pause();
-            Intent playIntent = createPlayIntent();
-            setNotification(playIntent, R.drawable.ic_stat_play, getString(R.string.play));
+            updateNotification();
         } else if (action.equalsIgnoreCase(ACTION_CHANGE)) {
             mCurrentSermon = new Sermon();
             String key = intent.getStringExtra("KEY");
@@ -94,18 +94,20 @@ public class SermonService extends Service implements MediaPlayer.OnPreparedList
                 Toast.makeText(this, getString(R.string.sermon_load_error), Toast.LENGTH_SHORT).show();
             }
             mMediaPlayer.prepareAsync();
-            Intent playIntent = createPlayIntent();
-            setNotification(playIntent, R.drawable.ic_stat_play, getString(R.string.play));
+            updateNotification();
         } else if (action.equalsIgnoreCase(ACTION_STOP)) {
-            mMediaPlayer.stop();
-            mMediaPlayer.release();
-            mMediaPlayer = null;
+            if (mMediaPlayer != null) {
+                mMediaPlayer.stop();
+                mMediaPlayer.release();
+                mMediaPlayer = null;
+            }
             stopForeground(true);
         }
     }
 
-    private void setNotification(Intent actionIntent, int actionDrawable, String actionName) {
-        PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, actionIntent,
+    private void updateNotification() {
+        PendingIntent playPauseIntent = PendingIntent.getBroadcast(this, 0,
+                mMediaPlayer.isPlaying() ? createPauseIntent() : createPlayIntent(),
                 PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent stopIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_STOP),
                 PendingIntent.FLAG_UPDATE_CURRENT);
@@ -115,9 +117,11 @@ public class SermonService extends Service implements MediaPlayer.OnPreparedList
                 .setTicker(getString(R.string.playing_colon) + mCurrentSermon.getTitle())
                 .setContentTitle(mCurrentSermon.getTitle())
                 .setContentText(mCurrentSermon.getDate())
-                .addAction(actionDrawable, actionName, pIntent)
-                .addAction(R.drawable.ic_stat_stop, getString(R.string.stop), stopIntent)
-                .setContentIntent(pIntent);
+                .setShowWhen(false)
+                .addAction(mMediaPlayer.isPlaying() ? R.drawable.ic_stat_pause : R.drawable.ic_stat_play,
+                        mMediaPlayer.isPlaying() ? getString(R.string.pause) : getString(R.string.play),
+                        playPauseIntent)
+                .addAction(R.drawable.ic_stat_stop, getString(R.string.stop), stopIntent);
         startForeground(1, builder.build());
     }
 
@@ -182,6 +186,7 @@ public class SermonService extends Service implements MediaPlayer.OnPreparedList
     @Override
     public void onPrepared(MediaPlayer mp) {
         mPlaybackReady = true;
+        this.sendBroadcast(new Intent(ACTION_PREPARED));
     }
 
 

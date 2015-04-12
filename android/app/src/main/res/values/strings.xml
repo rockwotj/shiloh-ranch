@@ -20,4 +20,5 @@
     <string name="stop">Stop</string>
     <string name="sermon_load_error">Error loading sermon</string>
     <string name="sermon_play_error">Error playing sermon</string>
+    <string name="sermon_buffering">Buffering... Please try again</string>
 </resources>

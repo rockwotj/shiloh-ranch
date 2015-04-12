@@ -9,12 +9,15 @@
     <string name="events">Events</string>
     <string name="sermons">Sermons</string>
     <string name="settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donate">Donate</string>
     <string name="no_news">There is no news to display</string>
     <string name="Refresh">Refresh</string>
     <string name="no_sermons">There are no sermons to display</string>
     <string name="play_pause_sermon_help_text">Button to play or pause a sermon</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="playing_colon">"Playing Sermon: "</string>
+    <string name="stop">Stop</string>
+    <string name="sermon_load_error">Error loading sermon</string>
+    <string name="sermon_play_error">Error playing sermon</string>
 </resources>

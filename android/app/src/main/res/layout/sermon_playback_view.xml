@@ -27,4 +27,16 @@
         android:textColor="@color/secondary_text"
         android:textSize="14sp" />
 
+    <ImageButton
+        android:id="@+id/play_pause_button"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:contentDescription="@string/play_pause_sermon_help_text"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:src="@drawable/ic_play_pause_0" />
+
 </RelativeLayout>

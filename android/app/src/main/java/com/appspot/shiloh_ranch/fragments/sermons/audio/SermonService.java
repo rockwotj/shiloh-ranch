@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
+import android.text.Html;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -72,7 +73,7 @@ public class SermonService extends Service implements MediaPlayer.OnPreparedList
                 return;
             }
             mCurrentSermon.setEntityKey(key);
-            mCurrentSermon.setTitle(intent.getStringExtra("TITLE"));
+            mCurrentSermon.setTitle(Html.fromHtml(intent.getStringExtra("TITLE")).toString());
             mCurrentSermon.setAudioLink(intent.getStringExtra("LINK"));
             mCurrentSermon.setDate(intent.getStringExtra("SUBTITLE"));
             mPlaybackReady = false;

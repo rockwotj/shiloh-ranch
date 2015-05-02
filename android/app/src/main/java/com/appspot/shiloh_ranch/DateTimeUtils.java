@@ -108,8 +108,8 @@ public class DateTimeUtils {
             @Override
             public int compare(Event genericJson, Event genericJson2) {
                 try {
-                    Date date1 = dateParser.parse(genericJson.getTimeAdded().replace('T', ' '));
-                    Date date2 = dateParser.parse(genericJson2.getTimeAdded().replace('T', ' '));
+                    Date date1 = dateParser.parse(genericJson.getDatePublished().replace('T', ' '));
+                    Date date2 = dateParser.parse(genericJson2.getDatePublished().replace('T', ' '));
                     return -date1.compareTo(date2);
                 } catch (ParseException e) {
                     Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);

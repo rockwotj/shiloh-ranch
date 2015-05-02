@@ -10,10 +10,11 @@ import com.appspot.shiloh_ranch.R;
 import com.appspot.shiloh_ranch.fragments.IContentFragment;
 
 /**
- * A fragment representing a list of Sermons.
+ * Unused for now
  * <p/>
  * <p/>
  */
+@Deprecated
 public class SettingsFragment extends IContentFragment {
 
 

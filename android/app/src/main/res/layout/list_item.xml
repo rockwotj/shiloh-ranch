@@ -5,24 +5,26 @@
     android:descendantFocusability="blocksDescendants">
 
     <TextView
-        android:id="@+id/sermon_title"
+        android:id="@+id/primary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:maxLines="1"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:textColor="@color/primary_text"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/sermon_date"
+        android:id="@+id/secondary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/sermon_title"
+        android:layout_below="@+id/primary_text"
+        android:maxLines="1"
         android:paddingLeft="16dp"
         android:textColor="@color/secondary_text"
         android:textSize="14sp" />

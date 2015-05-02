@@ -21,4 +21,8 @@
     <string name="sermon_load_error">Error loading sermon</string>
     <string name="sermon_play_error">Error playing sermon</string>
     <string name="sermon_buffering">Buffering... Please try again</string>
+    <string name="no_events">There are no upcoming events</string>
+    <string name="title_activity_event_detail">Event Details</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

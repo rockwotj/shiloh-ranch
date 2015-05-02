@@ -21,7 +21,6 @@ import com.appspot.shiloh_ranch.fragments.navigation.INavigationDrawerCallbacks;
 import com.appspot.shiloh_ranch.fragments.navigation.NavigationDrawerFragment;
 import com.appspot.shiloh_ranch.fragments.news.NewsFragment;
 import com.appspot.shiloh_ranch.fragments.sermons.SermonsFragment;
-import com.appspot.shiloh_ranch.fragments.settings.SettingsFragment;
 import com.appspot.shiloh_ranch.synchronize.CategorySyncTask;
 import com.appspot.shiloh_ranch.synchronize.DeletionSyncTask;
 import com.appspot.shiloh_ranch.synchronize.EventSyncTask;
@@ -50,8 +49,8 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCurrentPosition = -1;
-        mFragmentClasses = Arrays.asList(HomeFragment.class, NewsFragment.class, EventsFragment.class, SermonsFragment.class, SettingsFragment.class);
-        mFragments = new IContentFragment[6];
+        mFragmentClasses = Arrays.asList(HomeFragment.class, NewsFragment.class, EventsFragment.class, SermonsFragment.class);
+        mFragments = new IContentFragment[mFragmentClasses.size()];
         setContentView(R.layout.activity_main);
         mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);

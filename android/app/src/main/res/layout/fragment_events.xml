@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/sermon_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/event_list_view"
+        android:fastScrollEnabled="false" />
 
     <TextView
+        android:id="@+id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/events"
-        android:textColor="#000"
-        android:id="@+id/textView" />
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/no_events"
+        android:textColor="#000" />
+
 </LinearLayout>

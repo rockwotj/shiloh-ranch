@@ -49,7 +49,7 @@ public class SermonAdapter extends BaseAdapter {
         View sermonView;
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
-            sermonView = inflater.inflate(R.layout.sermon_list_item, parent, false);
+            sermonView = inflater.inflate(R.layout.list_item, parent, false);
         } else {
             sermonView = convertView;
         }
@@ -58,8 +58,8 @@ public class SermonAdapter extends BaseAdapter {
     }
 
     public void bindSermonToView(int position, View sermonView) {
-        TextView titleView = (TextView) sermonView.findViewById(R.id.sermon_title);
-        TextView dateView = (TextView) sermonView.findViewById(R.id.sermon_date);
+        TextView titleView = (TextView) sermonView.findViewById(R.id.primary_text);
+        TextView dateView = (TextView) sermonView.findViewById(R.id.secondary_text);
         Sermon sermon = mSermons.get(position);
         String sermonTitle = getSermonDisplayTitle(sermon);
         String secondaryText = getSermonDisplaySubtitle(sermon);

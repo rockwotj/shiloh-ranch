@@ -5,7 +5,7 @@
     android:descendantFocusability="blocksDescendants">
 
     <TextView
-        android:id="@+id/sermon_title"
+        android:id="@+id/primary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -17,12 +17,12 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/sermon_date"
+        android:id="@+id/secondary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/sermon_title"
+        android:layout_below="@+id/primary_text"
         android:paddingLeft="16dp"
         android:textColor="@color/secondary_text"
         android:textSize="14sp" />
@@ -45,7 +45,6 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:indeterminate="true" />
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

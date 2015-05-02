@@ -37,6 +37,17 @@ public class NavigationDrawerFragment extends Fragment implements INavigationDra
     private boolean mFromSavedInstanceState;
     private int mCurrentSelectedPosition;
 
+    public static void saveSharedSetting(Context ctx, String settingName, String settingValue) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(settingName, settingValue);
+        editor.apply();
+    }
+
+    public static String readSharedSetting(Context ctx, String settingName, String defaultValue) {
+        SharedPreferences sharedPref = ctx.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+        return sharedPref.getString(settingName, defaultValue);
+    }
 
     @Nullable
     @Override
@@ -144,8 +155,7 @@ public class NavigationDrawerFragment extends Fragment implements INavigationDra
         items.add(new NavigationItem(getString(R.string.news), getResources().getDrawable(R.drawable.ic_news)));
         items.add(new NavigationItem(getString(R.string.events), getResources().getDrawable(R.drawable.ic_events)));
         items.add(new NavigationItem(getString(R.string.sermons), getResources().getDrawable(R.drawable.ic_sermons)));
-        items.add(new NavigationItem(getString(R.string.settings), getResources().getDrawable(R.drawable.ic_settings), true));
-        items.add(new NavigationItem(getString(R.string.donate), getResources().getDrawable(R.drawable.ic_donate)));
+        items.add(new NavigationItem(getString(R.string.donate), getResources().getDrawable(R.drawable.ic_donate), true));
         return items;
     }
 
@@ -187,17 +197,5 @@ public class NavigationDrawerFragment extends Fragment implements INavigationDra
 
     public void setDrawerLayout(DrawerLayout drawerLayout) {
         mDrawerLayout = drawerLayout;
-    }
-
-    public static void saveSharedSetting(Context ctx, String settingName, String settingValue) {
-        SharedPreferences sharedPref = ctx.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(settingName, settingValue);
-        editor.apply();
-    }
-
-    public static String readSharedSetting(Context ctx, String settingName, String defaultValue) {
-        SharedPreferences sharedPref = ctx.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
-        return sharedPref.getString(settingName, defaultValue);
     }
 }

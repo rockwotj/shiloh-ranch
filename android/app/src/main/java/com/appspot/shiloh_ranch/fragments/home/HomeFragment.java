@@ -36,7 +36,7 @@ public class HomeFragment extends IContentFragment {
 
     @Override
     public String getTitle() {
-        return "Shiloh Ranch";
+        return "Home";
     }
 
     @Override

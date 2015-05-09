@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -90,10 +92,14 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(browserIntent);
             return;
-        } else if (mCurrentPosition != -1) {
-            getSupportFragmentManager().beginTransaction()
-                    .remove(getCurrentFragment())
-                    .commit();
+        }
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment frag : fragments) {
+                ft.remove(frag);
+            }
+            ft.commit();
         }
         mCurrentPosition = position;
         IContentFragment fragment;

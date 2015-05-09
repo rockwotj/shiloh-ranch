@@ -1,6 +1,7 @@
 package com.appspot.shiloh_ranch.fragments.news;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -42,28 +43,42 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        String categoryKey = args.getString(CATEGORY_KEY);
-        Database database = Database.getDatabase(getActivity());
-        if (categoryKey == null) {
-            mPosts = database.getAllPosts();
-        } else {
-            mPosts = database.getAllPosts(categoryKey);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
-        CardListView postList = (CardListView) rootView.findViewById(R.id.list_posts);
-        View emptyView = rootView.findViewById(R.id.empty);
-        postList.setVisibility(mPosts.isEmpty() ? View.GONE : View.VISIBLE);
-        if (!mPosts.isEmpty()) {
-            emptyView.setVisibility(View.GONE);
-            ArrayList<Card> cards = getPostsAsCards();
-            postList.setAdapter(new CardArrayAdapter(getActivity(), cards));
-        }
+        final CardListView postList = (CardListView) rootView.findViewById(R.id.list_posts);
+        final View loadingSpinner = rootView.findViewById(R.id.loading_spinner);
+        final View emptyView = rootView.findViewById(R.id.empty);
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                Bundle args = getArguments();
+                String categoryKey = args.getString(CATEGORY_KEY);
+                Database database = Database.getDatabase(getActivity());
+                if (categoryKey == null) {
+                    mPosts = database.getAllPosts();
+                } else {
+                    mPosts = database.getAllPosts(categoryKey);
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                loadingSpinner.setVisibility(View.GONE);
+                postList.setVisibility(mPosts.isEmpty() ? View.GONE : View.VISIBLE);
+                if (!mPosts.isEmpty()) {
+                    emptyView.setVisibility(View.GONE);
+                    ArrayList<Card> cards = getPostsAsCards();
+                    postList.setAdapter(new CardArrayAdapter(getActivity(), cards));
+                }
+            }
+        }.execute();
         return rootView;
     }
 

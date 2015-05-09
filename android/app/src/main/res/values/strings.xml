@@ -23,6 +23,15 @@
     <string name="sermon_buffering">Buffering... Please try again</string>
     <string name="no_events">There are no upcoming events</string>
     <string name="title_activity_event_detail">Event Details</string>
-
     <string name="hello_world">Hello world!</string>
+    <string name="powell_butte">Powell Butte, Oregon</string>
+    <string name="church_full_title">Shiloh Ranch Cowboy Church</string>
+    <string name="haggai_1_9">\"You expected much, but see, it turned out to be little. What you brought home, I blew away. why?\" declares the Lord Almighty. \"Because of my house, which remains a ruin, while each of you is busy with your own house.\"</string>
+    <string name="haggai_1_9_title">Haggai 1:9</string>
+    <string name="mission_statement">Providing opportunities for rural minded people to meet a God that loves them.</string>
+    <string name="our_mission">Our Mission</string>
+    <string name="service_times"><![CDATA[Sunday - 9:00am & 10:30pm \nMonday - 7:00pm]]></string>
+    <string name="services">Services</string>
+    <string name="location">Location</string>
+    <string name="church_address">15696 SW Bussett Rd\nPowell Butte, OR 97753</string>
 </resources>

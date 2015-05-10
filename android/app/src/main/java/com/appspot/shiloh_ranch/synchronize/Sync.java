@@ -2,6 +2,7 @@ package com.appspot.shiloh_ranch.synchronize;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.appspot.shiloh_ranch.api.ShilohRanch;
 import com.google.api.client.json.GenericJson;
@@ -44,7 +45,9 @@ public abstract class Sync<Model extends GenericJson> {
      */
     protected long getLastSyncTime() {
         SharedPreferences preferences = mContext.getSharedPreferences(SYNC_PREFERENCES, 0);
-        return preferences.getLong(getModelName(), 0);
+        long lastSync = preferences.getLong(getModelName(), 0);
+        Log.d("SRCC", "Last Sync for: " + getModelName() + " is " + lastSync);
+        return lastSync;
     }
 
     /**

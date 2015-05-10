@@ -76,6 +76,8 @@ public class CategoryFragment extends Fragment {
                     emptyView.setVisibility(View.GONE);
                     ArrayList<Card> cards = getPostsAsCards();
                     postList.setAdapter(new CardArrayAdapter(getActivity(), cards));
+                } else {
+                    emptyView.setVisibility(View.VISIBLE);
                 }
             }
         }.execute();

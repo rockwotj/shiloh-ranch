@@ -38,12 +38,14 @@ public final class UpdateNews extends Sync<Post> {
             PostCollection posts = query.execute();
             List<Post> items = new ArrayList<>();
             Database db = Database.getDatabase(mContext);
-            for (Post p : posts.getItems()) {
-                items.add(p);
-                if (db.getPost(p.getEntityKey()) == null)
-                    db.insert(p);
-                else
-                    db.update(p);
+            if (posts.getItems() != null) {
+                for (Post p : posts.getItems()) {
+                    items.add(p);
+                    if (db.getPost(p.getEntityKey()) == null)
+                        db.insert(p);
+                    else
+                        db.update(p);
+                }
             }
             if (posts.getNextPageToken() != null) {
                 for (Post p : update(posts.getNextPageToken())) {

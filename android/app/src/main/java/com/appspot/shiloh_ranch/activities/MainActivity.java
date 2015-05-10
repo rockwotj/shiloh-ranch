@@ -57,6 +57,7 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
         mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Home");
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
         mService = new ShilohRanch.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null)
@@ -168,9 +169,9 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
 
     @Override
     public void updateNews() {
-        if (mSyncTasks[4] == null || mSyncTasks[4].getStatus() == AsyncTask.Status.FINISHED) {
-            mSyncTasks[4] = new NewsSyncTask(this, mService, this);
-            mSyncTasks[4].execute();
+        if (mSyncTasks[2] == null || mSyncTasks[2].getStatus() == AsyncTask.Status.FINISHED) {
+            mSyncTasks[2] = new NewsSyncTask(this, mService, this);
+            mSyncTasks[2].execute();
 
         }
     }

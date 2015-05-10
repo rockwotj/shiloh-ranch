@@ -38,12 +38,14 @@ public final class UpdateEvents extends Sync<Event> {
             EventCollection events = query.execute();
             List<Event> items = new ArrayList<>();
             Database db = Database.getDatabase(mContext);
-            for (Event e : events.getItems()) {
-                items.add(e);
-                if (db.getPost(e.getEntityKey()) == null)
-                    db.insert(e);
-                else
-                    db.update(e);
+            if (events.getItems() != null) {
+                for (Event e : events.getItems()) {
+                    items.add(e);
+                    if (db.getPost(e.getEntityKey()) == null)
+                        db.insert(e);
+                    else
+                        db.update(e);
+                }
             }
             if (events.getNextPageToken() != null) {
                 for (Event e : update(events.getNextPageToken())) {

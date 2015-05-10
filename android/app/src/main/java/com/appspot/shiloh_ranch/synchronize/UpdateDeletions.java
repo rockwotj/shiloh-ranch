@@ -42,25 +42,27 @@ public final class UpdateDeletions extends Sync<Deletion> {
             DeletionCollection deletions = query.execute();
             List<Deletion> items = new ArrayList<>();
             Database db = Database.getDatabase(mContext);
-            for (Deletion d : deletions.getItems()) {
-                items.add(d);
-                String kind = d.getKind();
-                switch (kind) {
-                    case "Sermon":
-                        db.delete(Sermon.class, d.getEntityKey());
-                        break;
-                    case "Post":
-                        db.delete(Post.class, d.getEntityKey());
-                        break;
-                    case "Event":
-                        db.delete(Event.class, d.getEntityKey());
-                        break;
-                    case "Category":
-                        db.delete(Category.class, d.getEntityKey());
-                        break;
-                    default:
-                        Log.e("SRCC", "Error trying to delete type: " + kind);
-                        break;
+            if (deletions.getItems() != null) {
+                for (Deletion d : deletions.getItems()) {
+                    items.add(d);
+                    String kind = d.getKind();
+                    switch (kind) {
+                        case "Sermon":
+                            db.delete(Sermon.class, d.getDeletionKey());
+                            break;
+                        case "Post":
+                            db.delete(Post.class, d.getDeletionKey());
+                            break;
+                        case "Event":
+                            db.delete(Event.class, d.getDeletionKey());
+                            break;
+                        case "Category":
+                            db.delete(Category.class, d.getDeletionKey());
+                            break;
+                        default:
+                            Log.e("SRCC", "Error trying to delete type: " + kind);
+                            break;
+                    }
                 }
             }
             if (deletions.getNextPageToken() != null) {
@@ -69,16 +71,16 @@ public final class UpdateDeletions extends Sync<Deletion> {
                     String kind = d.getKind();
                     switch (kind) {
                         case "Sermon":
-                            db.delete(Sermon.class, d.getEntityKey());
+                            db.delete(Sermon.class, d.getDeletionKey());
                             break;
                         case "Post":
-                            db.delete(Post.class, d.getEntityKey());
+                            db.delete(Post.class, d.getDeletionKey());
                             break;
                         case "Event":
-                            db.delete(Event.class, d.getEntityKey());
+                            db.delete(Event.class, d.getDeletionKey());
                             break;
                         case "Category":
-                            db.delete(Category.class, d.getEntityKey());
+                            db.delete(Category.class, d.getDeletionKey());
                             break;
                         default:
                             Log.e("SRCC", "Error trying to delete type: " + kind);

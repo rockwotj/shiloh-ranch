@@ -80,7 +80,7 @@ public class CategoryFragment extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
             }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         return rootView;
     }
 
@@ -108,6 +108,4 @@ public class CategoryFragment extends Fragment {
         card.setSwipeable(false);
         return card;
     }
-
-
 }

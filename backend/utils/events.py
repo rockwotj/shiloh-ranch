@@ -3,13 +3,13 @@ from google.appengine.ext import ndb
 from models import Event, EVENT_URL
 from datetime import datetime
 from google.appengine.api import urlfetch
-import json
 from utils import updates
 import logging
-
+import re
 
 def get_key(slug):
     return ndb.Key("Event", slug)
+
 
 def get_data():
     """ 
@@ -21,10 +21,10 @@ def get_data():
     if result.status_code != 200:
         logging.error("Could not pull data from wordpress")
         return []
-    posts = json.loads(result.content)['posts']
+    events = ics_loads(result.content)
     entities = []
-    for post in posts:
-        entity = convert_to_entity(post)
+    for event in reversed(events):
+        entity = convert_to_entity(event)
         if entity:
             entities.append(entity)
     last_event_time = updates.get_last_event_time()
@@ -36,23 +36,35 @@ def get_data():
     return entities
 
 
-def convert_to_entity(json):
-    if json['status'] != "publish":
-        return None
-    event_key = get_key(json['slug'])
+def ics_loads(content):
+    return content.split('BEGIN:VEVENT')[1:]
+
+uid_pattern = re.compile('UID:(.*)\r\n')
+summary_pattern = re.compile("SUMMARY: (.*)\r\n")
+content_pattern = re.compile("X-ALT-DESC;FMTTYPE=text/html:(.*?)\r\n[A-Z]", re.S | re.M)
+time_added_pattern = re.compile("LAST-MODIFIED:(.*)\r\n")
+location_pattern = re.compile("LOCATION:(.*)\r\n")
+time_pattern = re.compile("DTSTART:(.*)\r\n")
+repeat_pattern = re.compile("RRULE:FREQ=(.*?);")
+
+def find_pattern(pattern, string):
+    result = pattern.search(string)
+    if result:
+        result = result.group(1).strip()
+    return result
+
+def convert_to_entity(vevent):
+#     print vevent
+    event_key = get_key(find_pattern(uid_pattern, vevent))
     event = Event(key=event_key)
-    event.title = json['title']
-    date = json['date']
-    event.date_published = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
-    event.content = json['content'].replace("\n", "")
-    event.excerpt = json['excerpt'].replace("\n", "")
-    custom_fields = json['custom_fields']
-    if 'thumbimg' in custom_fields and len(custom_fields['thumbimg']) > 0:
-        event.attachment = custom_fields['thumbimg'][0]
-    if 'location' in custom_fields and len(custom_fields['location']) > 0:
-        event.location = custom_fields['location'][0]
-    if 'time' in custom_fields and len(custom_fields['time']) > 0:
-        event.time = custom_fields['time'][0]
-    date = json['modified']
-    event.time_added = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+    event.title = find_pattern(summary_pattern, vevent)
+    event.content = find_pattern(content_pattern, vevent).replace('\r\n ', '')
+    date = find_pattern(time_added_pattern, vevent) # 20150527T131225Z
+    event.location = find_pattern(location_pattern, vevent)
+    time = find_pattern(time_pattern, vevent) # 20150528T190000Z
+    event.time_added = datetime.strptime(date, '%Y%m%dT%H%M%SZ')
+    event.time = datetime.strptime(time, '%Y%m%dT%H%M%SZ')
+    event.repeat = find_pattern(repeat_pattern, vevent)
     return event
+
+

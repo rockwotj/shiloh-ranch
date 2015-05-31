@@ -19,7 +19,7 @@ POST_CATEGORY_URL = "http://shilohranch.com/api/get_category_posts/?id="
 """ URL to get the sermons """
 SERMON_URL = "http://shilohranch.com/api/get_posts/?post_type=sermons"
 """ URL to get the events """
-EVENT_URL = "http://shilohranch.com/api/get_posts/?post_type=events"
+EVENT_URL = 'http://shilohranch.com/feed/eo-events'
 
 
 
@@ -105,16 +105,14 @@ class Sermon(EndpointsModel):
 
 class Event(EndpointsModel):
     """
-    Generated from: http://shilohranch.com/api/get_posts/?post_type=events
+    Generated from: 'http://shilohranch.com/feed/eo-events'
     """
-    _message_fields_schema = ("entityKey", "title", "date_published", "content", "excerpt", "attachment", "location", "time", "time_added")
+    _message_fields_schema = ("entityKey", "title", "content", "location", "time", "time_added")
     title = ndb.StringProperty(indexed=False)
-    date_published = ndb.DateTimeProperty(indexed=False)
     content = ndb.TextProperty(indexed=False)
-    excerpt = ndb.TextProperty(indexed=False)
-    attachment = ndb.StringProperty(indexed=False)
     location = ndb.StringProperty(indexed=False, default="")
-    time = ndb.StringProperty(indexed=False, default="")
+    time = ndb.DateTimeProperty(indexed=False)
+    repeat = ndb.StringProperty(indexed=False)
     time_added = ndb.DateTimeProperty()
 
     def to_html(self):

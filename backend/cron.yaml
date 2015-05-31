@@ -1,5 +1,5 @@
 cron:
 - description: Pull data from the wordpress site
   url: /pull
-  schedule: every 1 hours from 06:00 to 22:00
+  schedule: every 30 minutes synchronized
   timezone: US/Pacific

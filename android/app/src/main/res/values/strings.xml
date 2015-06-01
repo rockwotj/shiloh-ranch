@@ -34,4 +34,7 @@
     <string name="services">Services</string>
     <string name="location">Location</string>
     <string name="church_address">15696 SW Bussett Rd\nPowell Butte, OR 97753</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

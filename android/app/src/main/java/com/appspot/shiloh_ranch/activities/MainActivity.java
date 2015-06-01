@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +38,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity implements INavigationDrawerCallbacks, IFragmentCallbacks, ISyncTaskCallback {
+public class MainActivity extends AppCompatActivity implements INavigationDrawerCallbacks, IFragmentCallbacks, ISyncTaskCallback {
 
     private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -136,6 +137,14 @@ public class MainActivity extends ActionBarActivity implements INavigationDrawer
 
     public ShilohRanch getService() {
         return mService;
+    }
+
+    public void startedActionMode() {
+        mNavigationDrawerFragment.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void finishedActionMode() {
+        mNavigationDrawerFragment.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     @Override

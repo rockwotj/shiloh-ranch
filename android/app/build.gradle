@@ -21,13 +21,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:22.0.0'
-    compile "com.android.support:appcompat-v7:22.0.0"
+    compile 'com.android.support:support-v4:22.1.1'
+    compile "com.android.support:appcompat-v7:22.1.1"
     compile 'com.android.support:recyclerview-v7:21.0.0'
     compile 'com.jpardogo.materialtabstrip:library:1.0.9'
     //Core
     compile 'com.github.gabrielemariotti.cards:cardslib-core:2.0.1'
     //Optional for built-in cards
     compile 'com.github.gabrielemariotti.cards:cardslib-cards:2.0.1'
+    compile 'com.github.alamkanak:android-week-view:1.2.3'
 
 }

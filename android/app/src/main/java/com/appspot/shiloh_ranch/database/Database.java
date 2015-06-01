@@ -2,6 +2,7 @@ package com.appspot.shiloh_ranch.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -27,7 +28,7 @@ import java.util.Map;
 public class Database {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "shiloh_ranch.db";
@@ -55,10 +56,10 @@ public class Database {
     private static final String KEY_AUDIO = "audio_link";
 
     // Event Table - column names
-    private static final String KEY_EXCERPT = "excerpt";
     private static final String KEY_LOCATION = "location";
-    private static final String KEY_TIME = "time";
-    private static final String KEY_ATTACHMENT = "attachment";
+    private static final String KEY_END_TIME = "start_time";
+    private static final String KEY_START_TIME = "end_time";
+    private static final String KEY_REPEAT = "repeat";
     private static Map<Class<? extends GenericJson>, String> mTableMap;
 
     static {
@@ -369,12 +370,11 @@ public class Database {
         ContentValues row = new ContentValues();
         row.put(KEY_ENTITY, event.getEntityKey());
         row.put(KEY_TITLE, event.getTitle());
-        row.put(KEY_EXCERPT, event.getExcerpt());
+        row.put(KEY_REPEAT, event.getRepeat());
         row.put(KEY_CONTENT, event.getContent());
-        row.put(KEY_ATTACHMENT, event.getAttachment());
-        row.put(KEY_DATE, event.getDatePublished());
+        row.put(KEY_END_TIME, event.getEndTime());
         row.put(KEY_LOCATION, event.getLocation());
-        row.put(KEY_TIME, event.getTime());
+        row.put(KEY_START_TIME, event.getStartTime());
         row.put(KEY_TIME_ADDED, event.getTimeAdded());
         return row;
     }
@@ -412,12 +412,11 @@ public class Database {
         Event event = new Event();
         event.setEntityKey(cursor.getString(cursor.getColumnIndexOrThrow(KEY_ENTITY)));
         event.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TITLE)));
-        event.setExcerpt(cursor.getString(cursor.getColumnIndexOrThrow(KEY_EXCERPT)));
+        event.setRepeat(cursor.getString(cursor.getColumnIndexOrThrow(KEY_REPEAT)));
         event.setContent(cursor.getString(cursor.getColumnIndexOrThrow(KEY_CONTENT)));
-        event.setAttachment(cursor.getString(cursor.getColumnIndexOrThrow(KEY_ATTACHMENT)));
-        event.setDatePublished(cursor.getString(cursor.getColumnIndexOrThrow(KEY_DATE)));
+        event.setEndTime(cursor.getString(cursor.getColumnIndexOrThrow(KEY_END_TIME)));
         event.setLocation(cursor.getString(cursor.getColumnIndexOrThrow(KEY_LOCATION)));
-        event.setTime(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TIME)));
+        event.setStartTime(cursor.getString(cursor.getColumnIndexOrThrow(KEY_START_TIME)));
         event.setTimeAdded(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TIME_ADDED)));
         return event;
     }
@@ -472,12 +471,11 @@ public class Database {
             sb.append("CREATE TABLE " + TABLE_EVENT + "(");
             sb.append(KEY_ENTITY + " text primary key, ");
             sb.append(KEY_TITLE + " text, ");
-            sb.append(KEY_EXCERPT + " text, ");
+            sb.append(KEY_REPEAT + " text, ");
             sb.append(KEY_CONTENT + " text, ");
-            sb.append(KEY_ATTACHMENT + " text, ");
-            sb.append(KEY_DATE + " text, ");
+            sb.append(KEY_START_TIME + " text, ");
             sb.append(KEY_LOCATION + " text, ");
-            sb.append(KEY_TIME + " text, ");
+            sb.append(KEY_END_TIME + " text, ");
             sb.append(KEY_TIME_ADDED + " text");
             sb.append(");");
             CREATE_TABLE_EVENT = sb.toString();

@@ -9,6 +9,7 @@ import com.appspot.shiloh_ranch.api.model.Sermon;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
@@ -20,6 +21,23 @@ import java.util.TimeZone;
  * Created by rockwotj on 3/8/2015.
  */
 public class DateTimeUtils {
+
+
+    public static String extractTime(String timestamp) {
+        timestamp = timestamp.replace('T', ' ');
+        try {
+            DateFormat dateParser = getServerDateFormat();
+            dateParser.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+            Date date = dateParser.parse(timestamp);
+            DateFormat dateFormatter = new SimpleDateFormat("h:mm a", Locale.US);
+            dateFormatter.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+            dateParser.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return dateFormatter.format(date);
+        } catch (ParseException e) {
+            Log.e("SRCC", "Error extracting time from datetime.", e);
+            return timestamp;
+        }
+    }
 
     /**
      * Takes a numerical representation of a datetime and moves the year to the end.
@@ -84,6 +102,23 @@ public class DateTimeUtils {
         }
     }
 
+
+    public static Calendar convertDateToCalendar(String time) {
+        time = time.replace('T', ' ');
+        try {
+            DateFormat dateParser = getServerDateFormat();
+            dateParser.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+            Date date = dateParser.parse(time);
+            Calendar datetime = Calendar.getInstance();
+            datetime.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+            datetime.setTime(date);
+            return datetime;
+        } catch (ParseException e) {
+            Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);
+            return Calendar.getInstance();
+        }
+    }
+
     public static Comparator<Sermon> getSermonDateComparator() {
         final DateFormat dateParser = getServerDateFormat();
         return new Comparator<Sermon>() {
@@ -108,8 +143,8 @@ public class DateTimeUtils {
             @Override
             public int compare(Event genericJson, Event genericJson2) {
                 try {
-                    Date date1 = dateParser.parse(genericJson.getDatePublished().replace('T', ' '));
-                    Date date2 = dateParser.parse(genericJson2.getDatePublished().replace('T', ' '));
+                    Date date1 = dateParser.parse(genericJson.getStartTime().replace('T', ' '));
+                    Date date2 = dateParser.parse(genericJson2.getStartTime().replace('T', ' '));
                     return -date1.compareTo(date2);
                 } catch (ParseException e) {
                     Log.e("SRCC", "Error converting DateTime Stamp to unix time.", e);

@@ -17,6 +17,8 @@ import com.appspot.shiloh_ranch.database.Database;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class EventScheduleFragment extends Fragment implements WeekView.MonthChangeListener, WeekView.EventClickListener {
 
@@ -30,7 +32,8 @@ public class EventScheduleFragment extends Fragment implements WeekView.MonthCha
         View rootView = inflater.inflate(R.layout.fragment_events_schedule, container, false);
         mWeekView = (WeekView) rootView.findViewById(R.id.weekView);
         mWeekView.setNumberOfVisibleDays(3);
-        mWeekView.goToHour(9);
+        Calendar currentTime = Calendar.getInstance(TimeZone.getTimeZone("America/Los_Angeles"), Locale.US);
+        mWeekView.goToHour(currentTime.get(Calendar.HOUR));
         mWeekView.setOnEventClickListener(this);
         mWeekView.setMonthChangeListener(this);
         refresh();

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1CBE231B1DFBF20064ECB0 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CBE221B1DFBF20064ECB0 /* DonateViewController.swift */; };
 		2C8200011B1D65E100A1972E /* home-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFE1B1D65E100A1972E /* home-25.png */; };
 		2C8200021B1D65E100A1972E /* home-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFF1B1D65E100A1972E /* home-32.png */; };
 		2C8200031B1D65E100A1972E /* home-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8200001B1D65E100A1972E /* home-50.png */; };
@@ -23,7 +24,6 @@
 		2C82FFA01B1D552F00A1972E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FF9E1B1D552F00A1972E /* Main.storyboard */; };
 		2C82FFA21B1D552F00A1972E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFA11B1D552F00A1972E /* Images.xcassets */; };
 		2C82FFA51B1D552F00A1972E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFA31B1D552F00A1972E /* LaunchScreen.xib */; };
-		2C82FFB11B1D553000A1972E /* shiloh_ranchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFB01B1D553000A1972E /* shiloh_ranchTests.swift */; };
 		2C82FFBB1B1D57D200A1972E /* SermonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */; };
 		2C82FFBD1B1D57F300A1972E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */; };
 		2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */; };
@@ -47,17 +47,8 @@
 		2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFC1B1D658C00A1972E /* calendar-25.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2C82FFAB1B1D553000A1972E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C82FF8B1B1D552F00A1972E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2C82FF921B1D552F00A1972E;
-			remoteInfo = shiloh_ranch;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		2C1CBE221B1DFBF20064ECB0 /* DonateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
 		2C8200001B1D65E100A1972E /* home-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-50.png"; sourceTree = "<group>"; };
 		2C8200041B1D663B00A1972E /* news-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news-25.png"; sourceTree = "<group>"; };
 		2C8200051B1D663B00A1972E /* news-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news-32.png"; sourceTree = "<group>"; };
@@ -66,7 +57,7 @@
 		2C82000C1B1D699B00A1972E /* receive_cash-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_cash-25.png"; sourceTree = "<group>"; };
 		2C82000D1B1D699B00A1972E /* receive_cash-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_cash-32.png"; sourceTree = "<group>"; };
 		2C82000E1B1D699B00A1972E /* receive_cash-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_cash-50.png"; sourceTree = "<group>"; };
-		2C82FF931B1D552F00A1972E /* shiloh_ranch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shiloh_ranch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C82FF931B1D552F00A1972E /* Shiloh Ranch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shiloh Ranch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C82FF971B1D552F00A1972E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C82FF981B1D552F00A1972E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C82FF9A1B1D552F00A1972E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -74,9 +65,6 @@
 		2C82FF9F1B1D552F00A1972E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C82FFA11B1D552F00A1972E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2C82FFA41B1D552F00A1972E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		2C82FFAA1B1D553000A1972E /* shiloh_ranchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shiloh_ranchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C82FFAF1B1D553000A1972E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C82FFB01B1D553000A1972E /* shiloh_ranchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiloh_ranchTests.swift; sourceTree = "<group>"; };
 		2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SermonViewController.swift; sourceTree = "<group>"; };
 		2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -110,13 +98,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C82FFA71B1D553000A1972E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -124,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				2C82FF951B1D552F00A1972E /* shiloh_ranch */,
-				2C82FFAD1B1D553000A1972E /* shiloh_ranchTests */,
 				2C82FF941B1D552F00A1972E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,8 +112,7 @@
 		2C82FF941B1D552F00A1972E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C82FF931B1D552F00A1972E /* shiloh_ranch.app */,
-				2C82FFAA1B1D553000A1972E /* shiloh_ranchTests.xctest */,
+				2C82FF931B1D552F00A1972E /* Shiloh Ranch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +130,7 @@
 				2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */,
 				2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */,
 				2C82000A1B1D67CE00A1972E /* TabViewController.swift */,
+				2C1CBE221B1DFBF20064ECB0 /* DonateViewController.swift */,
 			);
 			path = shiloh_ranch;
 			sourceTree = "<group>";
@@ -191,29 +171,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2C82FFAD1B1D553000A1972E /* shiloh_ranchTests */ = {
-			isa = PBXGroup;
-			children = (
-				2C82FFB01B1D553000A1972E /* shiloh_ranchTests.swift */,
-				2C82FFAE1B1D553000A1972E /* Supporting Files */,
-			);
-			path = shiloh_ranchTests;
-			sourceTree = "<group>";
-		};
-		2C82FFAE1B1D553000A1972E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2C82FFAF1B1D553000A1972E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C82FF921B1D552F00A1972E /* shiloh_ranch */ = {
+		2C82FF921B1D552F00A1972E /* Shiloh Ranch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C82FFB41B1D553000A1972E /* Build configuration list for PBXNativeTarget "shiloh_ranch" */;
+			buildConfigurationList = 2C82FFB41B1D553000A1972E /* Build configuration list for PBXNativeTarget "Shiloh Ranch" */;
 			buildPhases = (
 				2C82FF8F1B1D552F00A1972E /* Sources */,
 				2C82FF901B1D552F00A1972E /* Frameworks */,
@@ -223,28 +186,10 @@
 			);
 			dependencies = (
 			);
-			name = shiloh_ranch;
+			name = "Shiloh Ranch";
 			productName = shiloh_ranch;
-			productReference = 2C82FF931B1D552F00A1972E /* shiloh_ranch.app */;
+			productReference = 2C82FF931B1D552F00A1972E /* Shiloh Ranch.app */;
 			productType = "com.apple.product-type.application";
-		};
-		2C82FFA91B1D553000A1972E /* shiloh_ranchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2C82FFB71B1D553000A1972E /* Build configuration list for PBXNativeTarget "shiloh_ranchTests" */;
-			buildPhases = (
-				2C82FFA61B1D553000A1972E /* Sources */,
-				2C82FFA71B1D553000A1972E /* Frameworks */,
-				2C82FFA81B1D553000A1972E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2C82FFAC1B1D553000A1972E /* PBXTargetDependency */,
-			);
-			name = shiloh_ranchTests;
-			productName = shiloh_ranchTests;
-			productReference = 2C82FFAA1B1D553000A1972E /* shiloh_ranchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -259,13 +204,9 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 82T6YZ5XP5;
 					};
-					2C82FFA91B1D553000A1972E = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = 2C82FF921B1D552F00A1972E;
-					};
 				};
 			};
-			buildConfigurationList = 2C82FF8E1B1D552F00A1972E /* Build configuration list for PBXProject "shiloh_ranch" */;
+			buildConfigurationList = 2C82FF8E1B1D552F00A1972E /* Build configuration list for PBXProject "Shiloh Ranch" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -278,8 +219,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C82FF921B1D552F00A1972E /* shiloh_ranch */,
-				2C82FFA91B1D553000A1972E /* shiloh_ranchTests */,
+				2C82FF921B1D552F00A1972E /* Shiloh Ranch */,
 			);
 		};
 /* End PBXProject section */
@@ -323,13 +263,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C82FFA81B1D553000A1972E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -338,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C82000B1B1D67CE00A1972E /* TabViewController.swift in Sources */,
+				2C1CBE231B1DFBF20064ECB0 /* DonateViewController.swift in Sources */,
 				2C82FFBB1B1D57D200A1972E /* SermonViewController.swift in Sources */,
 				2C82FF9D1B1D552F00A1972E /* EventsViewController.swift in Sources */,
 				2C82FF991B1D552F00A1972E /* AppDelegate.swift in Sources */,
@@ -346,23 +280,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C82FFA61B1D553000A1972E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C82FFB11B1D553000A1972E /* shiloh_ranchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2C82FFAC1B1D553000A1972E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2C82FF921B1D552F00A1972E /* shiloh_ranch */;
-			targetProxy = 2C82FFAB1B1D553000A1972E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2C82FF9E1B1D552F00A1972E /* Main.storyboard */ = {
@@ -420,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -458,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -474,7 +392,7 @@
 				INFOPLIST_FILE = shiloh_ranch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Shiloh Ranch";
 			};
 			name = Debug;
 		};
@@ -487,48 +405,14 @@
 				INFOPLIST_FILE = shiloh_ranch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		2C82FFB81B1D553000A1972E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = shiloh_ranchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shiloh_ranch.app/shiloh_ranch";
-			};
-			name = Debug;
-		};
-		2C82FFB91B1D553000A1972E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = shiloh_ranchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shiloh_ranch.app/shiloh_ranch";
+				PRODUCT_NAME = "Shiloh Ranch";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C82FF8E1B1D552F00A1972E /* Build configuration list for PBXProject "shiloh_ranch" */ = {
+		2C82FF8E1B1D552F00A1972E /* Build configuration list for PBXProject "Shiloh Ranch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C82FFB21B1D553000A1972E /* Debug */,
@@ -537,21 +421,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C82FFB41B1D553000A1972E /* Build configuration list for PBXNativeTarget "shiloh_ranch" */ = {
+		2C82FFB41B1D553000A1972E /* Build configuration list for PBXNativeTarget "Shiloh Ranch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C82FFB51B1D553000A1972E /* Debug */,
 				2C82FFB61B1D553000A1972E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		2C82FFB71B1D553000A1972E /* Build configuration list for PBXNativeTarget "shiloh_ranchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2C82FFB81B1D553000A1972E /* Debug */,
-				2C82FFB91B1D553000A1972E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C82FF921B1D552F00A1972E"
-               BuildableName = "shiloh_ranch.app"
-               BlueprintName = "shiloh_ranch"
-               ReferencedContainer = "container:shiloh_ranch.xcodeproj">
+               BuildableName = "Shiloh Ranch.app"
+               BlueprintName = "Shiloh Ranch"
+               ReferencedContainer = "container:Shiloh Ranch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C82FFA91B1D553000A1972E"
-               BuildableName = "shiloh_ranchTests.xctest"
-               BlueprintName = "shiloh_ranchTests"
-               ReferencedContainer = "container:shiloh_ranch.xcodeproj">
+               BuildableName = "Shiloh RanchTests.xctest"
+               BlueprintName = "Shiloh RanchTests"
+               ReferencedContainer = "container:Shiloh Ranch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C82FFA91B1D553000A1972E"
-               BuildableName = "shiloh_ranchTests.xctest"
-               BlueprintName = "shiloh_ranchTests"
-               ReferencedContainer = "container:shiloh_ranch.xcodeproj">
+               BuildableName = "Shiloh RanchTests.xctest"
+               BlueprintName = "Shiloh RanchTests"
+               ReferencedContainer = "container:Shiloh Ranch.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C82FF921B1D552F00A1972E"
-            BuildableName = "shiloh_ranch.app"
-            BlueprintName = "shiloh_ranch"
-            ReferencedContainer = "container:shiloh_ranch.xcodeproj">
+            BuildableName = "Shiloh Ranch.app"
+            BlueprintName = "Shiloh Ranch"
+            ReferencedContainer = "container:Shiloh Ranch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C82FF921B1D552F00A1972E"
-            BuildableName = "shiloh_ranch.app"
-            BlueprintName = "shiloh_ranch"
-            ReferencedContainer = "container:shiloh_ranch.xcodeproj">
+            BuildableName = "Shiloh Ranch.app"
+            BlueprintName = "Shiloh Ranch"
+            ReferencedContainer = "container:Shiloh Ranch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C82FF921B1D552F00A1972E"
-            BuildableName = "shiloh_ranch.app"
-            BlueprintName = "shiloh_ranch"
-            ReferencedContainer = "container:shiloh_ranch.xcodeproj">
+            BuildableName = "Shiloh Ranch.app"
+            BlueprintName = "Shiloh Ranch"
+            ReferencedContainer = "container:Shiloh Ranch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

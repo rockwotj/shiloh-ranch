@@ -9,9 +9,6 @@
 import UIKit
 
 class TabViewController : UITabBarController {
- 
-    override func viewDidLoad() {
-    }
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
         if (item.tag == 1) {

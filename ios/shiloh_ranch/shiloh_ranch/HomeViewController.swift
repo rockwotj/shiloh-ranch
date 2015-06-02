@@ -10,9 +10,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: 1000)
+        self.title = "Home"
     }
 
 

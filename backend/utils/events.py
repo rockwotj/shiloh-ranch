@@ -44,7 +44,8 @@ summary_pattern = re.compile("SUMMARY: (.*)\r\n")
 content_pattern = re.compile("X-ALT-DESC;FMTTYPE=text/html:(.*?)\r\n[A-Z]", re.S | re.M)
 time_added_pattern = re.compile("LAST-MODIFIED:(.*)\r\n")
 location_pattern = re.compile("LOCATION:(.*)\r\n")
-time_pattern = re.compile("DTSTART:(.*)\r\n")
+start_time_pattern = re.compile("DTSTART:(.*)\r\n")
+end_time_pattern = re.compile("DTEND:(.*)\r\n")
 repeat_pattern = re.compile("RRULE:FREQ=(.*?);")
 
 def find_pattern(pattern, string):
@@ -61,9 +62,12 @@ def convert_to_entity(vevent):
     event.content = find_pattern(content_pattern, vevent).replace('\r\n ', '')
     date = find_pattern(time_added_pattern, vevent) # 20150527T131225Z
     event.location = find_pattern(location_pattern, vevent)
-    time = find_pattern(time_pattern, vevent) # 20150528T190000Z
+    time = find_pattern(start_time_pattern, vevent) # 20150528T190000Z
     event.time_added = datetime.strptime(date, '%Y%m%dT%H%M%SZ')
-    event.time = datetime.strptime(time, '%Y%m%dT%H%M%SZ')
+    time = find_pattern(start_time_pattern, vevent) # 20150528T190000Z
+    event.start_time = datetime.strptime(time, '%Y%m%dT%H%M%SZ')
+    time = find_pattern(end_time_pattern, vevent) # 20150528T190000Z
+    event.end_time = datetime.strptime(time, '%Y%m%dT%H%M%SZ')
     event.repeat = find_pattern(repeat_pattern, vevent)
     return event
 

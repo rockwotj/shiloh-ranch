@@ -107,16 +107,17 @@ class Event(EndpointsModel):
     """
     Generated from: 'http://shilohranch.com/feed/eo-events'
     """
-    _message_fields_schema = ("entityKey", "title", "content", "location", "time", "time_added")
+    _message_fields_schema = ("entityKey", "title", "content", "location", "end_time", "start_time", "repeat", "time_added")
     title = ndb.StringProperty(indexed=False)
     content = ndb.TextProperty(indexed=False)
     location = ndb.StringProperty(indexed=False, default="")
-    time = ndb.DateTimeProperty(indexed=False)
+    start_time = ndb.DateTimeProperty(indexed=False)
+    end_time = ndb.DateTimeProperty(indexed=False)
     repeat = ndb.StringProperty(indexed=False)
     time_added = ndb.DateTimeProperty()
 
     def to_html(self):
-        return "<td>" + self.title + "</td><td>" + str(self.location) + "</td><td>" + str(self.time) + "</td>"
+        return "<td>" + self.title + "</td><td>" + str(self.location) + "</td><td>" + str(self.start_time) + "</td>"
 
     def last_sync_set(self, value):
         try:

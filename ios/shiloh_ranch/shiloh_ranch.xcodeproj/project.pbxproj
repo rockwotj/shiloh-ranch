@@ -7,13 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C8200011B1D65E100A1972E /* home-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFE1B1D65E100A1972E /* home-25.png */; };
+		2C8200021B1D65E100A1972E /* home-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFF1B1D65E100A1972E /* home-32.png */; };
+		2C8200031B1D65E100A1972E /* home-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8200001B1D65E100A1972E /* home-50.png */; };
+		2C8200071B1D663B00A1972E /* news-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8200041B1D663B00A1972E /* news-25.png */; };
+		2C8200081B1D663B00A1972E /* news-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8200051B1D663B00A1972E /* news-32.png */; };
+		2C8200091B1D663B00A1972E /* news-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8200061B1D663B00A1972E /* news-50.png */; };
+		2C82000B1B1D67CE00A1972E /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82000A1B1D67CE00A1972E /* TabViewController.swift */; };
+		2C82000F1B1D699B00A1972E /* receive_cash-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82000C1B1D699B00A1972E /* receive_cash-25.png */; };
+		2C8200101B1D699B00A1972E /* receive_cash-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82000D1B1D699B00A1972E /* receive_cash-32.png */; };
+		2C8200111B1D699B00A1972E /* receive_cash-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82000E1B1D699B00A1972E /* receive_cash-50.png */; };
 		2C82FF991B1D552F00A1972E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FF981B1D552F00A1972E /* AppDelegate.swift */; };
-		2C82FF9B1B1D552F00A1972E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FF9A1B1D552F00A1972E /* FirstViewController.swift */; };
-		2C82FF9D1B1D552F00A1972E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FF9C1B1D552F00A1972E /* SecondViewController.swift */; };
+		2C82FF9B1B1D552F00A1972E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FF9A1B1D552F00A1972E /* HomeViewController.swift */; };
+		2C82FF9D1B1D552F00A1972E /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FF9C1B1D552F00A1972E /* EventsViewController.swift */; };
 		2C82FFA01B1D552F00A1972E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FF9E1B1D552F00A1972E /* Main.storyboard */; };
 		2C82FFA21B1D552F00A1972E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFA11B1D552F00A1972E /* Images.xcassets */; };
 		2C82FFA51B1D552F00A1972E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFA31B1D552F00A1972E /* LaunchScreen.xib */; };
 		2C82FFB11B1D553000A1972E /* shiloh_ranchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFB01B1D553000A1972E /* shiloh_ranchTests.swift */; };
+		2C82FFBB1B1D57D200A1972E /* SermonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */; };
+		2C82FFBD1B1D57F300A1972E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */; };
+		2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */; };
+		2C82FFCC1B1D5DA600A1972E /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */; };
+		2C82FFCD1B1D5DA600A1972E /* ShilohRanch-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC01B1D5DA600A1972E /* ShilohRanch-60.png */; };
+		2C82FFCE1B1D5DA600A1972E /* ShilohRanch-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC11B1D5DA600A1972E /* ShilohRanch-60@2x.png */; };
+		2C82FFCF1B1D5DA600A1972E /* ShilohRanch-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC21B1D5DA600A1972E /* ShilohRanch-60@3x.png */; };
+		2C82FFD01B1D5DA600A1972E /* ShilohRanch-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC31B1D5DA600A1972E /* ShilohRanch-Small.png */; };
+		2C82FFD11B1D5DA600A1972E /* ShilohRanch-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC41B1D5DA600A1972E /* ShilohRanch-Small@2x.png */; };
+		2C82FFD21B1D5DA600A1972E /* ShilohRanch-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC51B1D5DA600A1972E /* ShilohRanch-Small@3x.png */; };
+		2C82FFD31B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC61B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png */; };
+		2C82FFD41B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC71B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png */; };
+		2C82FFD51B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC81B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png */; };
+		2C82FFD61B1D5DA600A1972E /* ShilohRanch.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC91B1D5DA600A1972E /* ShilohRanch.png */; };
+		2C82FFD71B1D5DA600A1972E /* ShilohRanch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFCA1B1D5DA600A1972E /* ShilohRanch@2x.png */; };
+		2C82FFF11B1D647800A1972E /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF01B1D647800A1972E /* calendar-32.png */; };
+		2C82FFF31B1D64CB00A1972E /* micro-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF21B1D64CB00A1972E /* micro-32.png */; };
+		2C82FFF51B1D652F00A1972E /* micro-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF41B1D652F00A1972E /* micro-50.png */; };
+		2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF61B1D653900A1972E /* calendar-50.png */; };
+		2C82FFFB1B1D655D00A1972E /* micro-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFA1B1D655D00A1972E /* micro-25.png */; };
+		2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFC1B1D658C00A1972E /* calendar-25.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +58,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C8200001B1D65E100A1972E /* home-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-50.png"; sourceTree = "<group>"; };
+		2C8200041B1D663B00A1972E /* news-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news-25.png"; sourceTree = "<group>"; };
+		2C8200051B1D663B00A1972E /* news-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news-32.png"; sourceTree = "<group>"; };
+		2C8200061B1D663B00A1972E /* news-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news-50.png"; sourceTree = "<group>"; };
+		2C82000A1B1D67CE00A1972E /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		2C82000C1B1D699B00A1972E /* receive_cash-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_cash-25.png"; sourceTree = "<group>"; };
+		2C82000D1B1D699B00A1972E /* receive_cash-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_cash-32.png"; sourceTree = "<group>"; };
+		2C82000E1B1D699B00A1972E /* receive_cash-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "receive_cash-50.png"; sourceTree = "<group>"; };
 		2C82FF931B1D552F00A1972E /* shiloh_ranch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shiloh_ranch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C82FF971B1D552F00A1972E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C82FF981B1D552F00A1972E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C82FF9A1B1D552F00A1972E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		2C82FF9C1B1D552F00A1972E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		2C82FF9A1B1D552F00A1972E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2C82FF9C1B1D552F00A1972E /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		2C82FF9F1B1D552F00A1972E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C82FFA11B1D552F00A1972E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2C82FFA41B1D552F00A1972E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2C82FFAA1B1D553000A1972E /* shiloh_ranchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shiloh_ranchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C82FFAF1B1D553000A1972E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C82FFB01B1D553000A1972E /* shiloh_ranchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiloh_ranchTests.swift; sourceTree = "<group>"; };
+		2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SermonViewController.swift; sourceTree = "<group>"; };
+		2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		2C82FFC01B1D5DA600A1972E /* ShilohRanch-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-60.png"; sourceTree = "<group>"; };
+		2C82FFC11B1D5DA600A1972E /* ShilohRanch-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-60@2x.png"; sourceTree = "<group>"; };
+		2C82FFC21B1D5DA600A1972E /* ShilohRanch-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-60@3x.png"; sourceTree = "<group>"; };
+		2C82FFC31B1D5DA600A1972E /* ShilohRanch-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Small.png"; sourceTree = "<group>"; };
+		2C82FFC41B1D5DA600A1972E /* ShilohRanch-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Small@2x.png"; sourceTree = "<group>"; };
+		2C82FFC51B1D5DA600A1972E /* ShilohRanch-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Small@3x.png"; sourceTree = "<group>"; };
+		2C82FFC61B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Spotlight-40.png"; sourceTree = "<group>"; };
+		2C82FFC71B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Spotlight-40@2x.png"; sourceTree = "<group>"; };
+		2C82FFC81B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Spotlight-40@3x.png"; sourceTree = "<group>"; };
+		2C82FFC91B1D5DA600A1972E /* ShilohRanch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShilohRanch.png; sourceTree = "<group>"; };
+		2C82FFCA1B1D5DA600A1972E /* ShilohRanch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch@2x.png"; sourceTree = "<group>"; };
+		2C82FFF01B1D647800A1972E /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
+		2C82FFF21B1D64CB00A1972E /* micro-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "micro-32.png"; sourceTree = "<group>"; };
+		2C82FFF41B1D652F00A1972E /* micro-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "micro-50.png"; sourceTree = "<group>"; };
+		2C82FFF61B1D653900A1972E /* calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-50.png"; sourceTree = "<group>"; };
+		2C82FFFA1B1D655D00A1972E /* micro-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "micro-25.png"; sourceTree = "<group>"; };
+		2C82FFFC1B1D658C00A1972E /* calendar-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-25.png"; sourceTree = "<group>"; };
+		2C82FFFE1B1D65E100A1972E /* home-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-25.png"; sourceTree = "<group>"; };
+		2C82FFFF1B1D65E100A1972E /* home-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-32.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +142,15 @@
 			isa = PBXGroup;
 			children = (
 				2C82FF981B1D552F00A1972E /* AppDelegate.swift */,
-				2C82FF9A1B1D552F00A1972E /* FirstViewController.swift */,
-				2C82FF9C1B1D552F00A1972E /* SecondViewController.swift */,
+				2C82FF9A1B1D552F00A1972E /* HomeViewController.swift */,
+				2C82FF9C1B1D552F00A1972E /* EventsViewController.swift */,
 				2C82FF9E1B1D552F00A1972E /* Main.storyboard */,
 				2C82FFA11B1D552F00A1972E /* Images.xcassets */,
 				2C82FFA31B1D552F00A1972E /* LaunchScreen.xib */,
 				2C82FF961B1D552F00A1972E /* Supporting Files */,
+				2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */,
+				2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */,
+				2C82000A1B1D67CE00A1972E /* TabViewController.swift */,
 			);
 			path = shiloh_ranch;
 			sourceTree = "<group>";
@@ -93,6 +158,34 @@
 		2C82FF961B1D552F00A1972E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C82000C1B1D699B00A1972E /* receive_cash-25.png */,
+				2C82000D1B1D699B00A1972E /* receive_cash-32.png */,
+				2C82000E1B1D699B00A1972E /* receive_cash-50.png */,
+				2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */,
+				2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */,
+				2C82FFC01B1D5DA600A1972E /* ShilohRanch-60.png */,
+				2C82FFC11B1D5DA600A1972E /* ShilohRanch-60@2x.png */,
+				2C82FFC21B1D5DA600A1972E /* ShilohRanch-60@3x.png */,
+				2C82FFF61B1D653900A1972E /* calendar-50.png */,
+				2C82FFC31B1D5DA600A1972E /* ShilohRanch-Small.png */,
+				2C82FFFA1B1D655D00A1972E /* micro-25.png */,
+				2C82FFF41B1D652F00A1972E /* micro-50.png */,
+				2C82FFC41B1D5DA600A1972E /* ShilohRanch-Small@2x.png */,
+				2C82FFC51B1D5DA600A1972E /* ShilohRanch-Small@3x.png */,
+				2C82FFFE1B1D65E100A1972E /* home-25.png */,
+				2C82FFFF1B1D65E100A1972E /* home-32.png */,
+				2C8200001B1D65E100A1972E /* home-50.png */,
+				2C8200041B1D663B00A1972E /* news-25.png */,
+				2C8200051B1D663B00A1972E /* news-32.png */,
+				2C8200061B1D663B00A1972E /* news-50.png */,
+				2C82FFC61B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png */,
+				2C82FFFC1B1D658C00A1972E /* calendar-25.png */,
+				2C82FFF21B1D64CB00A1972E /* micro-32.png */,
+				2C82FFF01B1D647800A1972E /* calendar-32.png */,
+				2C82FFC71B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png */,
+				2C82FFC81B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png */,
+				2C82FFC91B1D5DA600A1972E /* ShilohRanch.png */,
+				2C82FFCA1B1D5DA600A1972E /* ShilohRanch@2x.png */,
 				2C82FF971B1D552F00A1972E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -164,6 +257,7 @@
 				TargetAttributes = {
 					2C82FF921B1D552F00A1972E = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 82T6YZ5XP5;
 					};
 					2C82FFA91B1D553000A1972E = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -195,9 +289,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C82FFD51B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png in Resources */,
+				2C8200091B1D663B00A1972E /* news-50.png in Resources */,
+				2C82000F1B1D699B00A1972E /* receive_cash-25.png in Resources */,
+				2C82FFD11B1D5DA600A1972E /* ShilohRanch-Small@2x.png in Resources */,
+				2C8200111B1D699B00A1972E /* receive_cash-50.png in Resources */,
+				2C82FFD71B1D5DA600A1972E /* ShilohRanch@2x.png in Resources */,
+				2C82FFD41B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png in Resources */,
+				2C82FFCC1B1D5DA600A1972E /* iTunesArtwork@2x in Resources */,
+				2C82FFD31B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png in Resources */,
+				2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */,
+				2C82FFCF1B1D5DA600A1972E /* ShilohRanch-60@3x.png in Resources */,
+				2C82FFD21B1D5DA600A1972E /* ShilohRanch-Small@3x.png in Resources */,
+				2C8200021B1D65E100A1972E /* home-32.png in Resources */,
 				2C82FFA01B1D552F00A1972E /* Main.storyboard in Resources */,
+				2C8200081B1D663B00A1972E /* news-32.png in Resources */,
 				2C82FFA51B1D552F00A1972E /* LaunchScreen.xib in Resources */,
 				2C82FFA21B1D552F00A1972E /* Images.xcassets in Resources */,
+				2C82FFD01B1D5DA600A1972E /* ShilohRanch-Small.png in Resources */,
+				2C8200101B1D699B00A1972E /* receive_cash-32.png in Resources */,
+				2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */,
+				2C82FFF11B1D647800A1972E /* calendar-32.png in Resources */,
+				2C82FFD61B1D5DA600A1972E /* ShilohRanch.png in Resources */,
+				2C8200071B1D663B00A1972E /* news-25.png in Resources */,
+				2C82FFCD1B1D5DA600A1972E /* ShilohRanch-60.png in Resources */,
+				2C82FFF31B1D64CB00A1972E /* micro-32.png in Resources */,
+				2C82FFFB1B1D655D00A1972E /* micro-25.png in Resources */,
+				2C82FFF51B1D652F00A1972E /* micro-50.png in Resources */,
+				2C8200011B1D65E100A1972E /* home-25.png in Resources */,
+				2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */,
+				2C8200031B1D65E100A1972E /* home-50.png in Resources */,
+				2C82FFCE1B1D5DA600A1972E /* ShilohRanch-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +337,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C82FF9D1B1D552F00A1972E /* SecondViewController.swift in Sources */,
+				2C82000B1B1D67CE00A1972E /* TabViewController.swift in Sources */,
+				2C82FFBB1B1D57D200A1972E /* SermonViewController.swift in Sources */,
+				2C82FF9D1B1D552F00A1972E /* EventsViewController.swift in Sources */,
 				2C82FF991B1D552F00A1972E /* AppDelegate.swift in Sources */,
-				2C82FF9B1B1D552F00A1972E /* FirstViewController.swift in Sources */,
+				2C82FFBD1B1D57F300A1972E /* NewsViewController.swift in Sources */,
+				2C82FF9B1B1D552F00A1972E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +469,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = shiloh_ranch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -354,7 +482,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = shiloh_ranch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

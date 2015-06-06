@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class SermonAdapter extends BaseAdapter {
 
-    public static final String REGEX = "(.+)- (.+)- \\((\\d+)/(\\d+)/(\\d+)\\)";
+    public static final String REGEX = "(.+)\\s*[–—‒-]\\s*(.+)\\s*[–—‒-]\\s*\\((\\d+)/(\\d+)/(\\d+)\\)";
     private final Context mContext;
     private List<Sermon> mSermons;
 
@@ -63,14 +63,14 @@ public class SermonAdapter extends BaseAdapter {
         Sermon sermon = mSermons.get(position);
         String sermonTitle = getSermonDisplayTitle(sermon);
         String secondaryText = getSermonDisplaySubtitle(sermon);
-        titleView.setText(Html.fromHtml(sermonTitle));
+        titleView.setText(sermonTitle);
         dateView.setText(secondaryText);
     }
 
     public String getSermonDisplayTitle(Sermon sermon) {
-        String sermonTitle = sermon.getTitle();
+        String sermonTitle = Html.fromHtml(sermon.getTitle()).toString();
         if (sermonTitle.matches(REGEX)) {
-            String[] titleParts = sermonTitle.split("- ", 3);
+            String[] titleParts = sermonTitle.split("\\s*[–—‒-]\\s*", 3);
             sermonTitle = titleParts[0];
         } else {
             Log.d("SRCC", "Did not match the regex for sermon titles!");
@@ -79,10 +79,10 @@ public class SermonAdapter extends BaseAdapter {
     }
 
     public String getSermonDisplaySubtitle(Sermon sermon) {
-        String sermonTitle = sermon.getTitle();
+        String sermonTitle = Html.fromHtml(sermon.getTitle()).toString();
         String secondaryText = DateTimeUtils.reformatDateString(sermon.getDate());
         if (sermonTitle.matches(REGEX)) {
-            String[] titleParts = sermonTitle.split("- ", 3);
+            String[] titleParts = sermonTitle.split("\\s*[–—‒-]\\s*", 3);
             secondaryText = titleParts[1] + " - " + titleParts[2];
         }
         return secondaryText;

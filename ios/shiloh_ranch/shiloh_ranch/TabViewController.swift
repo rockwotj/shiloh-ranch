@@ -10,10 +10,4 @@ import UIKit
 
 class TabViewController : UITabBarController {
     
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        if (item.tag == 1) {
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://tylerrockwood.com")!)
-        }
-    }
-    
 }

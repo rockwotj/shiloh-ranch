@@ -27,32 +27,25 @@
 		2C82FFBD1B1D57F300A1972E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */; };
 		2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */; };
 		2C82FFCC1B1D5DA600A1972E /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */; };
-		2C82FFCD1B1D5DA600A1972E /* ShilohRanch-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC01B1D5DA600A1972E /* ShilohRanch-60.png */; };
-		2C82FFCE1B1D5DA600A1972E /* ShilohRanch-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC11B1D5DA600A1972E /* ShilohRanch-60@2x.png */; };
-		2C82FFCF1B1D5DA600A1972E /* ShilohRanch-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC21B1D5DA600A1972E /* ShilohRanch-60@3x.png */; };
-		2C82FFD01B1D5DA600A1972E /* ShilohRanch-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC31B1D5DA600A1972E /* ShilohRanch-Small.png */; };
-		2C82FFD11B1D5DA600A1972E /* ShilohRanch-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC41B1D5DA600A1972E /* ShilohRanch-Small@2x.png */; };
-		2C82FFD21B1D5DA600A1972E /* ShilohRanch-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC51B1D5DA600A1972E /* ShilohRanch-Small@3x.png */; };
-		2C82FFD31B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC61B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png */; };
-		2C82FFD41B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC71B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png */; };
-		2C82FFD51B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC81B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png */; };
-		2C82FFD61B1D5DA600A1972E /* ShilohRanch.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFC91B1D5DA600A1972E /* ShilohRanch.png */; };
-		2C82FFD71B1D5DA600A1972E /* ShilohRanch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFCA1B1D5DA600A1972E /* ShilohRanch@2x.png */; };
 		2C82FFF11B1D647800A1972E /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF01B1D647800A1972E /* calendar-32.png */; };
 		2C82FFF31B1D64CB00A1972E /* micro-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF21B1D64CB00A1972E /* micro-32.png */; };
 		2C82FFF51B1D652F00A1972E /* micro-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF41B1D652F00A1972E /* micro-50.png */; };
 		2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF61B1D653900A1972E /* calendar-50.png */; };
 		2C82FFFB1B1D655D00A1972E /* micro-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFA1B1D655D00A1972E /* micro-25.png */; };
 		2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFC1B1D658C00A1972E /* calendar-25.png */; };
+		2CADE46A1B26A236004698F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE4691B26A236004698F1 /* Security.framework */; };
+		2CADE46C1B26A244004698F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */; };
 		2CEE029D1B20203E00D1D80B /* clock-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029A1B20203E00D1D80B /* clock-25.png */; };
 		2CEE029E1B20203E00D1D80B /* clock-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029B1B20203E00D1D80B /* clock-32.png */; };
 		2CEE029F1B20203E00D1D80B /* clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029C1B20203E00D1D80B /* clock-50.png */; };
 		2CEE02A31B20205600D1D80B /* location-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE02A01B20205600D1D80B /* location-25.png */; };
 		2CEE02A41B20205600D1D80B /* location-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE02A11B20205600D1D80B /* location-32.png */; };
 		2CEE02A51B20205600D1D80B /* location-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE02A21B20205600D1D80B /* location-50.png */; };
+		EAFA1B8BD6315B837BD1726A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5EC23898AAF8A72B10E54D /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07BEA83D53AF0EBB9DFED712 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2C2AEC881B229F3C00761E06 /* Shiloh Ranch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shiloh Ranch-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C8200001B1D65E100A1972E /* home-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-50.png"; sourceTree = "<group>"; };
 		2C8200041B1D663B00A1972E /* news-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news-25.png"; sourceTree = "<group>"; };
@@ -74,17 +67,6 @@
 		2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
-		2C82FFC01B1D5DA600A1972E /* ShilohRanch-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-60.png"; sourceTree = "<group>"; };
-		2C82FFC11B1D5DA600A1972E /* ShilohRanch-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-60@2x.png"; sourceTree = "<group>"; };
-		2C82FFC21B1D5DA600A1972E /* ShilohRanch-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-60@3x.png"; sourceTree = "<group>"; };
-		2C82FFC31B1D5DA600A1972E /* ShilohRanch-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Small.png"; sourceTree = "<group>"; };
-		2C82FFC41B1D5DA600A1972E /* ShilohRanch-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Small@2x.png"; sourceTree = "<group>"; };
-		2C82FFC51B1D5DA600A1972E /* ShilohRanch-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Small@3x.png"; sourceTree = "<group>"; };
-		2C82FFC61B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Spotlight-40.png"; sourceTree = "<group>"; };
-		2C82FFC71B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Spotlight-40@2x.png"; sourceTree = "<group>"; };
-		2C82FFC81B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch-Spotlight-40@3x.png"; sourceTree = "<group>"; };
-		2C82FFC91B1D5DA600A1972E /* ShilohRanch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShilohRanch.png; sourceTree = "<group>"; };
-		2C82FFCA1B1D5DA600A1972E /* ShilohRanch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShilohRanch@2x.png"; sourceTree = "<group>"; };
 		2C82FFF01B1D647800A1972E /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
 		2C82FFF21B1D64CB00A1972E /* micro-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "micro-32.png"; sourceTree = "<group>"; };
 		2C82FFF41B1D652F00A1972E /* micro-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "micro-50.png"; sourceTree = "<group>"; };
@@ -93,12 +75,16 @@
 		2C82FFFC1B1D658C00A1972E /* calendar-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-25.png"; sourceTree = "<group>"; };
 		2C82FFFE1B1D65E100A1972E /* home-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-25.png"; sourceTree = "<group>"; };
 		2C82FFFF1B1D65E100A1972E /* home-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-32.png"; sourceTree = "<group>"; };
+		2CADE4691B26A236004698F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CEE029A1B20203E00D1D80B /* clock-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-25.png"; sourceTree = "<group>"; };
 		2CEE029B1B20203E00D1D80B /* clock-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-32.png"; sourceTree = "<group>"; };
 		2CEE029C1B20203E00D1D80B /* clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-50.png"; sourceTree = "<group>"; };
 		2CEE02A01B20205600D1D80B /* location-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-25.png"; sourceTree = "<group>"; };
 		2CEE02A11B20205600D1D80B /* location-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-32.png"; sourceTree = "<group>"; };
 		2CEE02A21B20205600D1D80B /* location-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-50.png"; sourceTree = "<group>"; };
+		3B5EC23898AAF8A72B10E54D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3A02DCE1A312F677D3B9B8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +92,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CADE46C1B26A244004698F1 /* SystemConfiguration.framework in Frameworks */,
+				2CADE46A1B26A236004698F1 /* Security.framework in Frameworks */,
+				EAFA1B8BD6315B837BD1726A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03547C4AFC12225290363E47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07BEA83D53AF0EBB9DFED712 /* Pods.debug.xcconfig */,
+				CF3A02DCE1A312F677D3B9B8 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2C2AEC851B229E1000761E06 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,8 +121,10 @@
 		2C82FF8A1B1D552F00A1972E = {
 			isa = PBXGroup;
 			children = (
-				2C82FF951B1D552F00A1972E /* shiloh_ranch */,
+				2C82FF951B1D552F00A1972E /* Shiloh Ranch */,
 				2C82FF941B1D552F00A1972E /* Products */,
+				03547C4AFC12225290363E47 /* Pods */,
+				8073BC92DA3C6624C28CFBBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,21 +136,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2C82FF951B1D552F00A1972E /* shiloh_ranch */ = {
+		2C82FF951B1D552F00A1972E /* Shiloh Ranch */ = {
 			isa = PBXGroup;
 			children = (
+				2CADE46D1B26A255004698F1 /* GTL Client */,
+				2CADE4681B26A19A004698F1 /* API */,
+				2CADE4671B26A185004698F1 /* Sermons */,
+				2CADE4661B26A173004698F1 /* News */,
+				2CADE4651B26A16B004698F1 /* Events */,
 				2C2AEC881B229F3C00761E06 /* Shiloh Ranch-Bridging-Header.h */,
 				2C2AEC851B229E1000761E06 /* Home */,
 				2C82FF981B1D552F00A1972E /* AppDelegate.swift */,
-				2C82FF9C1B1D552F00A1972E /* EventsViewController.swift */,
 				2C82FF9E1B1D552F00A1972E /* Main.storyboard */,
 				2C82FFA11B1D552F00A1972E /* Images.xcassets */,
 				2C82FFA31B1D552F00A1972E /* LaunchScreen.xib */,
 				2C82FF961B1D552F00A1972E /* Supporting Files */,
-				2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */,
-				2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */,
 				2C82000A1B1D67CE00A1972E /* TabViewController.swift */,
 			);
+			name = "Shiloh Ranch";
 			path = shiloh_ranch;
 			sourceTree = "<group>";
 		};
@@ -168,32 +171,69 @@
 				2C82000E1B1D699B00A1972E /* receive_cash-50.png */,
 				2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */,
 				2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */,
-				2C82FFC01B1D5DA600A1972E /* ShilohRanch-60.png */,
-				2C82FFC11B1D5DA600A1972E /* ShilohRanch-60@2x.png */,
-				2C82FFC21B1D5DA600A1972E /* ShilohRanch-60@3x.png */,
 				2C82FFF61B1D653900A1972E /* calendar-50.png */,
-				2C82FFC31B1D5DA600A1972E /* ShilohRanch-Small.png */,
 				2C82FFFA1B1D655D00A1972E /* micro-25.png */,
 				2C82FFF41B1D652F00A1972E /* micro-50.png */,
-				2C82FFC41B1D5DA600A1972E /* ShilohRanch-Small@2x.png */,
-				2C82FFC51B1D5DA600A1972E /* ShilohRanch-Small@3x.png */,
 				2C82FFFE1B1D65E100A1972E /* home-25.png */,
 				2C82FFFF1B1D65E100A1972E /* home-32.png */,
 				2C8200001B1D65E100A1972E /* home-50.png */,
 				2C8200041B1D663B00A1972E /* news-25.png */,
 				2C8200051B1D663B00A1972E /* news-32.png */,
 				2C8200061B1D663B00A1972E /* news-50.png */,
-				2C82FFC61B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png */,
 				2C82FFFC1B1D658C00A1972E /* calendar-25.png */,
 				2C82FFF21B1D64CB00A1972E /* micro-32.png */,
 				2C82FFF01B1D647800A1972E /* calendar-32.png */,
-				2C82FFC71B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png */,
-				2C82FFC81B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png */,
-				2C82FFC91B1D5DA600A1972E /* ShilohRanch.png */,
-				2C82FFCA1B1D5DA600A1972E /* ShilohRanch@2x.png */,
 				2C82FF971B1D552F00A1972E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CADE4651B26A16B004698F1 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				2C82FF9C1B1D552F00A1972E /* EventsViewController.swift */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		2CADE4661B26A173004698F1 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		2CADE4671B26A185004698F1 /* Sermons */ = {
+			isa = PBXGroup;
+			children = (
+				2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */,
+			);
+			name = Sermons;
+			sourceTree = "<group>";
+		};
+		2CADE4681B26A19A004698F1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		2CADE46D1B26A255004698F1 /* GTL Client */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "GTL Client";
+			sourceTree = "<group>";
+		};
+		8073BC92DA3C6624C28CFBBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */,
+				2CADE4691B26A236004698F1 /* Security.framework */,
+				3B5EC23898AAF8A72B10E54D /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,9 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C82FFB41B1D553000A1972E /* Build configuration list for PBXNativeTarget "Shiloh Ranch" */;
 			buildPhases = (
+				2D4150B68F2CA0954E1AC797 /* Check Pods Manifest.lock */,
 				2C82FF8F1B1D552F00A1972E /* Sources */,
 				2C82FF901B1D552F00A1972E /* Frameworks */,
 				2C82FF911B1D552F00A1972E /* Resources */,
+				ACB4199AB59C1B54CE6AC221 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,20 +296,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C82FFD51B1D5DA600A1972E /* ShilohRanch-Spotlight-40@3x.png in Resources */,
 				2CEE02A41B20205600D1D80B /* location-32.png in Resources */,
 				2C8200091B1D663B00A1972E /* news-50.png in Resources */,
 				2C82000F1B1D699B00A1972E /* receive_cash-25.png in Resources */,
-				2C82FFD11B1D5DA600A1972E /* ShilohRanch-Small@2x.png in Resources */,
 				2C8200111B1D699B00A1972E /* receive_cash-50.png in Resources */,
-				2C82FFD71B1D5DA600A1972E /* ShilohRanch@2x.png in Resources */,
-				2C82FFD41B1D5DA600A1972E /* ShilohRanch-Spotlight-40@2x.png in Resources */,
 				2C82FFCC1B1D5DA600A1972E /* iTunesArtwork@2x in Resources */,
-				2C82FFD31B1D5DA600A1972E /* ShilohRanch-Spotlight-40.png in Resources */,
 				2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */,
 				2CEE02A31B20205600D1D80B /* location-25.png in Resources */,
-				2C82FFCF1B1D5DA600A1972E /* ShilohRanch-60@3x.png in Resources */,
-				2C82FFD21B1D5DA600A1972E /* ShilohRanch-Small@3x.png in Resources */,
 				2CEE029E1B20203E00D1D80B /* clock-32.png in Resources */,
 				2C8200021B1D65E100A1972E /* home-32.png in Resources */,
 				2C82FFA01B1D552F00A1972E /* Main.storyboard in Resources */,
@@ -275,26 +310,55 @@
 				2C8200081B1D663B00A1972E /* news-32.png in Resources */,
 				2C82FFA51B1D552F00A1972E /* LaunchScreen.xib in Resources */,
 				2C82FFA21B1D552F00A1972E /* Images.xcassets in Resources */,
-				2C82FFD01B1D5DA600A1972E /* ShilohRanch-Small.png in Resources */,
 				2CEE02A51B20205600D1D80B /* location-50.png in Resources */,
 				2C8200101B1D699B00A1972E /* receive_cash-32.png in Resources */,
 				2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */,
 				2C82FFF11B1D647800A1972E /* calendar-32.png in Resources */,
-				2C82FFD61B1D5DA600A1972E /* ShilohRanch.png in Resources */,
 				2C8200071B1D663B00A1972E /* news-25.png in Resources */,
-				2C82FFCD1B1D5DA600A1972E /* ShilohRanch-60.png in Resources */,
 				2C82FFF31B1D64CB00A1972E /* micro-32.png in Resources */,
 				2C82FFFB1B1D655D00A1972E /* micro-25.png in Resources */,
 				2C82FFF51B1D652F00A1972E /* micro-50.png in Resources */,
 				2C8200011B1D65E100A1972E /* home-25.png in Resources */,
 				2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */,
 				2C8200031B1D65E100A1972E /* home-50.png in Resources */,
-				2C82FFCE1B1D5DA600A1972E /* ShilohRanch-60@2x.png in Resources */,
 				2CEE029D1B20203E00D1D80B /* clock-25.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D4150B68F2CA0954E1AC797 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACB4199AB59C1B54CE6AC221 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C82FF8F1B1D552F00A1972E /* Sources */ = {
@@ -415,6 +479,7 @@
 		};
 		2C82FFB51B1D553000A1972E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07BEA83D53AF0EBB9DFED712 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -431,6 +496,7 @@
 		};
 		2C82FFB61B1D553000A1972E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF3A02DCE1A312F677D3B9B8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

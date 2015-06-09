@@ -355,20 +355,49 @@ Powell Butte, OR 97754</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P71-hx-Cer">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Qs-cA-Fwh" customClass="JTCalendarMenuView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="5Xu-LK-BnQ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P71-hx-Cer">
                                 <rect key="frame" x="16" y="64" width="52" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-TL-Jyf" customClass="JTCalendarContentView">
+                                <rect key="frame" x="0.0" y="99" width="600" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GIa-zo-tOI"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7Qs-cA-Fwh" secondAttribute="trailing" id="76a-3G-2aP"/>
+                            <constraint firstItem="fLf-TL-Jyf" firstAttribute="leading" secondItem="U3j-6c-VjS" secondAttribute="leading" id="IxB-qd-CLl"/>
+                            <constraint firstItem="fLf-TL-Jyf" firstAttribute="top" secondItem="7Qs-cA-Fwh" secondAttribute="bottom" id="TiG-cq-RU8"/>
+                            <constraint firstAttribute="trailing" secondItem="fLf-TL-Jyf" secondAttribute="trailing" id="eBx-65-8ZF"/>
+                            <constraint firstItem="7Qs-cA-Fwh" firstAttribute="leading" secondItem="U3j-6c-VjS" secondAttribute="leading" id="okg-mA-jva"/>
+                            <constraint firstItem="7Qs-cA-Fwh" firstAttribute="top" secondItem="5C6-Hz-j74" secondAttribute="bottom" id="qde-Md-BbP"/>
                             <constraint firstItem="P71-hx-Cer" firstAttribute="top" secondItem="5C6-Hz-j74" secondAttribute="bottom" id="qq6-dv-qvk"/>
                             <constraint firstItem="P71-hx-Cer" firstAttribute="leading" secondItem="U3j-6c-VjS" secondAttribute="leadingMargin" id="vob-dT-lqF"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="P71-hx-Cer"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="6hT-iw-wqo"/>
+                    <connections>
+                        <outlet property="calendarContentView" destination="fLf-TL-Jyf" id="fuk-0K-6sX"/>
+                        <outlet property="calendarMenuView" destination="7Qs-cA-Fwh" id="4Fl-kc-drE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcV-eA-KA5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

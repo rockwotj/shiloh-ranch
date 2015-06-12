@@ -13,6 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var service : GTLServiceShilohranch {
+        if (_service != nil) {
+            return _service!
+        }
+        _service = GTLServiceShilohranch()
+        _service!.retryEnabled = true
+        _service!.apiVersion = "v1"
+        return _service!
+    }
+    var _service : GTLServiceShilohranch?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

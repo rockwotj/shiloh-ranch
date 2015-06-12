@@ -56,3 +56,5 @@ target/
 
 .pydevproject
 .project
+*.discovery
+API/

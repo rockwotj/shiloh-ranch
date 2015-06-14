@@ -24,8 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     var _service : GTLServiceShilohranch?
 
+    var database : Database {
+        if (_database != nil) {
+            return _database!
+        }
+        _database = Database()
+        return _database!
+    }
+    var _database : Database?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        CategoriesUpdater().sync()
+        NewsUpdater().sync()
         return true
     }
 

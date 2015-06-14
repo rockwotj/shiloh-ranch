@@ -13,6 +13,43 @@ func showErrorDialog(error : NSError) {
     dialog.show()
 }
 
+func getApiService() -> GTLServiceShilohranch {
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+    return app.service
+}
+
+func getDatabase() -> Database {
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+    return app.database
+}
+
+func convertDateToUnixTime(dateString : String) -> Int64 {
+    var timestamp = dateString.stringByReplacingOccurrencesOfString("T", withString: " ")
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SS"
+    if let date = dateFormatter.dateFromString(timestamp) {
+        let lastSync = Int64(date.timeIntervalSince1970 * 1000)
+        return lastSync
+    } else {
+        println("Error converting datetime to unix time: \(timestamp)")
+        return -1
+    }
+}
+
+
+
+extension UIViewController {
+    
+    func setViewWidth(view : UIView, width : CGFloat) {
+        let viewsDictionary = ["view":view]
+        let metricsDictionary = ["viewWidth":width - 16]
+        let constraint:Array = NSLayoutConstraint.constraintsWithVisualFormat("H:[view(viewWidth)]",
+            options: NSLayoutFormatOptions(0), metrics: metricsDictionary, views: viewsDictionary)
+        view.addConstraints(constraint)
+    }
+    
+}
+
 //
 //  FMDB Extensions
 //

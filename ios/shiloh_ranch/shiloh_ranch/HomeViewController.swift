@@ -15,18 +15,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Donate", style: UIBarButtonItemStyle.Plain, target: self, action: "onDonatePressed")
-        // Set Width
         let width = self.view.bounds.width
-        let viewsDictionary = ["innerView":innerView,]
-        let metricsDictionary = ["viewWidth":width]
-        let constraint:Array = NSLayoutConstraint.constraintsWithVisualFormat("H:[innerView(viewWidth)]", options: NSLayoutFormatOptions(0), metrics: metricsDictionary, views: viewsDictionary)
-        innerView.addConstraints(constraint)
-        
+        self.setViewWidth(innerView, width: width)
     }
-    
 
     func onDonatePressed() {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://tylerrockwood.com")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XURAEFVZV2CAJ")!)
     }
 
 }

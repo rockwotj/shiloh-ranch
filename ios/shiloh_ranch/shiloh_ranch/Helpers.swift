@@ -36,7 +36,151 @@ func convertDateToUnixTime(dateString : String) -> Int64 {
     }
 }
 
+func parseDate(dateString : String) -> NSDate? {
+    var timestamp = dateString.stringByReplacingOccurrencesOfString("T", withString: " ")
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SS"
+    if let date = dateFormatter.dateFromString(timestamp) {
+        return date
+    } else {
+        println("Error converting datetime to unix time: \(timestamp)")
+        return nil
+    }
+}
 
+func getTimeFromDate(dateString : String) -> String? {
+    var timestamp = dateString.stringByReplacingOccurrencesOfString("T", withString: " ")
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SS"
+    if let date = dateFormatter.dateFromString(timestamp) {
+        dateFormatter.dateFormat = "hh:mm aa"
+        return dateFormatter.stringFromDate(date)
+    } else {
+        println("Error converting datetime to NSDate: \(timestamp)")
+        return nil
+    }
+}
+
+func parseDateComponents(dateString : String) -> NSDateComponents? {
+    if let date = parseDate(dateString) {
+        return dateComponents(date)
+    } else {
+        return nil
+    }
+}
+
+func dateComponents(date: NSDate) -> NSDateComponents {
+    return NSCalendar.currentCalendar().components(.DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit, fromDate: date)
+}
+
+func getDayOfWeek(dateString: String) -> String? {
+    var timestamp = dateString.stringByReplacingOccurrencesOfString("T", withString: " ")
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SS"
+    if let date = dateFormatter.dateFromString(timestamp) {
+        return getDayOfWeek(date)
+    } else {
+        println("Error converting datetime to NSDate: \(timestamp)")
+        return nil
+    }
+
+}
+
+func getDayOfWeek(date: NSDate) -> String? {
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "EEEE"
+    return dateFormatter.stringFromDate(date)
+}
+
+extension NSDate
+{
+    func isGreaterThanDate(dateToCompare : NSDate) -> Bool
+    {
+        //Declare Variables
+        var isGreater = false
+        
+        //Compare Values
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
+        {
+            isGreater = true
+        }
+        
+        //Return Result
+        return isGreater
+    }
+    
+    
+    func isLessThanDate(dateToCompare : NSDate) -> Bool
+    {
+        //Declare Variables
+        var isLess = false
+        
+        //Compare Values
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
+        {
+            isLess = true
+        }
+        
+        //Return Result
+        return isLess
+    }
+    
+    
+    func addDays(daysToAdd : Int) -> NSDate
+    {
+        var secondsInDays : NSTimeInterval = Double(daysToAdd) * 60 * 60 * 24
+        var dateWithDaysAdded : NSDate = self.dateByAddingTimeInterval(secondsInDays)
+        
+        //Return Result
+        return dateWithDaysAdded
+    }
+    
+    
+    func addHours(hoursToAdd : Int) -> NSDate
+    {
+        var secondsInHours : NSTimeInterval = Double(hoursToAdd) * 60 * 60
+        var dateWithHoursAdded : NSDate = self.dateByAddingTimeInterval(secondsInHours)
+        
+        //Return Result
+        return dateWithHoursAdded
+    }
+}
+
+infix operator ~> {}
+
+/**
+Executes the lefthand closure on a background thread and,
+upon completion, the righthand closure on the main thread.
+*/
+func ~> (
+    backgroundClosure: () -> (),
+    mainClosure:       () -> ())
+{
+    dispatch_async(queue) {
+        backgroundClosure()
+        dispatch_async(dispatch_get_main_queue(), mainClosure)
+    }
+}
+
+/**
+Executes the lefthand closure on a background thread and,
+upon completion, the righthand closure on the main thread.
+Passes the background closure's output to the main closure.
+*/
+func ~> <R> (
+    backgroundClosure: () -> R,
+    mainClosure:       (result: R) -> ())
+{
+    dispatch_async(queue) {
+        let result = backgroundClosure()
+        dispatch_async(dispatch_get_main_queue(), {
+            mainClosure(result: result)
+        })
+    }
+}
+
+/** Serial dispatch queue used by the ~> operator. */
+private let queue = dispatch_queue_create("serial-worker", DISPATCH_QUEUE_SERIAL)
 
 extension UIViewController {
     

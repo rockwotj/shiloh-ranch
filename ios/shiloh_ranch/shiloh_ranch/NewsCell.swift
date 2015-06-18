@@ -15,12 +15,18 @@ class NewsCell : UITableViewCell {
     @IBOutlet weak var bodyView: UITextView!
     
     override func layoutSubviews() {
-        
+        super.layoutSubviews()
+        cardView.layer.cornerRadius = 5.0
+        cardView.layer.masksToBounds = true
     }
     
     func setPost(post : GTLShilohranchPost) {
         titleView.text = post.title
-        let body = NSAttributedString(data: post.content.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSNumber(unsignedLong: NSUTF8StringEncoding)], documentAttributes: nil, error: nil)
+        let content = post.content.dataUsingEncoding(NSUTF8StringEncoding)!
+        let options = [NSFontAttributeName: UIFont.systemFontOfSize(16.0),
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            NSCharacterEncodingDocumentAttribute: NSNumber(unsignedLong: NSUTF8StringEncoding)]
+        let body = NSAttributedString(data: content, options: options, documentAttributes: nil, error: nil)
         bodyView.attributedText = body!
     }
     

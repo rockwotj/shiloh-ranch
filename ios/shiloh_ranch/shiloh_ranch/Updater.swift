@@ -10,7 +10,7 @@ import Foundation
 
 class Updater {
     
-    func sync() {
+    func sync(callback : (() -> Void)? = nil) {
         let service = getApiService()
         let query = getSyncQuery()!
         service.executeQuery(query, completionHandler: { (ticket, response, error) -> Void in
@@ -21,6 +21,9 @@ class Updater {
                 println("\(self.getModelType()) has needsUpdate of \(sync.needsUpdate) with lastSync being \(self.getLastSyncTime())")
                 if (sync.needsUpdate != 0) {
                     self.update()
+                    if callback != nil {
+                        callback!()
+                    }
                 }
             }
         })

@@ -47,7 +47,6 @@
 		2C82FFA21B1D552F00A1972E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFA11B1D552F00A1972E /* Images.xcassets */; };
 		2C82FFA51B1D552F00A1972E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFA31B1D552F00A1972E /* LaunchScreen.xib */; };
 		2C82FFBB1B1D57D200A1972E /* SermonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */; };
-		2C82FFBD1B1D57F300A1972E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */; };
 		2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */; };
 		2C82FFCC1B1D5DA600A1972E /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */; };
 		2C82FFF11B1D647800A1972E /* calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF01B1D647800A1972E /* calendar-32.png */; };
@@ -56,8 +55,10 @@
 		2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF61B1D653900A1972E /* calendar-50.png */; };
 		2C82FFFB1B1D655D00A1972E /* micro-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFA1B1D655D00A1972E /* micro-25.png */; };
 		2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFC1B1D658C00A1972E /* calendar-25.png */; };
+		2CA07D8F1B2E1F50008B0E1B /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA07D8E1B2E1F50008B0E1B /* NewsTableViewController.swift */; };
 		2CADE46A1B26A236004698F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE4691B26A236004698F1 /* Security.framework */; };
 		2CADE46C1B26A244004698F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */; };
+		2CE25EE91B32739E00AB9445 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */; };
 		2CEE029D1B20203E00D1D80B /* clock-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029A1B20203E00D1D80B /* clock-25.png */; };
 		2CEE029E1B20203E00D1D80B /* clock-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029B1B20203E00D1D80B /* clock-32.png */; };
 		2CEE029F1B20203E00D1D80B /* clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029C1B20203E00D1D80B /* clock-50.png */; };
@@ -125,7 +126,6 @@
 		2C82FFA11B1D552F00A1972E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2C82FFA41B1D552F00A1972E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SermonViewController.swift; sourceTree = "<group>"; };
-		2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2C82FFBE1B1D5DA600A1972E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		2C82FFBF1B1D5DA600A1972E /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		2C82FFF01B1D647800A1972E /* calendar-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-32.png"; sourceTree = "<group>"; };
@@ -136,8 +136,10 @@
 		2C82FFFC1B1D658C00A1972E /* calendar-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-25.png"; sourceTree = "<group>"; };
 		2C82FFFE1B1D65E100A1972E /* home-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-25.png"; sourceTree = "<group>"; };
 		2C82FFFF1B1D65E100A1972E /* home-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-32.png"; sourceTree = "<group>"; };
+		2CA07D8E1B2E1F50008B0E1B /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		2CADE4691B26A236004698F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2CEE029A1B20203E00D1D80B /* clock-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-25.png"; sourceTree = "<group>"; };
 		2CEE029B1B20203E00D1D80B /* clock-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-32.png"; sourceTree = "<group>"; };
 		2CEE029C1B20203E00D1D80B /* clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-50.png"; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				2C82FF9C1B1D552F00A1972E /* EventsViewController.swift */,
+				2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -283,8 +286,8 @@
 		2CADE4661B26A173004698F1 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				2C82FFBC1B1D57F300A1972E /* NewsViewController.swift */,
 				2C14E7561B2D44F700344519 /* NewsCell.swift */,
+				2CA07D8E1B2E1F50008B0E1B /* NewsTableViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -478,8 +481,10 @@
 				2C678FE61B2A84A5004CCAC3 /* GTLShilohranchEventCollection.m in Sources */,
 				2C14E7571B2D44F700344519 /* NewsCell.swift in Sources */,
 				2C82000B1B1D67CE00A1972E /* TabViewController.swift in Sources */,
+				2CE25EE91B32739E00AB9445 /* EventDetailViewController.swift in Sources */,
 				2C678FE21B2A84A5004CCAC3 /* GTLShilohranchConstants.m in Sources */,
 				2C14E74B1B2CE81100344519 /* CategoriesUpdater.swift in Sources */,
+				2CA07D8F1B2E1F50008B0E1B /* NewsTableViewController.swift in Sources */,
 				2C678FDE1B2A84A5004CCAC3 /* GTLQueryShilohranch.m in Sources */,
 				2C678FEA1B2A84A5004CCAC3 /* GTLShilohranchSermonCollection.m in Sources */,
 				2C14E7491B2CE7FA00344519 /* NewsUpdater.swift in Sources */,
@@ -496,7 +501,6 @@
 				2C678FDF1B2A84A5004CCAC3 /* GTLServiceShilohranch.m in Sources */,
 				2C678FE31B2A84A5004CCAC3 /* GTLShilohranchDeletion.m in Sources */,
 				2C678FE91B2A84A5004CCAC3 /* GTLShilohranchSermon.m in Sources */,
-				2C82FFBD1B1D57F300A1972E /* NewsViewController.swift in Sources */,
 				2C678FE81B2A84A5004CCAC3 /* GTLShilohranchPostCollection.m in Sources */,
 				2C14E7511B2CE8D500344519 /* SermonUpdater.swift in Sources */,
 				2C82FF9B1B1D552F00A1972E /* HomeViewController.swift in Sources */,

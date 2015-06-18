@@ -300,7 +300,7 @@ class Database {
         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         database.inDatabase { (db) in
             db.executeUpdate("DELETE FROM \(self.TABLE_EVENT) WHERE \(self.KEY_ENTITY)=?", event.entityKey)
-            let ok = db.executeUpdate(sqlStatement, event.entityKey, event.title, event.repeat, event.content, event.startTime, event.location, event.endTime, event.timeAdded)
+            let ok = db.executeUpdate(sqlStatement, event.entityKey, event.title, event.repeat != nil ? event.repeat : "", event.content, event.startTime, event.location, event.endTime, event.timeAdded)
             if !ok {
                 println("Inserting Event Failed: \(db.lastErrorMessage())")
             }
@@ -348,12 +348,13 @@ class Database {
             "SET  \(KEY_TITLE)=?, \(KEY_REPEAT)=?, \(KEY_CONTENT)=?, \(KEY_START_TIME)=?, \(KEY_LOCATION)=?, \(KEY_END_TIME)=?, \(KEY_TIME_ADDED)=? " +
             "WHERE \(KEY_ENTITY)=?;"
         database.inDatabase { (db) in
-            let ok = db.executeUpdate(sqlStatement, event.title, event.repeat, event.content, event.startTime, event.location, event.endTime, event.timeAdded, event.entityKey)
+            let ok = db.executeUpdate(sqlStatement, event.title, event.repeat != nil ? event.repeat : "", event.content, event.startTime, event.location, event.endTime, event.timeAdded, event.entityKey)
             if !ok {
                 println("Updating Event Failed: \(db.lastErrorMessage())")
             }
         }
     }
+    
     func delete(category : GTLShilohranchCategory) {
         database.inDatabase { (db) in
             let ok = db.executeUpdate("DELETE FROM \(self.TABLE_CATEGORY) WHERE \(self.KEY_ENTITY)=?", category.entityKey)
@@ -390,7 +391,41 @@ class Database {
         }
     }
 
+    func deleteCategoryWithKey(entityKey : String) {
+        database.inDatabase { (db) in
+            let ok = db.executeUpdate("DELETE FROM \(self.TABLE_CATEGORY) WHERE \(self.KEY_ENTITY)=?", entityKey)
+            if !ok {
+                println("Deleting Category Failed: \(db.lastErrorMessage())")
+            }
+        }
+    }
     
+    func deletePostWithKey(entityKey : String) {
+        database.inDatabase { (db) in
+            let ok = db.executeUpdate("DELETE FROM \(self.TABLE_POST) WHERE \(self.KEY_ENTITY)=?", entityKey)
+            if !ok {
+                println("Deleting Post Failed: \(db.lastErrorMessage())")
+            }
+        }
+    }
+    
+    func deleteSermonWithKey(entityKey : String) {
+        database.inDatabase { (db) in
+            let ok = db.executeUpdate("DELETE FROM \(self.TABLE_SERMON) WHERE \(self.KEY_ENTITY)=?", entityKey)
+            if !ok {
+                println("Deleting Sermon Failed: \(db.lastErrorMessage())")
+            }
+        }
+    }
+    
+    func deleteEventWithKey(entityKey : String) {
+        database.inDatabase { (db) in
+            let ok = db.executeUpdate("DELETE FROM \(self.TABLE_EVENT) WHERE \(self.KEY_ENTITY)=?", entityKey)
+            if !ok {
+                println("Deleting Event Failed: \(db.lastErrorMessage())")
+            }
+        }
+    }
 }
 
 private func getDatabasePath() -> String {

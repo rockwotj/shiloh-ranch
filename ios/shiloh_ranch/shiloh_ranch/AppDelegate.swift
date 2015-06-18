@@ -34,8 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var _database : Database?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Do we want to do this? Or move to view controller?
         CategoriesUpdater().sync()
         NewsUpdater().sync()
+        EventsUpdater().sync()
+        SermonsUpdater().sync()
+        DeletionsUpdater().sync()
         return true
     }
 

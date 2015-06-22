@@ -1,16 +1,15 @@
 //
-//  NewsTableViewController.swift
+//  NewsCollectionViewController.swift
 //  Shiloh Ranch
 //
-//  Created by Tyler Rockwood on 6/14/15.
+//  Created by Tyler Rockwood on 6/21/15.
 //  Copyright (c) 2015 Shiloh Ranch Cowboy Church. All rights reserved.
 //
 
 import UIKit
 
-class NewsTableViewController: UITableViewController, UIActionSheetDelegate {
-
-    
+class NewsCollectionViewController : TGLStackedViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate {
+ 
     let newsCellIdentifier = "News"
     let noNewsCellIdentifier = "Empty"
     
@@ -19,13 +18,27 @@ class NewsTableViewController: UITableViewController, UIActionSheetDelegate {
     var postsInTable : [GTLShilohranchPost] = []
     var selectedCategory : GTLShilohranchCategory?
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor.lightGrayColor()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set to NO to prevent a small number
+        // of cards from filling the entire
+        // view height evenly and only show
+        // their -topReveal amount
+        //
+        self.stackedLayout.fillHeight = true;
+        
+        // Set to NO to prevent a small number
+        // of cards from being scrollable and
+        // bounce
+        //
+        self.stackedLayout.alwaysBounce = true;
+        
+        // Set to NO to prevent unexposed
+        // items at top and bottom from
+        // being selectable
+        //
+        self.unexposedItemsAreSelectable = true;
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: "onFilterPressed")
         getDatabase().getAllCategories() {
             (categories) in
@@ -39,22 +52,23 @@ class NewsTableViewController: UITableViewController, UIActionSheetDelegate {
             self.selectedCategory = nil
             self.updateView()
         }
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl?.tintColor = UIColor.whiteColor()
-        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
     }
-    
-    func refresh() {
-        NewsUpdater().sync() {
-            self.refreshControl?.endRefreshing()
-        }
-    }
-    
+
     func onFilterPressed() {
         if NSClassFromString("UIAlertController") != nil {
             let actionSheet = UIAlertController(title: "Select a Category", message: nil, preferredStyle: .ActionSheet)
             let defaultAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             actionSheet.addAction(defaultAction)
+            let allAction = UIAlertAction(title: "All", style: .Default) {
+                (_) in
+                self.selectedCategory = nil
+                self.postsInTable = self.allPosts.filter() {
+                    (_) in
+                    return true
+                }
+                self.updateView()
+            }
+            actionSheet.addAction(allAction)
             for category in categories {
                 let action = UIAlertAction(title: category.title, style: .Default) {
                     (_) in
@@ -89,7 +103,7 @@ class NewsTableViewController: UITableViewController, UIActionSheetDelegate {
         }
         updateView()
     }
-    
+
     func updateView() {
         if selectedCategory != nil {
             self.title = selectedCategory!.title + " News"
@@ -97,48 +111,23 @@ class NewsTableViewController: UITableViewController, UIActionSheetDelegate {
             self.title = "All News"
         }
         self.navigationController?.title = "News"
-        self.tableView.reloadData()
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postsInTable.count != 0 ? postsInTable.count : 1
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if postsInTable.count == 0 {
-            return tableView.dequeueReusableCellWithIdentifier(noNewsCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(newsCellIdentifier, forIndexPath: indexPath) as! NewsCell
-            let post = postsInTable[indexPath.row]
-            cell.setPost(post)
-            return cell
-        }
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if postsInTable.count == 0 {
-            return 44
-        } else {
-            let width = tableView.bounds.width - 32
-            let maxSize = CGSize(width: width, height: 10000)
-            let ctx = NSStringDrawingContext.new()
-            let content = postsInTable[indexPath.row].content.dataUsingEncoding(NSUTF8StringEncoding)!
-            let options = [NSFontAttributeName: UIFont.systemFontOfSize(16.0),
-                NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                NSCharacterEncodingDocumentAttribute: NSNumber(unsignedLong: NSUTF8StringEncoding)]
-            let body = NSAttributedString(data: content, options: options, documentAttributes: nil, error: nil)
-            let calculationView = UITextView()
-            calculationView.attributedText = body
-            let sizedString = calculationView.text as NSString
-            let size = sizedString.boundingRectWithSize(maxSize, options:.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:calculationView.font], context: ctx).size
-            println("Height for cell \(indexPath.row): \(size.height)")
-            return size.height + 110
-        }
+        self.collectionView?.reloadData()
     }
 
-
+    
+    override func moveItemAtIndexPath(fromIndexPath: NSIndexPath!, toIndexPath: NSIndexPath!) {
+        //TODO
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return postsInTable.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(newsCellIdentifier, forIndexPath: indexPath) as! NewsCell
+        let post = postsInTable[indexPath.row]
+        cell.setPost(post)
+        return cell
+    }
+    
 }

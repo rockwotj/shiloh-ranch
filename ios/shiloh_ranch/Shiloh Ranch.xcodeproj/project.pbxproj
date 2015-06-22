@@ -55,7 +55,7 @@
 		2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFF61B1D653900A1972E /* calendar-50.png */; };
 		2C82FFFB1B1D655D00A1972E /* micro-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFA1B1D655D00A1972E /* micro-25.png */; };
 		2C82FFFD1B1D658C00A1972E /* calendar-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C82FFFC1B1D658C00A1972E /* calendar-25.png */; };
-		2CA07D8F1B2E1F50008B0E1B /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA07D8E1B2E1F50008B0E1B /* NewsTableViewController.swift */; };
+		2C973C9E1B37BB330032F422 /* NewsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C973C9D1B37BB330032F422 /* NewsCollectionViewController.swift */; };
 		2CADE46A1B26A236004698F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE4691B26A236004698F1 /* Security.framework */; };
 		2CADE46C1B26A244004698F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */; };
 		2CE25EE91B32739E00AB9445 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */; };
@@ -136,7 +136,7 @@
 		2C82FFFC1B1D658C00A1972E /* calendar-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-25.png"; sourceTree = "<group>"; };
 		2C82FFFE1B1D65E100A1972E /* home-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-25.png"; sourceTree = "<group>"; };
 		2C82FFFF1B1D65E100A1972E /* home-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-32.png"; sourceTree = "<group>"; };
-		2CA07D8E1B2E1F50008B0E1B /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		2C973C9D1B37BB330032F422 /* NewsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewController.swift; sourceTree = "<group>"; };
 		2CADE4691B26A236004698F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				2C14E7561B2D44F700344519 /* NewsCell.swift */,
-				2CA07D8E1B2E1F50008B0E1B /* NewsTableViewController.swift */,
+				2C973C9D1B37BB330032F422 /* NewsCollectionViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -477,6 +477,7 @@
 			files = (
 				2C678FE51B2A84A5004CCAC3 /* GTLShilohranchEvent.m in Sources */,
 				2C14E7531B2CE8EC00344519 /* DeletionsUpdater.swift in Sources */,
+				2C973C9E1B37BB330032F422 /* NewsCollectionViewController.swift in Sources */,
 				2C678FED1B2A8663004CCAC3 /* Helpers.swift in Sources */,
 				2C678FE61B2A84A5004CCAC3 /* GTLShilohranchEventCollection.m in Sources */,
 				2C14E7571B2D44F700344519 /* NewsCell.swift in Sources */,
@@ -484,7 +485,6 @@
 				2CE25EE91B32739E00AB9445 /* EventDetailViewController.swift in Sources */,
 				2C678FE21B2A84A5004CCAC3 /* GTLShilohranchConstants.m in Sources */,
 				2C14E74B1B2CE81100344519 /* CategoriesUpdater.swift in Sources */,
-				2CA07D8F1B2E1F50008B0E1B /* NewsTableViewController.swift in Sources */,
 				2C678FDE1B2A84A5004CCAC3 /* GTLQueryShilohranch.m in Sources */,
 				2C678FEA1B2A84A5004CCAC3 /* GTLShilohranchSermonCollection.m in Sources */,
 				2C14E7491B2CE7FA00344519 /* NewsUpdater.swift in Sources */,
@@ -636,6 +636,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = shiloh_ranch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

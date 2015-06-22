@@ -7,12 +7,14 @@ PODS:
     - FMDB/common
   - google-cloud-endpoints-client (0.0.3)
   - JTCalendar (1.2.3)
+  - TGLStackedViewController (1.0.5)
 
 DEPENDENCIES:
   - CustomIOSAlertView (~> 0.9.3)
   - FMDB
   - google-cloud-endpoints-client (from `https://github.com/rockwotj/google-cloud-endpoints-client.git`)
   - JTCalendar (~> 1.1)
+  - TGLStackedViewController (~> 1.0)
 
 EXTERNAL SOURCES:
   google-cloud-endpoints-client:
@@ -28,5 +30,6 @@ SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   google-cloud-endpoints-client: 694a17ff78a6f9df1147b35ae277753a3f1addd5
   JTCalendar: 246ea3e338fb97624846ec77cdcde448242c4d5c
+  TGLStackedViewController: b86dfdcc7fd8d45e6c71f61870d2159b40754ed6
 
 COCOAPODS: 0.37.2

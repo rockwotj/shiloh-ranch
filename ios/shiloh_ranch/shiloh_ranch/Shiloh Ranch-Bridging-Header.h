@@ -6,4 +6,4 @@
 #import <CustomIOSAlertView.h>
 #import "FMDB.h"
 #import "TGLStackedViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "HTMLDecoder.h"

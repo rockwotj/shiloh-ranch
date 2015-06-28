@@ -61,6 +61,19 @@ func getTimeFromDate(dateString : String) -> String? {
     }
 }
 
+func prettyFormatDate(dateString : String) -> String? {
+    var timestamp = dateString.stringByReplacingOccurrencesOfString("T", withString: " ")
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SS"
+    if let date = dateFormatter.dateFromString(timestamp) {
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.stringFromDate(date)
+    } else {
+        println("Error converting datetime to NSDate: \(timestamp)")
+        return nil
+    }
+}
+
 func parseDateComponents(dateString : String) -> NSDateComponents? {
     if let date = parseDate(dateString) {
         return dateComponents(date)

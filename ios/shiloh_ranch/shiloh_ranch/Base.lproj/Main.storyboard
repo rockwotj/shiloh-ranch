@@ -160,33 +160,6 @@ Monday - 7:00pm</string>
             </objects>
             <point key="canvasLocation" x="1557" y="-304"/>
         </scene>
-        <!--Sermons-->
-        <scene sceneID="7QP-dn-eZP">
-            <objects>
-                <viewController id="utU-wI-aCe" customClass="SermonViewController" customModule="Shiloh_Ranch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tkP-ax-UnV"/>
-                        <viewControllerLayoutGuide type="bottom" id="19F-5r-mZz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="z1g-vt-Wbj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sermons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nra-I6-u3V">
-                                <rect key="frame" x="16" y="64" width="68.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Sermons" id="5xb-8E-UAa"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ip5-Sq-Ks3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="819" y="-990.99999999999989"/>
-        </scene>
         <!--Shiloh Ranch-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -328,6 +301,47 @@ Monday - 7:00pm</string>
             </objects>
             <point key="canvasLocation" x="3523" y="1265"/>
         </scene>
+        <!--Sermon View Controller-->
+        <scene sceneID="fne-g5-ukB">
+            <objects>
+                <tableViewController id="KCp-iD-u3o" customClass="SermonViewController" customModule="Shiloh_Ranch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ci1-dO-glZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SermonCell" textLabel="8Hl-1m-WB3" detailTextLabel="mgh-6j-5jy" style="IBUITableViewCellStyleSubtitle" id="NYV-0o-ciX">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NYV-0o-ciX" id="k6S-CP-8La">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Hl-1m-WB3">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mgh-6j-5jy">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KCp-iD-u3o" id="h3E-Nb-M8T"/>
+                            <outlet property="delegate" destination="KCp-iD-u3o" id="vbz-K6-hqJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="eQp-Yh-Ilq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKY-mv-W6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="792" y="-1048"/>
+        </scene>
         <!--Home-->
         <scene sceneID="PMm-4f-570">
             <objects>
@@ -359,7 +373,7 @@ Monday - 7:00pm</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="utU-wI-aCe" kind="relationship" relationship="rootViewController" id="53w-j4-LzJ"/>
+                        <segue destination="KCp-iD-u3o" kind="relationship" relationship="rootViewController" id="aao-NR-MvK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ySd-6u-gf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -413,7 +427,7 @@ Monday - 7:00pm</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G94-As-nvz">
                                                     <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5e-5S-P8D">

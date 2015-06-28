@@ -58,6 +58,7 @@
 		2C973C9E1B37BB330032F422 /* NewsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C973C9D1B37BB330032F422 /* NewsCollectionViewController.swift */; };
 		2CADE46A1B26A236004698F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE4691B26A236004698F1 /* Security.framework */; };
 		2CADE46C1B26A244004698F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */; };
+		2CBE41C91B3F9DE800E76C56 /* HTMLDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE41C81B3F9DE800E76C56 /* HTMLDecoder.m */; };
 		2CE25EE91B32739E00AB9445 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */; };
 		2CEE029D1B20203E00D1D80B /* clock-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029A1B20203E00D1D80B /* clock-25.png */; };
 		2CEE029E1B20203E00D1D80B /* clock-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE029B1B20203E00D1D80B /* clock-32.png */; };
@@ -139,6 +140,8 @@
 		2C973C9D1B37BB330032F422 /* NewsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewController.swift; sourceTree = "<group>"; };
 		2CADE4691B26A236004698F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2CADE46B1B26A244004698F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2CBE41C71B3F9DE800E76C56 /* HTMLDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLDecoder.h; path = ../HTMLDecoder.h; sourceTree = "<group>"; };
+		2CBE41C81B3F9DE800E76C56 /* HTMLDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLDecoder.m; path = ../HTMLDecoder.m; sourceTree = "<group>"; };
 		2CE25EE81B32739E00AB9445 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		2CEE029A1B20203E00D1D80B /* clock-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-25.png"; sourceTree = "<group>"; };
 		2CEE029B1B20203E00D1D80B /* clock-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-32.png"; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				2C82FFBA1B1D57D200A1972E /* SermonViewController.swift */,
+				2CBE41C71B3F9DE800E76C56 /* HTMLDecoder.h */,
+				2CBE41C81B3F9DE800E76C56 /* HTMLDecoder.m */,
 			);
 			name = Sermons;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				2C678FEA1B2A84A5004CCAC3 /* GTLShilohranchSermonCollection.m in Sources */,
 				2C14E7491B2CE7FA00344519 /* NewsUpdater.swift in Sources */,
 				2C678FEB1B2A84A5004CCAC3 /* GTLShilohranchUpdate.m in Sources */,
+				2CBE41C91B3F9DE800E76C56 /* HTMLDecoder.m in Sources */,
 				2C82FFBB1B1D57D200A1972E /* SermonViewController.swift in Sources */,
 				2C678FE41B2A84A5004CCAC3 /* GTLShilohranchDeletionCollection.m in Sources */,
 				2C82FF9D1B1D552F00A1972E /* EventsViewController.swift in Sources */,

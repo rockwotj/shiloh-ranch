@@ -14,6 +14,9 @@
 		2C14E7531B2CE8EC00344519 /* DeletionsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C14E7521B2CE8EC00344519 /* DeletionsUpdater.swift */; };
 		2C14E7551B2CE8F500344519 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C14E7541B2CE8F500344519 /* Updater.swift */; };
 		2C14E7571B2D44F700344519 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C14E7561B2D44F700344519 /* NewsCell.swift */; };
+		2C647EE01B40DA9800E040E2 /* audioicon25.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C647EDD1B40DA9800E040E2 /* audioicon25.png */; };
+		2C647EE11B40DA9800E040E2 /* audioicon32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C647EDE1B40DA9800E040E2 /* audioicon32.png */; };
+		2C647EE21B40DA9800E040E2 /* audioicon50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C647EDF1B40DA9800E040E2 /* audioicon50.png */; };
 		2C678FDE1B2A84A5004CCAC3 /* GTLQueryShilohranch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C678FC21B2A84A5004CCAC3 /* GTLQueryShilohranch.m */; };
 		2C678FDF1B2A84A5004CCAC3 /* GTLServiceShilohranch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C678FC41B2A84A5004CCAC3 /* GTLServiceShilohranch.m */; };
 		2C678FE01B2A84A5004CCAC3 /* GTLShilohranchCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C678FC71B2A84A5004CCAC3 /* GTLShilohranchCategory.m */; };
@@ -79,6 +82,9 @@
 		2C14E7541B2CE8F500344519 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		2C14E7561B2D44F700344519 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		2C2AEC881B229F3C00761E06 /* Shiloh Ranch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shiloh Ranch-Bridging-Header.h"; sourceTree = "<group>"; };
+		2C647EDD1B40DA9800E040E2 /* audioicon25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioicon25.png; sourceTree = "<group>"; };
+		2C647EDE1B40DA9800E040E2 /* audioicon32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioicon32.png; sourceTree = "<group>"; };
+		2C647EDF1B40DA9800E040E2 /* audioicon50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioicon50.png; sourceTree = "<group>"; };
 		2C678FC11B2A84A5004CCAC3 /* GTLQueryShilohranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLQueryShilohranch.h; sourceTree = "<group>"; };
 		2C678FC21B2A84A5004CCAC3 /* GTLQueryShilohranch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLQueryShilohranch.m; sourceTree = "<group>"; };
 		2C678FC31B2A84A5004CCAC3 /* GTLServiceShilohranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLServiceShilohranch.h; sourceTree = "<group>"; };
@@ -249,6 +255,9 @@
 		2C82FF961B1D552F00A1972E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C647EDD1B40DA9800E040E2 /* audioicon25.png */,
+				2C647EDE1B40DA9800E040E2 /* audioicon32.png */,
+				2C647EDF1B40DA9800E040E2 /* audioicon50.png */,
 				2CEE02A01B20205600D1D80B /* location-25.png */,
 				2CEE02A11B20205600D1D80B /* location-32.png */,
 				2CEE02A21B20205600D1D80B /* location-50.png */,
@@ -385,6 +394,11 @@
 					2C82FF921B1D552F00A1972E = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 82T6YZ5XP5;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -417,6 +431,7 @@
 				2C8200111B1D699B00A1972E /* receive_cash-50.png in Resources */,
 				2C82FFCC1B1D5DA600A1972E /* iTunesArtwork@2x in Resources */,
 				2C82FFF71B1D653900A1972E /* calendar-50.png in Resources */,
+				2C647EE11B40DA9800E040E2 /* audioicon32.png in Resources */,
 				2CEE02A31B20205600D1D80B /* location-25.png in Resources */,
 				2CEE029E1B20203E00D1D80B /* clock-32.png in Resources */,
 				2C8200021B1D65E100A1972E /* home-32.png in Resources */,
@@ -428,6 +443,8 @@
 				2CEE02A51B20205600D1D80B /* location-50.png in Resources */,
 				2C8200101B1D699B00A1972E /* receive_cash-32.png in Resources */,
 				2C82FFCB1B1D5DA600A1972E /* iTunesArtwork in Resources */,
+				2C647EE21B40DA9800E040E2 /* audioicon50.png in Resources */,
+				2C647EE01B40DA9800E040E2 /* audioicon25.png in Resources */,
 				2C82FFF11B1D647800A1972E /* calendar-32.png in Resources */,
 				2C8200071B1D663B00A1972E /* news-25.png in Resources */,
 				2C82FFF31B1D64CB00A1972E /* micro-32.png in Resources */,

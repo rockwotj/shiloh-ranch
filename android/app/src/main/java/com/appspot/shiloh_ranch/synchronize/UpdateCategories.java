@@ -41,7 +41,7 @@ public final class UpdateCategories extends Sync<Category> {
             if (categories.getItems() != null) {
                 for (Category c : categories.getItems()) {
                     items.add(c);
-                    if (db.getPost(c.getEntityKey()) == null)
+                    if (db.getCategory(c.getEntityKey()) == null)
                         db.insert(c);
                     else
                         db.update(c);
@@ -50,7 +50,7 @@ public final class UpdateCategories extends Sync<Category> {
             if (categories.getNextPageToken() != null) {
                 for (Category c : update(categories.getNextPageToken())) {
                     items.add(c);
-                    if (db.getPost(c.getEntityKey()) == null)
+                    if (db.getCategory(c.getEntityKey()) == null)
                         db.insert(c);
                     else
                         db.update(c);

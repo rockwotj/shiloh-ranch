@@ -13,6 +13,11 @@ func showErrorDialog(error : NSError) {
     dialog.show()
 }
 
+func showErrorDialog(message : String) {
+    let dialog = UIAlertView(title: "Error!", message: message, delegate: nil, cancelButtonTitle: "OK")
+    dialog.show()
+}
+
 func getApiService() -> GTLServiceShilohranch {
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
     return app.service
@@ -206,7 +211,6 @@ extension UIViewController {
     }
     
 }
-
 //
 //  FMDB Extensions
 //

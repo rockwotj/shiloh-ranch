@@ -41,7 +41,7 @@ public final class UpdateEvents extends Sync<Event> {
             if (events.getItems() != null) {
                 for (Event e : events.getItems()) {
                     items.add(e);
-                    if (db.getPost(e.getEntityKey()) == null)
+                    if (db.getEvent(e.getEntityKey()) == null)
                         db.insert(e);
                     else
                         db.update(e);
@@ -50,7 +50,7 @@ public final class UpdateEvents extends Sync<Event> {
             if (events.getNextPageToken() != null) {
                 for (Event e : update(events.getNextPageToken())) {
                     items.add(e);
-                    if (db.getPost(e.getEntityKey()) == null)
+                    if (db.getEvent(e.getEntityKey()) == null)
                         db.insert(e);
                     else
                         db.update(e);

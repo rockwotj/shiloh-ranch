@@ -4,3 +4,5 @@ pod 'google-cloud-endpoints-client', :git => 'https://github.com/rockwotj/google
 pod 'CustomIOSAlertView', '~> 0.9.3'
 pod 'FMDB'
 pod 'TGLStackedViewController', '~> 1.0'
+pod 'RSPlayPauseButton', '~> 1.0'
+pod 'StreamingKit'

@@ -47,12 +47,19 @@ location_pattern = re.compile("LOCATION:(.*)\r\n")
 start_time_pattern = re.compile("DTSTART:(.*)\r\n")
 end_time_pattern = re.compile("DTEND:(.*)\r\n")
 repeat_pattern = re.compile("RRULE:FREQ=(.*?);")
+until_pattern = re.compile("RRULE:(.*?)UNTIL=(.*?)\r\n")
 
-def find_pattern(pattern, string):
+def find_pattern(pattern, string, group_number=1):
     result = pattern.search(string)
     if result:
-        result = result.group(1).strip()
+        result = result.group(group_number).strip()
     return result
+
+def to_string(obj):
+    if obj is not None:
+        return str(obj)
+    else:
+        return ""
 
 def convert_to_entity(vevent):
 #     print vevent
@@ -62,13 +69,17 @@ def convert_to_entity(vevent):
     event.content = find_pattern(content_pattern, vevent).replace('\r\n ', '')
     date = find_pattern(time_added_pattern, vevent) # 20150527T131225Z
     event.location = find_pattern(location_pattern, vevent)
-    time = find_pattern(start_time_pattern, vevent) # 20150528T190000Z
     event.time_added = datetime.strptime(date, '%Y%m%dT%H%M%SZ')
     time = find_pattern(start_time_pattern, vevent) # 20150528T190000Z
     event.start_time = datetime.strptime(time, '%Y%m%dT%H%M%SZ')
     time = find_pattern(end_time_pattern, vevent) # 20150528T190000Z
     event.end_time = datetime.strptime(time, '%Y%m%dT%H%M%SZ')
-    event.repeat = find_pattern(repeat_pattern, vevent)
+    repeat = find_pattern(repeat_pattern, vevent)
+    until = find_pattern(until_pattern, vevent, 2)
+    seperator = ""
+    if until is not None:
+        seperator = ":"
+    event.repeat = to_string(repeat) + seperator + to_string(until)
     return event
 
 

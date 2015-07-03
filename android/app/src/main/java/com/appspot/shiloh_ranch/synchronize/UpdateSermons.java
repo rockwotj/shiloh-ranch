@@ -41,7 +41,7 @@ public final class UpdateSermons extends Sync<Sermon> {
             if (sermons.getItems() != null) {
                 for (Sermon s : sermons.getItems()) {
                     items.add(s);
-                    if (db.getPost(s.getEntityKey()) == null)
+                    if (db.getSermon(s.getEntityKey()) == null)
                         db.insert(s);
                     else
                         db.update(s);
@@ -50,7 +50,7 @@ public final class UpdateSermons extends Sync<Sermon> {
             if (sermons.getNextPageToken() != null) {
                 for (Sermon s : update(sermons.getNextPageToken())) {
                     items.add(s);
-                    if (db.getPost(s.getEntityKey()) == null)
+                    if (db.getSermon(s.getEntityKey()) == null)
                         db.insert(s);
                     else
                         db.update(s);

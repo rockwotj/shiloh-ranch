@@ -61,8 +61,7 @@ class EventsViewController: UIViewController, JTCalendarDataSource, UITableViewD
                 let eventDate = parseDate(event.startTime)!
                 let eventDateComponents = dateComponents(eventDate)
                 let isOnDate = self.isOnSameDay(selectedDate, day2: eventDateComponents)
-                return isOnDate || (event.repeat == "WEEKLY") && self.isWeeklyRepeat(date, date2: eventDate)
-
+                return isOnDate || (event.repeat.hasPrefix("WEEKLY")) && self.isWeeklyRepeat(date, date2: eventDate, repeatString: event.repeat)
             }
         }
     }
@@ -78,8 +77,21 @@ class EventsViewController: UIViewController, JTCalendarDataSource, UITableViewD
         return isOnSameDay
     }
     
-    func isWeeklyRepeat(date1 : NSDate, date2 : NSDate) -> Bool {
-        return getDayOfWeek(date1) == getDayOfWeek(date2)
+    func isWeeklyRepeat(currentDate : NSDate, date2 : NSDate, repeatString : String) -> Bool {
+        if let range = repeatString.rangeOfString(":") {
+            var until = repeatString.substringFromIndex(range.endIndex)
+            until = until.stringByReplacingOccurrencesOfString("Z", withString: "")
+            var timestamp = until.stringByReplacingOccurrencesOfString("T", withString: " ")
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyyMMdd HHmmss"
+            if let untilDate = dateFormatter.dateFromString(timestamp) {
+                let eventOver = untilDate.isLessThanDate(currentDate)
+                if eventOver {
+                    return false
+                }
+            }
+        }
+        return getDayOfWeek(currentDate) == getDayOfWeek(date2)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -96,7 +108,7 @@ class EventsViewController: UIViewController, JTCalendarDataSource, UITableViewD
             let eventDate = parseDateComponents(event.startTime)
             if isOnSameDay(selectedDate, day2: eventDate!) {
                 return true
-            } else if event.repeat == "WEEKLY" && self.isWeeklyRepeat(date, date2: parseDate(event.startTime)!) {
+            } else if event.repeat.hasPrefix("WEEKLY") && self.isWeeklyRepeat(date, date2: parseDate(event.startTime)!, repeatString: event.repeat) {
                 return true
             }
         }

@@ -3,6 +3,7 @@ package com.appspot.shiloh_ranch.fragments.events;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import com.appspot.shiloh_ranch.R;
 import com.appspot.shiloh_ranch.api.model.Event;
 import com.appspot.shiloh_ranch.database.Database;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -69,11 +73,20 @@ public class EventScheduleFragment extends Fragment implements WeekView.MonthCha
         for (int i = 0; i < mEvents.size(); i++) {
             Event event = mEvents.get(i);
             Calendar startTime = DateTimeUtils.convertDateToCalendar(event.getStartTime());
-            if ("WEEKLY".equals(event.getRepeat())) {
+            if (isWeeklyRecurring(event.getRepeat())) {
                 Calendar endTime = DateTimeUtils.convertDateToCalendar(event.getEndTime());
+                long untilTime = Long.MAX_VALUE;
+                if (event.getRepeat().contains(":")) {
+                    String until = event.getRepeat().split(":")[1];
+                    untilTime = parseICSDateToUnixTime(until);
+                }
                 for (int weekInMonth = 0; weekInMonth < 4; weekInMonth++) {
+                    Calendar weeklyStartTime = getNthOfMonth(weekInMonth, year, month, startTime);
+                    if (weeklyStartTime.getTimeInMillis() > untilTime) {
+                        break;
+                    }
                     WeekViewEvent e = new WeekViewEvent(i, event.getTitle(),
-                            getNthOfMonth(weekInMonth, year, month, startTime),
+                            weeklyStartTime,
                             getNthOfMonth(weekInMonth, year, month, endTime));
                     eventList.add(e);
                 }
@@ -84,6 +97,25 @@ public class EventScheduleFragment extends Fragment implements WeekView.MonthCha
             }
         }
         return eventList;
+    }
+
+    private boolean isWeeklyRecurring(String repeat) {
+        if (repeat == null) {
+            return false;
+        }
+        return repeat.contains("WEEKLY");
+    }
+
+    private long parseICSDateToUnixTime(String timestamp) {
+        timestamp = timestamp.replace("T", " ");
+        timestamp = timestamp.replace("Z", "");
+        DateFormat icsFormat = new SimpleDateFormat("yyyyMMdd HHmmss", Locale.US);
+        try {
+            return icsFormat.parse(timestamp).getTime();
+        } catch (ParseException e) {
+            Log.e("SRCC", "Unable to convert date to unix time");
+            return -1L;
+        }
     }
 
     private Calendar getNthOfMonth(int n, int year, int month, Calendar time) {

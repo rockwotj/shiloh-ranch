@@ -7,6 +7,8 @@ PODS:
     - FMDB/common
   - google-cloud-endpoints-client (0.0.3)
   - JTCalendar (1.2.3)
+  - RSPlayPauseButton (1.0.1)
+  - StreamingKit (0.1.25)
   - TGLStackedViewController (1.0.5)
 
 DEPENDENCIES:
@@ -14,6 +16,8 @@ DEPENDENCIES:
   - FMDB
   - google-cloud-endpoints-client (from `https://github.com/rockwotj/google-cloud-endpoints-client.git`)
   - JTCalendar (~> 1.1)
+  - RSPlayPauseButton (~> 1.0)
+  - StreamingKit
   - TGLStackedViewController (~> 1.0)
 
 EXTERNAL SOURCES:
@@ -30,6 +34,8 @@ SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   google-cloud-endpoints-client: 694a17ff78a6f9df1147b35ae277753a3f1addd5
   JTCalendar: 246ea3e338fb97624846ec77cdcde448242c4d5c
+  RSPlayPauseButton: 9def027a1259ded3a6ecfeb0e57df1775ff22fb0
+  StreamingKit: f00c054cfd0f59d88c8be7a2270e208302ce48c4
   TGLStackedViewController: b86dfdcc7fd8d45e6c71f61870d2159b40754ed6
 
 COCOAPODS: 0.37.2

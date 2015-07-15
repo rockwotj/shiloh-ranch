@@ -24,6 +24,7 @@ class EventsViewController: UIViewController, JTCalendarDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        EventsUpdater().sync()
         calendar = JTCalendar()
         let today = NSDate()
         calendar?.currentDate = today

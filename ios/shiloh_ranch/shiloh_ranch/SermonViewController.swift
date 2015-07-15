@@ -26,6 +26,7 @@ class SermonViewController: UITableViewController, STKAudioPlayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SermonsUpdater().sync()
         self.title = "Sermons"
         getDatabase().getAllSermons() {
             (sermons) in

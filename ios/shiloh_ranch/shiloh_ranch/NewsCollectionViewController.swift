@@ -20,7 +20,8 @@ class NewsCollectionViewController : TGLStackedViewController, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        CategoriesUpdater().sync()
+        NewsUpdater().sync()
         // Set to NO to prevent a small number
         // of cards from filling the entire
         // view height evenly and only show
